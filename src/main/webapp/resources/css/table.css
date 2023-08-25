@@ -1,0 +1,17 @@
+table {
+}
+
+.table-side {
+    width: 500px;
+    height: 100%;
+}
+
+.wrapper-account-book {
+    display: flex;
+    width: 100%;
+}
+.wrapper-write {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
