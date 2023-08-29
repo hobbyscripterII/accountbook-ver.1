@@ -1,6 +1,6 @@
 package com.accountbook.project.mapper;
 
-import com.accountbook.project.domain.domain.Member;
+import com.accountbook.project.domain.Member;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

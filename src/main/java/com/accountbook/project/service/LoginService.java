@@ -1,6 +1,6 @@
-package com.accountbook.project.domain.service;
+package com.accountbook.project.service;
 
-import com.accountbook.project.domain.domain.Member;
+import com.accountbook.project.domain.Member;
 import com.accountbook.project.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ public class LoginService {
 
     public Member login(String email, String pwd) {
         Member member = memberMapper.selectMember(email);
-        if (email.equals(member.getEmail()) && pwd.equals(member.getPwd())) {
+        if (email.equals(member.getM_email()) && pwd.equals(member.getM_pwd())) {
             return member;
         }
         return null;

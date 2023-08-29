@@ -5,6 +5,6 @@
 
 <mapper namespace="com.accountbook.project.mapper.MemberMapper">
     <select id="selectMember" parameterType="java.lang.String" resultType="Member">
-        select * from ac_member where email = #{email}
+        SELECT * FROM AC_MEMBER WHERE M_EMAIL = #{m_email}
     </select>
 </mapper>

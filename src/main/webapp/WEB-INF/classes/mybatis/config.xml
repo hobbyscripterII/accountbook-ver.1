@@ -5,7 +5,9 @@
 
 <configuration>
     <typeAliases>
-        <typeAlias type="com.accountbook.project.domain.domain.Income" alias="Income" />
-        <typeAlias type="com.accountbook.project.domain.domain.Member" alias="Member" />
+        <typeAlias type="com.accountbook.project.domain.Member" alias="Member" />
+        <typeAlias type="com.accountbook.project.domain.MonthCategory" alias="MonthCategory" />
+        <typeAlias type="com.accountbook.project.domain.Month" alias="Month" />
+        <typeAlias type="com.accountbook.project.domain.Write" alias="Write" />
     </typeAliases>
 </configuration>

@@ -8,9 +8,9 @@
     <div style="display: flex; justify-content: center">
         <form action="login" method="post" style="width: 500px;">
             <label>이메일</label>
-            <input type="email" class="form-control" name="email">
+            <input type="email" class="form-control" name="m_email">
             <label>비밀번호</label>
-            <input type="password" class="form-control" name="pwd" aria-describedby="pwdHelp">
+            <input type="password" class="form-control" name="m_pwd" aria-describedby="pwdHelp">
             <div id="pwdHelp" class="form-text">비밀번호를 입력하세요.</div>
             <div style="display: flex">
                 <input type="submit" value="로그인" class="btn btn-success" style="margin: 10px 10px 0 0">
