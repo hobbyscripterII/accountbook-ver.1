@@ -6,5 +6,13 @@
 <nav>
     <a href="<c:url value="/" />">홈</a>
     <a href="<c:url value="/month"/>">가계부</a>
-    <a href="<c:url value="/login"/>">로그인</a>
+
+    <c:choose>
+        <c:when test="${sessionScope.MEMBER_ID eq null}">
+            <a href="<c:url value="/login"/>">로그인</a>
+        </c:when>
+        <c:otherwise>
+            <a href="<c:url value="/logout"/>">로그아웃</a>
+        </c:otherwise>
+    </c:choose>
 </nav>
