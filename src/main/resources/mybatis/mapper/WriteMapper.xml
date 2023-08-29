@@ -8,9 +8,13 @@
         DELETE FROM AC_MONTH WHERE M_ID = #{m_id}
     </delete>
 
-    <insert id="insertWriteTable" parameterType="Write">
-        INSERT INTO AC_MONTH VALUES(MONTH_SEQ.NEXTVAL, #{a_id}, #{c_code}, TO_DATE(#{d_date},'YY/MM/DD'), #{m_amount}, #{m_memo})
+    <insert id="insertWriteTableRow" parameterType="Write">
+        INSERT INTO AC_MONTH(M_ID, ME_ID, A_ID, A_CODE, C_CODE, D_DATE, M_AMOUNT, M_MEMO, M_CREATE_DATE) VALUES (MONTH_SEQ.NEXTVAL, #{me_id}, #{a_id}, #{a_code}, #{c_code}, TO_DATE(#{d_date},'YY/MM/DD'), #{m_amount}, #{m_memo}, SYSDATE)
     </insert>
+
+    <update id="updateWriteTableRow" parameterType="Write">
+        UPDATE AC_MONTH SET C_CODE = #{c_code}, D_DATE = TO_DATE(#{d_date},'YY/MM/DD'), M_AMOUNT = #{m_amount}, M_MEMO = #{m_memo}, M_UPDATE_DATE = SYSDATE WHERE M_ID = #{m_id}
+    </update>
 
     <insert id="checkDate" parameterType="Write">
         MERGE INTO AC_DATE

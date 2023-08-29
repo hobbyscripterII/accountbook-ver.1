@@ -11,8 +11,7 @@ public class WriteService {
     private final WriteMapper writeMapper;
 
     public void checkDate(Write write) {writeMapper.checkDate(write);}
-    public void insertWriteTable(Write write) {writeMapper.insertWriteTable(write);}
+    public void insertWriteTableRow(Write write) {writeMapper.insertWriteTableRow(write);}
     public void deleteWriteTableRow(int m_id) {writeMapper.deleteWriteTableRow(m_id);}
-
-
+    public void updateWriteTableRow(Write write) {writeMapper.updateWriteTableRow(write);}
 }

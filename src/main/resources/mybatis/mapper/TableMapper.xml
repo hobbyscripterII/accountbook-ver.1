@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accountbook.project.mapper.WriteMapper">
+    <select id="selectIncome" parameterType="Table">
+        SELECT C.C_NAME 카테고리명, SUM(M.M_AMOUNT) 가격, COUNT(C.C_NAME) 등록_횟수
+        FROM AC_CATEGORY C, AC_MONTH M
+        WHERE C.C_CODE = M.C_CODE AND C.C_CODE LIKE 'A%'
+        GROUP BY ROLLUP(C.C_NAME)
+    </select>
+
+    <select id="selectFix" parameterType="Table">
+        SELECT C.C_NAME 카테고리명, SUM(M.M_AMOUNT) 가격, COUNT(C.C_NAME) 등록_횟수
+        FROM AC_CATEGORY C, AC_MONTH M
+        WHERE C.C_CODE = M.C_CODE AND C.C_CODE LIKE 'B%'
+        GROUP BY ROLLUP(C.C_NAME)
+    </select>
+
+    <select id="selectNonFix" parameterType="Table">
+        SELECT C.C_NAME 카테고리명, SUM(M.M_AMOUNT) 가격, COUNT(C.C_NAME) 등록_횟수
+        FROM AC_CATEGORY C, AC_MONTH M
+        WHERE C.C_CODE = M.C_CODE AND C.C_CODE LIKE 'C%'
+        GROUP BY ROLLUP(C.C_NAME)
+    </select>
+</mapper>

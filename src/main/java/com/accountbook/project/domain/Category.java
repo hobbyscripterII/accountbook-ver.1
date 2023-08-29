@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MonthCategory {
+public class Category {
     private String c_code;
     private String c_name;
 }

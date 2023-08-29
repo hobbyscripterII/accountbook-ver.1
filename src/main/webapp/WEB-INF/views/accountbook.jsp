@@ -7,6 +7,14 @@
 <jsp:include page="layout/header.jsp"/>
 <body>
 <section>
+    <div class="div-account-book-list">
+        <form action="" method="get">
+            <input class="btn btn-dark" type="button" name="" value="가계부 추가">
+            <c:forEach var="l" items="${list}">
+                <input class="btn btn-primary" type="button" name="a_code" value="${l.a_code}">
+            </c:forEach>
+        </form>
+    </div>
     <div class="wrapper-account-book">
 <%--        <div class="table-side">--%>
 <%--            <form>--%>
@@ -91,24 +99,26 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="m" items="${month}">
+                        <c:forEach var="t" items="${table}">
                         <tr>
-                            <input type="hidden" id="m_id" name="m_id" value="${m.m_id}">
-                            <input type="hidden" id="a_id" name="a_id" value="${m.a_id}" class="form-control form-control-sm" disabled>
-                            <frm:parseDate var="d_date" value="${m.d_date}" pattern="yyyy-mm-dd" />
-                            <td><input type="date" id="d_date" name="d_date" value="<fmt:formatDate value="${d_date}" pattern="yyyy-mm-dd" />" class="form-control form-control-sm" disabled></td>
+                            <input type="hidden" id="m_id" name="m_id" value="${t.m_id}">
+                            <input type="hidden" id="me_id" name="me_id" value="${t.me_id}">
+                            <input type="hidden" id="a_id" name="a_id" value="${t.a_id}">
+                            <input type="hidden" id="a_code" name="a_code" value="${t.a_code}">
+                            <frm:parseDate var="d_date" value="${t.d_date}" pattern="yyyy-mm-dd" />
+                            <td><input type="date" id="d_date" name="d_date" value="<fmt:formatDate value="${d_date}" pattern="yyyy-mm-dd" />" class="form-control form-control-sm"></td>
                             <td>
-                                <select class="form-control form-control-sm" disabled>
-                                        <option id="c_code" name="c_code" value="${m.c_code}">${m.c_name}</option>
+                                <select id="category" class="form-control form-control-sm">
+                                        <option id="c_code" name="c_code" value="${t.c_code}">${t.c_name}</option>
                                     <c:forEach var="c" items="${category}">
                                         <option value="${c.c_code}">${c.c_name}</option>
                                     </c:forEach>
                                 </select>
                             </td>
-                            <td><input id="m_amount" name="m_amount" type="text" value="${m.m_amount}" class="form-control form-control-sm" disabled></td>
+                            <td><input id="m_amount" name="m_amount" type="text" value="${t.m_amount}" class="form-control form-control-sm"></td>
 <%--                            <td><input id="m_amount" name="m_amount" type="text" value="<fmt:formatNumber value="${m.m_amount}" pattern="###,###,###원"/>" class="form-control form-control-sm" disabled></td>--%>
-                            <td><input id="m_memo" name="m_memo" type="text" value="${m.m_memo}" class="form-control form-control-sm" disabled></td>
-                            <td style="text-align: center"><input type="button" id="modify" value="수정" data-bs-toggle="modal" data-bs-target="" class="btn btn-primary btn-sm"></td>
+                            <td><input id="m_memo" name="m_memo" type="text" value="${t.m_memo}" class="form-control form-control-sm"></td>
+                            <td style="text-align: center"><input type="button" id="update" value="수정" data-bs-toggle="modal" data-bs-target="#modal-row-update" class="btn btn-primary btn-sm"></td>
                             <td style="text-align: center"><input type="button" id="delete" value="삭제" data-bs-toggle="modal" data-bs-target="#modal-row-delete" class="btn btn-danger btn-sm"></td>
                         </tr>
                         </c:forEach>
@@ -143,6 +153,27 @@
         </div>
     </div>
 
+    <div class="modal" id="modal-row-update" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">알림</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>수정된 데이터는 복구할 수 없습니다.</p>
+                        <p>수정하시겠습니까?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="update-flag" class="btn btn-danger">확인</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="modal-row-create" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -164,35 +195,13 @@
     </div>
 </section>
 
-<script>
-    function rowCreate() {
-        var dynamic_tr =
-            '<tr>' +
-            '<input type="hidden" id="m_id" name="m_id" value="1" class="form-control form-control-sm" readonly>' +
-            '<input type="hidden" id="a_id" name="a_id" value="202308" class="form-control form-control-sm" readonly>' + // 추후, 가계부 년월 아이디 버튼으로 값 가져오기
-            '<td><input type="date" id="d_date" name="d_date" class="form-control form-control-sm"></td>' +
-            '<td>' +
-            '<select id="c_code" name="c_code" class="form-control form-control-sm">' +
-            '<option></option>' +
-            '<c:forEach var="c" items="${category}">' +
-            '<option value="${c.c_code}">${c.c_name}</option>' +
-            '</c:forEach>' +
-            '</select>' +
-            '</td>' +
-            '<td><input id="m_amount" name="m_amount" type="text" class="form-control form-control-sm"></td>' +
-            '<td><input id="m_memo" name="m_memo" type="text" value="${m.m_memo}" class="form-control form-control-sm"></td>' +
-            '<td style="text-align: center"><input type="button" id="create" value="추가" data-bs-toggle="modal" data-bs-target="#modal-row-create" class="btn btn-primary btn-sm"></td>' +
-            '<td style="text-align: center"><input type="button" id="delete" value="삭제" data-bs-toggle="modal" data-bs-target="#modal-row-delete" class="btn btn-danger btn-sm"></td>' +
-            '</tr>';
-
-        $('tbody').append(dynamic_tr);
-    }
-
+<script type="text/javascript">
     $(document).on('click', '#create', function() {
         const cre = document.querySelectorAll('#create');
         const row = this.closest('tr');
-        const m_id = row.querySelector(`[name = 'm_id']`).value;
+        const me_id = row.querySelector(`[name = 'me_id']`).value;
         const a_id = row.querySelector(`[name = 'a_id']`).value;
+        const a_code = row.querySelector(`[name = 'a_code']`).value;
         const d_date = row.querySelector(`[name = 'd_date']`).value;
         const c_code = row.querySelector(`[name = 'c_code']`).value;
         const m_amount = row.querySelector(`[name = 'm_amount']`).value;
@@ -204,9 +213,40 @@
                 $.ajax({
                     type: 'post',
                     url: 'insert',
-                    data: {'m_id' : m_id, 'a_id' : a_id, 'd_date': d_date, 'c_code':c_code ,'m_amount' :m_amount , 'm_memo':m_memo},
+                    data: {'me_id' : me_id, 'a_id' : a_id, 'a_code' : a_code, 'd_date': d_date, 'c_code':c_code ,'m_amount' :m_amount , 'm_memo':m_memo},
                     success(data) {
                         alert('추가가 완료되었습니다.');
+                        location.reload();
+                    }
+                })
+            })
+        })
+    })
+
+    $(document).on('click', '#update', function() {
+        // $('#d_date').attr('disabled', false);
+        // $('#category').attr('disabled', false);
+        // $('#m_amount').attr('disabled', false);
+        // $('#m_memo').attr('disabled', false);
+
+        const mod = document.querySelectorAll('#update');
+        const row = this.closest('tr');
+        const m_id = row.querySelector(`[name = 'm_id']`).value;
+        const d_date = row.querySelector(`[name = 'd_date']`).value;
+        console.log(d_date);
+        const c_code = row.querySelector(`[name = 'c_code']`).value;
+        const m_amount = row.querySelector(`[name = 'm_amount']`).value;
+        const m_memo = row.querySelector(`[name = 'm_memo']`).value;
+        const btn = document.querySelectorAll('#update-flag')
+
+        btn.forEach(btn => {
+            btn.addEventListener('click', function() {
+                $.ajax({
+                    type: 'post',
+                    url: 'update',
+                    data: {'m_id' : m_id, 'd_date': d_date, 'c_code':c_code ,'m_amount' :m_amount , 'm_memo':m_memo},
+                    success(data) {
+                        alert('수정이 완료되었습니다.');
                         location.reload();
                     }
                 })
@@ -236,6 +276,32 @@
             })
         })
     })
+
+    function rowCreate() {
+        var dynamic_tr =
+            '<tr>' +
+            // '<input type="hidden" id="m_id" name="m_id" value="1" class="form-control form-control-sm" readonly>' +
+            // '<input type="hidden" id="a_id" name="a_id" value="202308" class="form-control form-control-sm" readonly>' + // 추후, 가계부 년월 아이디 버튼으로 값 가져오기
+            '<td><input type="date" id="d_date" name="d_date" class="form-control form-control-sm"></td>' +
+            '<td>' +
+            '<select id="c_code" name="c_code" class="form-control form-control-sm">' +
+            '<option></option>' +
+            '<c:forEach var="c" items="${category}">' +
+            '<option value="${c.c_code}">${c.c_name}</option>' +
+            '</c:forEach>' +
+            '</select>' +
+            '</td>' +
+            '<td><input id="m_amount" name="m_amount" type="text" class="form-control form-control-sm"></td>' +
+            '<td><input id="m_memo" name="m_memo" type="text" class="form-control form-control-sm"></td>' +
+            '<td style="text-align: center"><input type="button" id="create" value="추가" data-bs-toggle="modal" data-bs-target="#modal-row-create" class="btn btn-primary btn-sm"></td>' +
+            '<td style="text-align: center"><input type="button" id="delete" value="삭제" data-bs-toggle="modal" data-bs-target="#modal-row-delete" class="btn btn-danger btn-sm"></td>' +
+            '<input type="hidden" id="a_id" name="a_id" value="${accountBook[0].a_id}">' +
+            '<input type="hidden" id="me_id" name="me_id" value="${accountBook[0].m_id}">' +
+            '<input type="hidden" id="a_code" name="a_code" value="${accountBook[0].a_code}">' +
+            '</tr>';
+
+        $('tbody').append(dynamic_tr);
+    }
 </script>
 </body>
 </html>
