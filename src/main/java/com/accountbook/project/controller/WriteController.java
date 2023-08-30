@@ -5,9 +5,7 @@ import com.accountbook.project.service.WriteService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Controller
@@ -28,6 +26,9 @@ public class WriteController {
         write.setD_date(d_date);
         write.setM_amount(m_amount);
         write.setM_memo(m_memo);
+
+        log.info("insert = {}", write);
+
         writeService.insertWriteTableRow(write);
     }
 
@@ -40,12 +41,11 @@ public class WriteController {
         write.setD_date(d_date);
         write.setM_amount(m_amount);
         write.setM_memo(m_memo);
-        log.info("write = {}", write);
         writeService.updateWriteTableRow(write);
     }
 
     @ResponseBody
-    @RequestMapping("/delete")
+    @PostMapping("/delete")
     public void delete(@RequestParam int m_id) {
         writeService.deleteWriteTableRow(m_id);
     }

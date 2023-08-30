@@ -18,35 +18,31 @@ import java.util.Map;
 
 @Slf4j
 @Controller
+@RequestMapping("/mt")
 @RequiredArgsConstructor
 public class MonthController {
     private final MonthService monthService;
 
-    @GetMapping("/month")
-    public String AccountBook(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-
-        // 해당 회원이 등록한 가계부 년월코드
-        List<Month> list = monthService.selectMonthList(session.getAttribute(SessionConst.MEMBER_ID));
-
-        // 회원 아이디와 가계부 년월코드를 찾아 해당 년월 가계부 정보를 출력한다.
+    @GetMapping("/{m_id}/{a_code}")
+    public String month(@PathVariable("m_id") int m_id, @PathVariable("a_code") int a_code, HttpServletRequest request, Model model) {
         Map<String, Object> map = new HashMap<String, Object>();
-        Map<String, Object> map_ = new HashMap<String, Object>();
-        int me_id = (Integer) session.getAttribute(SessionConst.MEMBER_ID);
+        HttpSession session = request.getSession();
+        int ID = (Integer) session.getAttribute(SessionConst.MEMBER_ID);
 
-        map.put("m_id", me_id);
-        map.put("a_code", 202308);
-        List<Month> accountBook = monthService.selectAccountBook(map);
+        map.put("m_id", m_id);
+        map.put("me_id", m_id);
+        map.put("a_code", a_code);
 
-        map.put("me_id", me_id);
-        List<Month> table = monthService.selectWriteTable(map);
-        List<Category> category = monthService.selectAllCategory();
+        List<Month> list = monthService.selectMonthList(ID); // 회원이 등록한 가계부 일련코드 목록
+        List<Month> accountBook = monthService.selectAccountBook(map); // 회원이 선택한 가계부 일련코드
+        List<Category> category = monthService.selectAllCategory(); // 가계부 카테고리
+        List<Month> table = monthService.selectWriteTable(map); // 회원이 입력한 가계부 정보
 
         model.addAttribute("table", table);
         model.addAttribute("accountBook", accountBook);
         model.addAttribute("category", category);
         model.addAttribute("list", list);
 
-        return "accountbook";
+        return "month";
     }
 }

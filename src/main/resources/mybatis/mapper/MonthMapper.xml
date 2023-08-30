@@ -4,22 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.accountbook.project.mapper.MonthMapper">
-    <select id="selectAccountBook" parameterType="Map" resultType="Month">
-        SELECT * FROM AC_ACCOUNTBOOK WHERE A_CODE = ${a_code} AND M_ID = ${m_id}
+    <select id="selectMonthList" parameterType="java.lang.Object" resultType="Month">
+        SELECT * FROM AC_ACCOUNTBOOK WHERE M_ID = #{m_id} ORDER BY A_CODE
     </select>
 
-    <select id="selectWriteTable" parameterType="Map" resultType="Month">
-        SELECT MO.M_ID, MO.ME_ID, A.A_ID, A.A_CODE, MO.D_DATE, C.C_CODE, C.C_NAME, MO.M_AMOUNT, MO.M_MEMO, MO.M_CREATE_DATE
-        FROM AC_MEMBER M, AC_ACCOUNTBOOK A, AC_CATEGORY C, AC_DATE D, AC_MONTH MO
-        WHERE MO.ME_ID = A.A_ID AND C.C_CODE = MO.C_CODE AND D.D_DATE = MO.D_DATE AND MO.ME_ID = #{me_id} AND A.A_CODE = #{a_code}
-        GROUP BY MO.M_ID, MO.ME_ID, A.A_ID, A.A_CODE,MO.D_DATE, C.C_CODE, C.C_NAME, MO.M_AMOUNT, MO.M_MEMO, MO.M_CREATE_DATE
+    <select id="selectAccountBook" parameterType="Map" resultType="Month">
+        SELECT * FROM AC_ACCOUNTBOOK WHERE A_CODE = ${a_code} AND M_ID = ${m_id}
     </select>
 
     <select id="selectAllCategory" resultType="Category">
         SELECT * FROM AC_CATEGORY ORDER BY C_CODE
     </select>
 
-    <select id="selectMonthList" parameterType="java.lang.Object" resultType="Month">
-        SELECT * FROM AC_ACCOUNTBOOK WHERE M_ID = #{m_id} ORDER BY A_CODE
+    <select id="selectWriteTable" parameterType="Map" resultType="Month">
+        SELECT M.M_ID, M.ME_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
+        FROM AC_MONTH M, AC_CATEGORY C
+        WHERE M.C_CODE = C.C_CODE AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
+        GROUP BY M.M_ID, M.ME_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
+        ORDER BY M.D_DATE
     </select>
 </mapper>

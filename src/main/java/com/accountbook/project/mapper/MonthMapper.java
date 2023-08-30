@@ -9,8 +9,8 @@ import java.util.Map;
 
 @Mapper
 public interface MonthMapper {
-    List<Month> selectAccountBook(Map<String, Object> map);
-    List<Month> selectWriteTable(Map<String, Object> map);
-    List<Category> selectAllCategory();
     List<Month> selectMonthList(Object m_id);
+    List<Month> selectWriteTable(Map<String, Object> map);
+    List<Month> selectAccountBook(Map<String, Object> map);
+    List<Category> selectAllCategory();
 }

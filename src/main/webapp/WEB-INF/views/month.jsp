@@ -15,7 +15,7 @@
     </div>
 
     <h1>TEST</h1>
-<%--    <div class="wrapper-account-book">--%>
+    <div class="wrapper-account-book">
 <%--        <div class="table-side">--%>
 <%--            <form>--%>
 <%--                <div style="width: 500px; text-align: right; margin-bottom: 5px">--%>
@@ -79,118 +79,118 @@
 <%--            </form>--%>
 <%--        </div>--%>
 
-<%--        <div class="wrapper-write">--%>
-<%--            <h2>월별 가계부</h2>--%>
-<%--            <div style="margin-left: 10px">--%>
-<%--            <div style="text-align: right; margin-bottom: 5px">--%>
-<%--            </div>--%>
-<%--                <form action="insert" id="form" method="post">--%>
-<%--                    <table class="table">--%>
-<%--                        <thead>--%>
-<%--                        <tr>--%>
-<%--                            <th scope="col" style="width: 10%; text-align: center">연도월일</th>--%>
-<%--                            <th scope="col" style="width: 15%; text-align: center">카테고리명</th>--%>
-<%--                            <th scope="col" style="width: 15%; text-align: center">금액</th>--%>
-<%--                            <th scope="col" style="width: 25%; text-align: center">메모</th>--%>
-<%--                            <th scope="col" style="width: 10%; text-align: center">추가/수정</th>--%>
-<%--                            <th scope="col" style="width: 10%; text-align: center">삭제</th>--%>
-<%--                        </tr>--%>
-<%--                        </thead>--%>
-<%--                        <tbody class="form-table">--%>
-<%--                        <c:forEach var="t" items="${table}">--%>
-<%--                        <tr>--%>
-<%--                            <input type="hidden" id="m_id" name="m_id" value="${t.m_id}">--%>
-<%--                            <input type="hidden" id="me_id" name="me_id" value="${t.me_id}">--%>
-<%--                            <input type="hidden" id="a_id" name="a_id" value="${t.a_id}">--%>
-<%--                            <input type="hidden" id="a_code" name="a_code" value="${t.a_code}">--%>
-<%--                            <fmt:parseDate var="d_date" value="${t.d_date}" pattern="yyyy-mm-dd" />--%>
-<%--                            <td><input type="date" id="d_date" name="d_date" value="<fmt:formatDate value="${d_date}" pattern="yyyy-mm-dd"/>" class="form-control form-control-sm"></td>--%>
-<%--                            <td>--%>
-<%--                                <select id="category" class="form-control form-control-sm">--%>
-<%--                                        <option id="c_code" name="c_code" value="${t.c_code}">${t.c_name}</option>--%>
-<%--                                    <c:forEach var="c" items="${category}">--%>
-<%--                                        <option value="${c.c_code}">${c.c_name}</option>--%>
-<%--                                    </c:forEach>--%>
-<%--                                </select>--%>
-<%--                            </td>--%>
-<%--                            <td><input id="m_amount" name="m_amount" type="text" value="${t.m_amount}" class="form-control form-control-sm"></td>--%>
-<%--&lt;%&ndash;                            <td><input id="m_amount" name="m_amount" type="text" value="<fmt:formatNumber value="${m.m_amount}" pattern="###,###,###원"/>" class="form-control form-control-sm" disabled></td>&ndash;%&gt;--%>
-<%--                            <td><input id="m_memo" name="m_memo" type="text" value="${t.m_memo}" class="form-control form-control-sm"></td>--%>
-<%--                            <td style="text-align: center"><input type="button" id="update" value="수정" data-bs-toggle="modal" data-bs-target="#modal-row-update" class="btn btn-primary btn-sm"></td>--%>
-<%--                            <td style="text-align: center"><input type="button" id="delete" value="삭제" data-bs-toggle="modal" data-bs-target="#modal-row-delete" class="btn btn-danger btn-sm"></td>--%>
-<%--                        </tr>--%>
-<%--                        </c:forEach>--%>
-<%--                        </tbody>--%>
-<%--                    </table>--%>
-<%--                </form>--%>
-<%--                <div style="text-align: right; margin-bottom: 5px">--%>
-<%--                    <input class="btn btn-primary" type="button" value="열 추가" onclick="rowCreate()">--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+        <div class="wrapper-write">
+            <h2>월별 가계부</h2>
+            <div style="margin-left: 10px">
+            <div style="text-align: right; margin-bottom: 5px">
+            </div>
+                <form action="insert" id="form" method="post">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 10%; text-align: center">연도월일</th>
+                            <th scope="col" style="width: 15%; text-align: center">카테고리명</th>
+                            <th scope="col" style="width: 15%; text-align: center">금액</th>
+                            <th scope="col" style="width: 25%; text-align: center">메모</th>
+                            <th scope="col" style="width: 10%; text-align: center">추가/수정</th>
+                            <th scope="col" style="width: 10%; text-align: center">삭제</th>
+                        </tr>
+                        </thead>
+                        <tbody class="form-table">
+                        <c:forEach var="t" items="${table}">
+                        <tr>
+                            <input type="hidden" id="m_id" name="m_id" value="${t.m_id}">
+                            <input type="hidden" id="me_id" name="me_id" value="${t.me_id}">
+                            <input type="hidden" id="a_id" name="a_id" value="${t.a_id}">
+                            <input type="hidden" id="a_code" name="a_code" value="${t.a_code}">
+                            <fmt:parseDate var="d_date" value="${t.d_date}" pattern="yyyy-mm-dd" />
+                            <td><input type="date" id="d_date" name="d_date" value="<fmt:formatDate value="${d_date}" pattern="yyyy-mm-dd"/>" class="form-control form-control-sm"></td>
+                            <td>
+                                <select id="category" class="form-control form-control-sm">
+                                        <option id="c_code" name="c_code" value="${t.c_code}">${t.c_name}</option>
+                                    <c:forEach var="c" items="${category}">
+                                        <option value="${c.c_code}">${c.c_name}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            <td><input id="m_amount" name="m_amount" type="text" value="${t.m_amount}" class="form-control form-control-sm"></td>
+<%--                            <td><input id="m_amount" name="m_amount" type="text" value="<fmt:formatNumber value="${m.m_amount}" pattern="###,###,###원"/>" class="form-control form-control-sm" disabled></td>--%>
+                            <td><input id="m_memo" name="m_memo" type="text" value="${t.m_memo}" class="form-control form-control-sm"></td>
+                            <td style="text-align: center"><input type="button" id="update" value="수정" data-bs-toggle="modal" data-bs-target="#modal-row-update" class="btn btn-primary btn-sm"></td>
+                            <td style="text-align: center"><input type="button" id="delete" value="삭제" data-bs-toggle="modal" data-bs-target="#modal-row-delete" class="btn btn-danger btn-sm"></td>
+                        </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </form>
+                <div style="text-align: right; margin-bottom: 5px">
+                    <input class="btn btn-primary" type="button" value="열 추가" onclick="rowCreate()">
+                </div>
+            </div>
+        </div>
+    </div>
 
-<%--    <div class="modal" id="modal-row-delete" tabindex="-1">--%>
-<%--        <div class="modal-dialog">--%>
-<%--            <div class="modal-content">--%>
-<%--                <div class="modal-header">--%>
-<%--                    <h5 class="modal-title">알림</h5>--%>
-<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                </div>--%>
-<%--                <div class="modal-body">--%>
-<%--                    <div>--%>
-<%--                        <p>삭제된 데이터는 복구할 수 없습니다.</p>--%>
-<%--                        <p>삭제하시겠습니까?</p>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="modal-footer">--%>
-<%--                    <button type="button" id="delete-flag" class="btn btn-danger">확인</button>--%>
-<%--                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+    <div class="modal" id="modal-row-delete" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">알림</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>삭제된 데이터는 복구할 수 없습니다.</p>
+                        <p>삭제하시겠습니까?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="delete-flag" class="btn btn-danger">확인</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<%--    <div class="modal" id="modal-row-update" tabindex="-1">--%>
-<%--        <div class="modal-dialog">--%>
-<%--            <div class="modal-content">--%>
-<%--                <div class="modal-header">--%>
-<%--                    <h5 class="modal-title">알림</h5>--%>
-<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                </div>--%>
-<%--                <div class="modal-body">--%>
-<%--                    <div>--%>
-<%--                        <p>수정된 데이터는 복구할 수 없습니다.</p>--%>
-<%--                        <p>수정하시겠습니까?</p>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="modal-footer">--%>
-<%--                    <button type="button" id="update-flag" class="btn btn-danger">확인</button>--%>
-<%--                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+    <div class="modal" id="modal-row-update" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">알림</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>수정된 데이터는 복구할 수 없습니다.</p>
+                        <p>수정하시겠습니까?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="update-flag" class="btn btn-danger">확인</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<%--    <div class="modal" id="modal-row-create" tabindex="-1">--%>
-<%--        <div class="modal-dialog">--%>
-<%--            <div class="modal-content">--%>
-<%--                <div class="modal-header">--%>
-<%--                    <h5 class="modal-title">알림</h5>--%>
-<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                </div>--%>
-<%--                <div class="modal-body">--%>
-<%--                    <div>--%>
-<%--                        <p>추가하시겠습니까?</p>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="modal-footer">--%>
-<%--                    <button type="button" id="create-flag" class="btn btn-danger">확인</button>--%>
-<%--                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+    <div class="modal" id="modal-row-create" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">알림</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>추가하시겠습니까?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="create-flag" class="btn btn-danger">확인</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script type="text/javascript">

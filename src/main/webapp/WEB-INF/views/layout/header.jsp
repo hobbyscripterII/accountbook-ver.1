@@ -5,7 +5,7 @@
 </header>
 <nav>
     <a href="<c:url value="/" />">홈</a>
-    <a href="<c:url value="/month"/>">가계부</a>
+    <a href="<c:url value="/ac/home"/>">가계부</a>
 
     <c:choose>
         <c:when test="${sessionScope.MEMBER_ID eq null}">
