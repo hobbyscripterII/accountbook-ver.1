@@ -1,8 +1,8 @@
-package com.accountbook.project.controller;
+package com.accountbook.project.login.controller;
 
 import com.accountbook.project.SessionConst;
-import com.accountbook.project.domain.Member;
-import com.accountbook.project.service.LoginService;
+import com.accountbook.project.login.dto.LoginDto;
+import com.accountbook.project.login.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -22,20 +22,18 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login(Model model) {
-        model.addAttribute("member", new Member());
+        model.addAttribute("login", new LoginDto());
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute Member member, HttpServletRequest request) {
-        Member loginMember = loginService.login(member.getM_email(), member.getM_pwd());
-        if (loginMember != null) {
+    public String login(@ModelAttribute LoginDto loginDto, HttpServletRequest request) {
+        LoginDto loginDto_ = loginService.login(loginDto.getM_email(), loginDto.getM_pwd());
+        if (loginDto_ != null) {
             HttpSession session = request.getSession();
-            session.setAttribute(SessionConst.MEMBER_ID, loginMember.getM_id());
-            log.info("session = {}", session);
+            session.setAttribute(SessionConst.MEMBER_ID, loginDto_.getM_id());
             return "redirect:/";
         }
-
         return "login";
     }
 

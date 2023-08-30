@@ -28,6 +28,6 @@
 	</bean>
 
 	<!-- Mapper 클래스 최상단 패키지 경로 -->
-	<mybatis-spring:scan base-package="com.accountbook.project.mapper" />
+	<mybatis-spring:scan base-package="com.accountbook.project" />
 
 </beans>

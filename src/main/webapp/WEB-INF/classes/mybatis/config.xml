@@ -5,12 +5,9 @@
 
 <configuration>
     <typeAliases>
-        <typeAlias type="com.accountbook.project.domain.Member" alias="Member" />
-
-        <typeAlias type="com.accountbook.project.domain.Category" alias="Category" />
-
-        <typeAlias type="com.accountbook.project.domain.Month" alias="Month" />
-        <typeAlias type="com.accountbook.project.domain.Write" alias="Write" />
-        <typeAlias type="com.accountbook.project.domain.Table" alias="Table" />
+        <typeAlias type="com.accountbook.project.login.dto.LoginDto" alias="LoginDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthCategoryDto" alias="MonthCategoryDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthCodeDto" alias="MonthCodeDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthTableDto" alias="MonthTableDto" />
     </typeAliases>
 </configuration>

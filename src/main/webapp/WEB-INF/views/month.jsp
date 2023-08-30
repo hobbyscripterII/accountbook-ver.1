@@ -14,7 +14,6 @@
             </c:forEach>
     </div>
 
-    <h1>TEST</h1>
     <div class="wrapper-account-book">
 <%--        <div class="table-side">--%>
 <%--            <form>--%>
@@ -206,14 +205,6 @@
         const m_memo = row.querySelector(`[name = 'm_memo']`).value;
         const btn = document.querySelectorAll('#create-flag')
 
-        console.log(me_id);
-        console.log(a_id);
-        console.log(a_code);
-        console.log(d_date);
-        console.log(c_code);
-        console.log(m_amount);
-        console.log(m_memo);
-
         btn.forEach(btn => {
             btn.addEventListener('click', function() {
                 $.ajax({
@@ -238,8 +229,8 @@
         const mod = document.querySelectorAll('#update');
         const row = this.closest('tr');
         const m_id = row.querySelector(`[name = 'm_id']`).value;
+        const me_id = row.querySelector(`[name = 'me_id']`).value;
         const d_date = row.querySelector(`[name = 'd_date']`).value;
-        console.log(d_date);
         const c_code = row.querySelector(`[name = 'c_code']`).value;
         const m_amount = row.querySelector(`[name = 'm_amount']`).value;
         const m_memo = row.querySelector(`[name = 'm_memo']`).value;
@@ -250,7 +241,7 @@
                 $.ajax({
                     type: 'post',
                     url: '/accountbook/update',
-                    data: {'m_id' : m_id, 'd_date': d_date, 'c_code':c_code ,'m_amount' :m_amount , 'm_memo':m_memo},
+                    data: {'m_id' : m_id, 'me_id' : me_id, 'd_date': d_date, 'c_code':c_code ,'m_amount' :m_amount , 'm_memo':m_memo},
                     success(data) {
                         alert('수정이 완료되었습니다.');
                         location.reload();

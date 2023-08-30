@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.accountbook.project.mapper.MemberMapper">
-    <select id="selectMember" parameterType="java.lang.String" resultType="Member">
+<mapper namespace="com.accountbook.project.login.mapper.LoginMapper">
+    <select id="getEmail" parameterType="java.lang.String" resultType="LoginDto">
         SELECT * FROM AC_MEMBER WHERE M_EMAIL = #{m_email}
     </select>
 </mapper>

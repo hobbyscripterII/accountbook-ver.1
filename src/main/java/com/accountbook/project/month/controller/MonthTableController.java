@@ -1,9 +1,10 @@
-package com.accountbook.project.controller;
+package com.accountbook.project.month.controller;
 
 import com.accountbook.project.SessionConst;
-import com.accountbook.project.domain.Month;
-import com.accountbook.project.domain.Category;
-import com.accountbook.project.service.MonthService;
+import com.accountbook.project.month.dto.MonthCategoryDto;
+import com.accountbook.project.month.dto.MonthCodeDto;
+import com.accountbook.project.month.dto.MonthTableDto;
+import com.accountbook.project.month.service.MonthTableService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -20,8 +21,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/mt")
 @RequiredArgsConstructor
-public class MonthController {
-    private final MonthService monthService;
+public class MonthTableController {
+    private final MonthTableService monthTableService;
 
     @GetMapping("/{m_id}/{a_code}")
     public String month(@PathVariable("m_id") int m_id, @PathVariable("a_code") int a_code, HttpServletRequest request, Model model) {
@@ -33,10 +34,13 @@ public class MonthController {
         map.put("me_id", m_id);
         map.put("a_code", a_code);
 
-        List<Month> list = monthService.selectMonthList(ID); // 회원이 등록한 가계부 일련코드 목록
-        List<Month> accountBook = monthService.selectAccountBook(map); // 회원이 선택한 가계부 일련코드
-        List<Category> category = monthService.selectAllCategory(); // 가계부 카테고리
-        List<Month> table = monthService.selectWriteTable(map); // 회원이 입력한 가계부 정보
+        List<MonthCategoryDto> category = monthTableService.getMonthCategory(); // 가계부 카테고리
+        List<MonthCodeDto> list = monthTableService.getMonthCode(ID); // 회원이 등록한 가계부 일련코드 목록
+        List<MonthCodeDto> accountBook = monthTableService.selectMonth(map); // 회원이 선택한 가계부 일련코드
+        List<MonthTableDto> table = monthTableService.getMonth(map); // 회원이 입력한 가계부 정보
+
+        log.info("list = {}", list);
+        log.info("table = {}", table);
 
         model.addAttribute("table", table);
         model.addAttribute("accountBook", accountBook);

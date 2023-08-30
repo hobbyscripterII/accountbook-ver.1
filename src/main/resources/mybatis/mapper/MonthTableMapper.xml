@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accountbook.project.month.mapper.MonthTableMapper">
+    <select id="getMonthCategory" resultType="MonthCategoryDto">
+        SELECT * FROM AC_CATEGORY ORDER BY C_CODE
+    </select>
+
+    <select id="getMonthCode" parameterType="java.lang.Object" resultType="MonthCodeDto">
+        SELECT * FROM AC_ACCOUNTBOOK WHERE M_ID = #{m_id} ORDER BY A_CODE
+    </select>
+
+    <select id="selectMonth" parameterType="Map" resultType="MonthCodeDto">
+        SELECT * FROM AC_ACCOUNTBOOK WHERE A_CODE = ${a_code} AND M_ID = ${m_id}
+    </select>
+
+    <select id="getMonth" parameterType="Map" resultType="MonthTableDto">
+        SELECT M.M_ID, M.ME_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
+        FROM AC_MONTH M, AC_CATEGORY C
+        WHERE M.C_CODE = C.C_CODE AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
+        GROUP BY M.M_ID, M.ME_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
+        ORDER BY M.D_DATE
+    </select>
+</mapper>
