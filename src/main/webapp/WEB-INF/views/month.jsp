@@ -15,68 +15,68 @@
     </div>
 
     <div class="wrapper-account-book">
-<%--        <div class="table-side">--%>
-<%--            <form>--%>
-<%--                <div style="width: 500px; text-align: right; margin-bottom: 5px">--%>
-<%--&lt;%&ndash;                    <input class="btn btn-primary" type="button" name="modify" value="카테고리 수정">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <input class="btn btn-primary" type="button" name="result" value="등록">&ndash;%&gt;--%>
-<%--                </div>--%>
+        <div class="table-side">
+            <form>
+                <div style="width: 500px; text-align: right; margin-bottom: 5px">
+<%--                    <input class="btn btn-primary" type="button" name="modify" value="카테고리 수정">--%>
+<%--                    <input class="btn btn-primary" type="button" name="result" value="등록">--%>
+                </div>
 
-<%--                <table class="table">--%>
-<%--                    <thead>--%>
-<%--                    <tr>--%>
-<%--                        <th colspan="3" scope="col" style="text-align: center">예산 측정</th>--%>
-<%--                    </tr>--%>
-<%--                    <tr style="text-align: center">--%>
-<%--                        <th scope="col">카테고리</th>--%>
-<%--                        <th scope="col">남은 금액</th>--%>
-<%--                        <th scope="col">퍼센티지</th>--%>
-<%--                    </tr>--%>
-<%--                    </thead>--%>
-<%--                    <tbody>--%>
-<%--                    <tr style="text-align: center">--%>
-<%--                        <td>고정지출</td>--%>
-<%--                        <td></td>--%>
-<%--                        <td></td>--%>
-<%--                    </tr>--%>
-<%--                    <tr style="text-align: center">--%>
-<%--                        <td>비고정지출</td>--%>
-<%--                        <td></td>--%>
-<%--                        <td></td>--%>
-<%--                    </tr>--%>
-<%--                    </tbody>--%>
-<%--                </table>--%>
-<%--            </form>--%>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th colspan="3" scope="col" style="text-align: center">예산 측정</th>
+                    </tr>
+                    <tr style="text-align: center">
+                        <th scope="col">카테고리</th>
+                        <th scope="col">남은 금액</th>
+                        <th scope="col">퍼센티지</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="text-align: center">
+                        <td>고정지출</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="text-align: center">
+                        <td>비고정지출</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
 
-<%--            <form>--%>
-<%--                <table class="table">--%>
-<%--                    <thead>--%>
-<%--                    <tr>--%>
-<%--                        <th colspan="3" style="text-align: center; padding-top: 90px">수입</th>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <th scope="col" style="text-align: center">카테고리</th>--%>
-<%--                        <th scope="col" style="text-align: center">금액</th>--%>
-<%--                        <th scope="col" style="text-align: center">퍼센티지</th>--%>
-<%--                    </tr>--%>
-<%--                    </thead>--%>
-<%--                    <tbody>--%>
-<%--&lt;%&ndash;                    <c:forEach var="i" items="${income}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                        <tr>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                            <td><c:out value="${i.category}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                            <td><c:out value="${i.amount}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                            <td></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                        </tr>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    </c:forEach>&ndash;%&gt;--%>
-<%--                    <tr>--%>
-<%--                        <td style="font-weight: bold; text-align: center">합계</td>--%>
-<%--                        <td></td>--%>
-<%--                        <td></td>--%>
-<%--                    </tr>--%>
-<%--                    </tbody>--%>
-<%--                </table>--%>
-<%--            </form>--%>
-<%--        </div>--%>
+            <form>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th colspan="3" style="text-align: center; padding-top: 90px">수입</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" style="text-align: center">카테고리</th>
+                        <th scope="col" style="text-align: center">금액</th>
+                        <th scope="col" style="text-align: center">퍼센티지</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+<%--                    <c:forEach var="i" items="${income}">--%>
+<%--                        <tr>--%>
+<%--                            <td><c:out value="${i.category}"/></td>--%>
+<%--                            <td><c:out value="${i.amount}"/></td>--%>
+<%--                            <td></td>--%>
+<%--                        </tr>--%>
+<%--                    </c:forEach>--%>
+                    <tr>
+                        <td style="font-weight: bold; text-align: center">합계</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
 
         <div class="wrapper-write">
             <h2>월별 가계부</h2>
@@ -299,7 +299,7 @@
             '<input type="hidden" id="a_code" name="a_code" value="${accountBook[0].a_code}">' +
             '</tr>';
 
-        $('tbody').append(dynamic_tr);
+        $('.form-table').append(dynamic_tr);
     }
 </script>
 </body>

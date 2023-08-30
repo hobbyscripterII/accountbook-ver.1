@@ -36,6 +36,7 @@ public class MonthWriteController {
         getDate(me_id, d_date);
 
         MonthTableDto.Update monthWriteDto = new MonthTableDto.Update();
+        monthWriteDto.setM_id(m_id);
         monthWriteDto.setC_code(c_code);
         monthWriteDto.setD_date(d_date);
         monthWriteDto.setM_amount(m_amount);
