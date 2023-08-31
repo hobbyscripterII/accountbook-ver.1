@@ -14,4 +14,6 @@ public interface MonthTableMapper {
     List<MonthCodeDto> getMonthCode(Object m_id);
     List<MonthCodeDto> selectMonth(Map<String, Object> map);
     List<MonthTableDto> getMonth(Map<String, Object> map);
+
+    List<MonthCategoryDto.Income> getIncome(Map<String, Object> map);
 }

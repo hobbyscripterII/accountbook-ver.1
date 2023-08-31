@@ -23,4 +23,11 @@
         GROUP BY M.M_ID, M.ME_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
         ORDER BY M.D_DATE
     </select>
+
+    <select id="getIncome" parameterType="Map" resultType="MonthCategoryIncomeDto">
+        SELECT C.C_NAME as c_name, SUM(M.M_AMOUNT) as m_amount, COUNT(C.C_NAME) as m_count
+        FROM AC_CATEGORY C, AC_MONTH M
+        WHERE C.C_CODE = M.C_CODE AND C.C_CODE LIKE 'A%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
+        GROUP BY ROLLUP(C.C_NAME)
+    </select>
 </mapper>

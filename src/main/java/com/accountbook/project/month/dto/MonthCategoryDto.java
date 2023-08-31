@@ -10,4 +10,13 @@ import lombok.ToString;
 public class MonthCategoryDto {
     private String c_code;
     private String c_name;
+
+    @Getter
+    @Setter
+    @ToString
+    public static class Income {
+        private String c_name;
+        private int m_amount;
+        private int m_count;
+    }
 }

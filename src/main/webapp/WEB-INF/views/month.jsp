@@ -57,17 +57,17 @@
                     <tr>
                         <th scope="col" style="text-align: center">카테고리</th>
                         <th scope="col" style="text-align: center">금액</th>
-                        <th scope="col" style="text-align: center">퍼센티지</th>
+                        <th scope="col" style="text-align: center">등록횟수</th>
                     </tr>
                     </thead>
                     <tbody>
-<%--                    <c:forEach var="i" items="${income}">--%>
-<%--                        <tr>--%>
-<%--                            <td><c:out value="${i.category}"/></td>--%>
-<%--                            <td><c:out value="${i.amount}"/></td>--%>
-<%--                            <td></td>--%>
-<%--                        </tr>--%>
-<%--                    </c:forEach>--%>
+                    <c:forEach var="i" items="${income}" varStatus="s">
+                        <tr>
+                            <td>${i.c_name}</td>
+                            <td>${i.m_amount}</td>
+                            <td>${i.m_count}</td>
+                        </tr>
+                    </c:forEach>
                     <tr>
                         <td style="font-weight: bold; text-align: center">합계</td>
                         <td></td>

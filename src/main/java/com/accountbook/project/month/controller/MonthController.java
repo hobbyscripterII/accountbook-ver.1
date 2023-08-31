@@ -1,4 +1,4 @@
-package com.accountbook.project.accountbook;
+package com.accountbook.project.month.controller;
 
 import com.accountbook.project.SessionConst;
 import com.accountbook.project.month.dto.MonthCodeDto;
@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/ac")
 @RequiredArgsConstructor
-public class AccountBookController {
+public class MonthController {
     private final MonthTableService monthTableService;
 
     @GetMapping("/home")
