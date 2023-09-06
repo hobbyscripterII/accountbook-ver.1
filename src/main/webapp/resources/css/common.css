@@ -34,3 +34,7 @@ section {
 h1 {
     text-align: center;
 }
+
+.form-control:disabled {
+    background-color: transparent !important;
+}

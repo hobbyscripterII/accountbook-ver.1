@@ -8,7 +8,7 @@
         SELECT * FROM AC_CATEGORY ORDER BY C_CODE
     </select>
 
-    <select id="getMonthCode" parameterType="java.lang.Object" resultType="MonthCodeDto">
+    <select id="getMonthCode" parameterType="java.lang.Integer" resultType="MonthCodeDto">
         SELECT * FROM AC_ACCOUNTBOOK WHERE M_ID = #{m_id} ORDER BY A_CODE
     </select>
 

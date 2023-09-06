@@ -1,0 +1,10 @@
+.wrapper-notice-write, .wrapper-notice-list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.notice-write, .notice-list {
+    width: 600px;
+}

@@ -11,7 +11,7 @@ import java.util.Map;
 @Mapper
 public interface MonthTableMapper {
     List<MonthCategoryDto> getMonthCategory();
-    List<MonthCodeDto> getMonthCode(Object m_id);
+    List<MonthCodeDto> getMonthCode(int m_id);
     List<MonthCodeDto> selectMonth(Map<String, Object> map);
     List<MonthTableDto> getMonth(Map<String, Object> map);
 

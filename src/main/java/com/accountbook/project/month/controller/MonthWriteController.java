@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Controller
+@RequestMapping("/mw")
 @RequiredArgsConstructor
 public class MonthWriteController {
     private final MonthWriteService writeService;

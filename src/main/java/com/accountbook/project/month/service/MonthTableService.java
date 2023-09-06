@@ -16,7 +16,7 @@ public class MonthTableService {
     private final MonthTableMapper monthMapper;
 
     public List<MonthCategoryDto> getMonthCategory() { return monthMapper.getMonthCategory(); }
-    public List<MonthCodeDto> getMonthCode(Object m_id) { return monthMapper.getMonthCode(m_id); }
+    public List<MonthCodeDto> getMonthCode(int m_id) { return monthMapper.getMonthCode(m_id); }
     public List<MonthCodeDto> selectMonth(Map<String, Object> map) { return monthMapper.selectMonth(map); }
     public List<MonthTableDto> getMonth(Map<String, Object> map) { return monthMapper.getMonth(map);}
     public List<MonthCategoryDto.Income> getIncome(Map<String, Object> map) {return monthMapper.getIncome(map);}

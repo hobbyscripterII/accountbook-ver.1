@@ -5,6 +5,7 @@
 </header>
 <nav>
     <a href="<c:url value="/" />">홈</a>
+    <a href="<c:url value="/notice/list" />">공지사항</a>
     <a href="<c:url value="/ac/home"/>">가계부</a>
 
     <c:choose>

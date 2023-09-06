@@ -10,7 +10,7 @@ table {
     display: flex;
     width: 100%;
 }
-.wrapper-write {
+.wrapper-table-write {
     display: block;
     width: 100%;
     text-align: center;

@@ -78,7 +78,7 @@
             </form>
         </div>
 
-        <div class="wrapper-write">
+        <div class="wrapper-table-write">
             <h2>월별 가계부</h2>
             <div style="margin-left: 10px">
             <div style="text-align: right; margin-bottom: 5px">
@@ -209,7 +209,7 @@
             btn.addEventListener('click', function() {
                 $.ajax({
                     type: 'post',
-                    url: '/accountbook/insert',
+                    url: '/accountbook/mw/insert',
                     data: {'me_id' : me_id, 'a_id' : a_id, 'a_code' : a_code, 'd_date': d_date, 'c_code': c_code ,'m_amount' :m_amount , 'm_memo':m_memo},
                     success(data) {
                         alert('추가가 완료되었습니다.');
@@ -240,7 +240,7 @@
             btn.addEventListener('click', function() {
                 $.ajax({
                     type: 'post',
-                    url: '/accountbook/update',
+                    url: '/accountbook/mw/update',
                     data: {'m_id' : m_id, 'me_id' : me_id, 'd_date': d_date, 'c_code':c_code ,'m_amount' :m_amount , 'm_memo':m_memo},
                     success(data) {
                         alert('수정이 완료되었습니다.');
@@ -262,7 +262,7 @@
                 btn.addEventListener('click', function() {
                     $.ajax({
                         type: 'post',
-                        url: '/accountbook/delete',
+                        url: '/accountbook/mw/delete',
                         data: {'m_id' : m_id},
                         success(data) {
                             alert('삭제가 완료되었습니다.');
