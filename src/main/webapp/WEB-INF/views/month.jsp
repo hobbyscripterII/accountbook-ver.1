@@ -61,16 +61,18 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:set var="total" value="0" /> <!-- 변수 초기화 -->
                     <c:forEach var="i" items="${income}" varStatus="s">
                         <tr>
                             <td>${i.c_name}</td>
                             <td>${i.m_amount}</td>
                             <td>${i.m_count}</td>
                         </tr>
+                        <c:set var="total" value="${total + i.m_amount}" />
                     </c:forEach>
                     <tr>
                         <td style="font-weight: bold; text-align: center">합계</td>
-                        <td></td>
+                        <td><c:out value="${total}" /></td>
                         <td></td>
                     </tr>
                     </tbody>

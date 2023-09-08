@@ -3,6 +3,7 @@ package com.accountbook.project.notice.controller;
 import com.accountbook.project.SessionConst;
 import com.accountbook.project.notice.dto.NoticeDto;
 import com.accountbook.project.notice.service.NoticeService;
+import com.accountbook.project.pagination.PaginationDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -21,10 +22,14 @@ public class NoticeController {
     private final NoticeService noticeService;
 
     @GetMapping("/list")
-    public String notice(@ModelAttribute NoticeDto.SelectContent notice, Model model) {
-        List<NoticeDto.GetContent> list = noticeService.getContent();
-        model.addAttribute("list", list);
-        model.addAttribute("notice", notice);
+    public String notice(Model model, @RequestParam(defaultValue = "1") int page) {
+        PaginationDto paginationDto = new PaginationDto(page, noticeService.getContentCnt());
+        List<NoticeDto.GetContent> content = noticeService.getContent(paginationDto.getBegin(), paginationDto.getEnd());
+
+        log.info("paginationDto = {}", paginationDto);
+
+        model.addAttribute("content", content);
+        model.addAttribute("paging", paginationDto);
         return "notice";
     }
 

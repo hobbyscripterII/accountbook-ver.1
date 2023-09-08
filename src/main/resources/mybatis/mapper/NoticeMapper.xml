@@ -14,12 +14,32 @@
         INSERT INTO AC_NOTICE(N_ID, M_ID, N_TITLE, N_CONTENT, N_CREATE_DATE, N_VIEW) VALUES(NOTICE_SEQ.NEXTVAL, #{m_id}, #{n_title}, #{n_content}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 0)
     </insert>
 
-    <select id="getContent" resultType="NoticeGetContentDto">
+     <select id="getContent" parameterType="map" resultType="NoticeGetContentDto">
         SELECT N.N_ID, M.M_NAME, N.N_TITLE, N.N_CREATE_DATE, N.N_VIEW
-        FROM AC_NOTICE N, AC_MEMBER M
-        WHERE M.M_ID = N.M_ID
-        GROUP BY N.N_ID, M.M_NAME, N.N_TITLE, N.N_CREATE_DATE, N.N_VIEW
-        ORDER BY N_ID DESC
+        FROM AC_NOTICE N
+                 INNER JOIN AC_MEMBER M ON M.M_ID = N.M_ID
+                 INNER JOIN (
+            SELECT ROWNUM RN, A.*
+            FROM (
+                     SELECT *
+                     FROM AC_NOTICE
+                     ORDER BY N_ID DESC
+                 ) A
+        ) SubQuery ON N.N_ID = SubQuery.N_ID
+        WHERE SubQuery.RN BETWEEN #{begin} AND #{end}
+        ORDER BY N.N_ID DESC
+    </select>
+
+<!--    <select id="getContent" resultType="NoticeGetContentDto">-->
+<!--        SELECT N.N_ID, M.M_NAME, N.N_TITLE, N.N_CREATE_DATE, N.N_VIEW-->
+<!--        FROM AC_NOTICE N, AC_MEMBER M-->
+<!--        WHERE M.M_ID = N.M_ID-->
+<!--        GROUP BY N.N_ID, M.M_NAME, N.N_TITLE, N.N_CREATE_DATE, N.N_VIEW-->
+<!--        ORDER BY N_ID DESC-->
+<!--    </select>-->
+
+    <select id="getContentCnt" resultType="int">
+        SELECT COUNT(*) FROM AC_NOTICE
     </select>
 
     <select id="selectContent" parameterType="java.lang.Integer" resultType="NoticeSelectContentDto">

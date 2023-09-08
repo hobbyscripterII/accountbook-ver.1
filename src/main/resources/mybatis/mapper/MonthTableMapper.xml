@@ -28,6 +28,6 @@
         SELECT C.C_NAME as c_name, SUM(M.M_AMOUNT) as m_amount, COUNT(C.C_NAME) as m_count
         FROM AC_CATEGORY C, AC_MONTH M
         WHERE C.C_CODE = M.C_CODE AND C.C_CODE LIKE 'A%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY ROLLUP(C.C_NAME)
+        GROUP BY C.C_NAME
     </select>
 </mapper>
