@@ -57,23 +57,56 @@
                     <tr>
                         <th scope="col" style="text-align: center">카테고리</th>
                         <th scope="col" style="text-align: center">금액</th>
-                        <th scope="col" style="text-align: center">등록횟수</th>
+                        <th scope="col" style="text-align: center">퍼센티지</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:set var="total" value="0" /> <!-- 변수 초기화 -->
-                    <c:forEach var="i" items="${income}" varStatus="s">
+                    <c:set var="totalAmount" value="0" /> <!-- 변수 초기화 -->
+                    <c:set var="totalPercentage" value="0" />
+                    <c:forEach var="i" items="${income}" varStatus="status">
                         <tr>
-                            <td>${i.c_name}</td>
-                            <td>${i.m_amount}</td>
-                            <td>${i.m_count}</td>
+                            <td><c:out value="${i.c_name}" /></td>
+                            <td><fmt:formatNumber value="${i.m_amount}" pattern="###,###,###원"/></td>
+                            <td><c:out value="${i.m_percentage}" />%</td>
                         </tr>
-                        <c:set var="total" value="${total + i.m_amount}" />
+                        <c:set var="totalAmount" value="${totalAmount + i.m_amount}" />
+                        <c:set var="totalPercentage" value="${totalPercentage + i.m_percentage}" />
                     </c:forEach>
                     <tr>
                         <td style="font-weight: bold; text-align: center">합계</td>
-                        <td><c:out value="${total}" /></td>
-                        <td></td>
+                        <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
+                        <td><c:out value="${totalPercentage}" />%</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th colspan="3" style="text-align: center; padding-top: 90px">저축</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" style="text-align: center">카테고리</th>
+                        <th scope="col" style="text-align: center">금액</th>
+                        <th scope="col" style="text-align: center">퍼센티지</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:set var="totalAmount" value="0" />
+                    <c:set var="totalPercentage" value="0" />
+                    <c:forEach var="s" items="${save}" varStatus="status">
+                        <tr>
+                            <td><c:out value="${s.c_name}" /></td>
+                            <td><fmt:formatNumber value="${s.m_amount}" pattern="###,###,###원"/></td>
+                            <td><c:out value="${s.m_percentage}" />%</td>
+                        </tr>
+                        <c:set var="totalAmount" value="${totalAmount + s.m_amount}" />
+                        <c:set var="totalPercentage" value="${totalPercentage + s.m_percentage}" />
+                    </c:forEach>
+                    <tr>
+                        <td style="font-weight: bold; text-align: center">합계</td>
+                        <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
+                        <td><c:out value="${totalPercentage}" />%</td>
                     </tr>
                     </tbody>
                 </table>

@@ -39,13 +39,18 @@ public class MonthTableController {
         List<MonthCodeDto> accountBook = monthTableService.selectMonth(map); // 회원이 선택한 가계부 일련코드
         List<MonthTableDto> table = monthTableService.getMonth(map); // 회원이 입력한 가계부 정보
 
-        List<MonthCategoryDto.Income> income = monthTableService.getIncome(map);
+        List<MonthCategoryDto.TableInfo> income = monthTableService.getIncome(map);
+        List<MonthCategoryDto.TableInfo> save = monthTableService.getSave(map);
+
+        log.info("income = {}", income);
+        log.info("save = {}", save);
 
         model.addAttribute("table", table);
         model.addAttribute("accountBook", accountBook);
         model.addAttribute("category", category);
         model.addAttribute("list", list);
         model.addAttribute("income", income);
+        model.addAttribute("save", save);
 
         return "month";
     }

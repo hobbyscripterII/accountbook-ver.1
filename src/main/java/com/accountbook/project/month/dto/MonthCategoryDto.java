@@ -14,9 +14,10 @@ public class MonthCategoryDto {
     @Getter
     @Setter
     @ToString
-    public static class Income {
+    public static class TableInfo {
         private String c_name;
         private int m_amount;
         private int m_count;
+        private int m_percentage;
     }
 }

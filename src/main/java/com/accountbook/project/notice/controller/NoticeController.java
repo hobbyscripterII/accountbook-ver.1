@@ -25,9 +25,6 @@ public class NoticeController {
     public String notice(Model model, @RequestParam(defaultValue = "1") int page) {
         PaginationDto paginationDto = new PaginationDto(page, noticeService.getContentCnt());
         List<NoticeDto.GetContent> content = noticeService.getContent(paginationDto.getBegin(), paginationDto.getEnd());
-
-        log.info("paginationDto = {}", paginationDto);
-
         model.addAttribute("content", content);
         model.addAttribute("paging", paginationDto);
         return "notice";

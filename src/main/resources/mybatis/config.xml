@@ -8,7 +8,7 @@
         <typeAlias type="com.accountbook.project.login.dto.LoginDto" alias="LoginDto" />
 
         <typeAlias type="com.accountbook.project.month.dto.MonthCategoryDto" alias="MonthCategoryDto" />
-        <typeAlias type="com.accountbook.project.month.dto.MonthCategoryDto$Income" alias="MonthCategoryIncomeDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthCategoryDto$TableInfo" alias="MonthCategoryTableInfoDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthCodeDto" alias="MonthCodeDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthTableDto" alias="MonthTableDto" />
 

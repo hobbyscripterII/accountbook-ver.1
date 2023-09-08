@@ -24,10 +24,17 @@
         ORDER BY M.D_DATE
     </select>
 
-    <select id="getIncome" parameterType="Map" resultType="MonthCategoryIncomeDto">
-        SELECT C.C_NAME as c_name, SUM(M.M_AMOUNT) as m_amount, COUNT(C.C_NAME) as m_count
+    <select id="getIncome" parameterType="Map" resultType="MonthCategoryTableInfoDto">
+        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(RATIO_TO_REPORT(M.M_AMOUNT) OVER(), 2) * 100 m_percentage
         FROM AC_CATEGORY C, AC_MONTH M
         WHERE C.C_CODE = M.C_CODE AND C.C_CODE LIKE 'A%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
+        GROUP BY C.C_NAME, M.M_AMOUNT
+    </select>
+
+    <select id="getSave" parameterType="Map" resultType="MonthCategoryTableInfoDto">
+        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(RATIO_TO_REPORT(M.M_AMOUNT) OVER(), 2) * 100 m_percentage
+        FROM AC_CATEGORY C, AC_MONTH M
+        WHERE C.C_CODE = M.C_CODE AND C.C_CODE LIKE 'N%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
+        GROUP BY C.C_NAME, M.M_AMOUNT
     </select>
 </mapper>
