@@ -4,6 +4,7 @@
 <jsp:include page="layout/header.jsp"/>
 <body>
 <section>
+    <h1>INDEX</h1>
 </section>
 </body>
 </html>

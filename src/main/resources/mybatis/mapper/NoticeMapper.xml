@@ -17,26 +17,17 @@
      <select id="getContent" parameterType="map" resultType="NoticeGetContentDto">
         SELECT N.N_ID, M.M_NAME, N.N_TITLE, N.N_CREATE_DATE, N.N_VIEW
         FROM AC_NOTICE N
-                 INNER JOIN AC_MEMBER M ON M.M_ID = N.M_ID
+                 INNER JOIN AC_MEMBER M
+                            ON M.M_ID = N.M_ID
                  INNER JOIN (
             SELECT ROWNUM RN, A.*
             FROM (
-                     SELECT *
-                     FROM AC_NOTICE
+                     SELECT * FROM AC_NOTICE
                      ORDER BY N_ID DESC
                  ) A
-        ) SubQuery ON N.N_ID = SubQuery.N_ID
-        WHERE SubQuery.RN BETWEEN #{begin} AND #{end}
-        ORDER BY N.N_ID DESC
+        ) SUB ON N.N_ID = SUB.N_ID
+        WHERE SUB.RN BETWEEN #{begin} AND #{end}
     </select>
-
-<!--    <select id="getContent" resultType="NoticeGetContentDto">-->
-<!--        SELECT N.N_ID, M.M_NAME, N.N_TITLE, N.N_CREATE_DATE, N.N_VIEW-->
-<!--        FROM AC_NOTICE N, AC_MEMBER M-->
-<!--        WHERE M.M_ID = N.M_ID-->
-<!--        GROUP BY N.N_ID, M.M_NAME, N.N_TITLE, N.N_CREATE_DATE, N.N_VIEW-->
-<!--        ORDER BY N_ID DESC-->
-<!--    </select>-->
 
     <select id="getContentCnt" resultType="int">
         SELECT COUNT(*) FROM AC_NOTICE

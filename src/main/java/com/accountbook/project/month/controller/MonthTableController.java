@@ -34,24 +34,25 @@ public class MonthTableController {
         map.put("me_id", m_id);
         map.put("a_code", a_code);
 
-        List<MonthCategoryDto> category = monthTableService.getMonthCategory(); // 가계부 카테고리
-        List<MonthCodeDto> list = monthTableService.getMonthCode(ID); // 회원이 등록한 가계부 일련코드 목록
-        List<MonthCodeDto> accountBook = monthTableService.selectMonth(map); // 회원이 선택한 가계부 일련코드
-        List<MonthTableDto> table = monthTableService.getMonth(map); // 회원이 입력한 가계부 정보
+        model.addAttribute("category", monthTableService.getMonthCategory()); // 가계부 카테고리
+        model.addAttribute("list", monthTableService.getMonthCode(ID)); // 회원이 등록한 가계부 일련코드 목록
+        model.addAttribute("accountBook", monthTableService.selectMonth(map)); // 회원이 선택한 가계부 일련코드
+        model.addAttribute("table", monthTableService.getMonth(map)); // 회원이 입력한 가계부 정보
 
-        List<MonthCategoryDto.TableInfo> income = monthTableService.getIncome(map);
-        List<MonthCategoryDto.TableInfo> save = monthTableService.getSave(map);
-
-        log.info("income = {}", income);
-        log.info("save = {}", save);
-
-        model.addAttribute("table", table);
-        model.addAttribute("accountBook", accountBook);
-        model.addAttribute("category", category);
-        model.addAttribute("list", list);
-        model.addAttribute("income", income);
-        model.addAttribute("save", save);
-
+        model.addAttribute("income", monthTableService.getIncome(map));
+        model.addAttribute("save", monthTableService.getSave(map));
+        model.addAttribute("fix", monthTableService.getFix(map));
+        model.addAttribute("nonFixFood", monthTableService.getNonFixFood(map));
+        model.addAttribute("nonFixLife", monthTableService.getNonFixLife(map));
+        model.addAttribute("nonFixTraffic", monthTableService.getNonFixTraffic(map));
+        model.addAttribute("nonFixRegular", monthTableService.getNonFixRegular(map));
+        model.addAttribute("nonFixFashion", monthTableService.getNonFixFashion(map));
+        model.addAttribute("nonFixBeauty", monthTableService.getNonFixBeauty(map));
+        model.addAttribute("nonFixPhrase", monthTableService.getNonFixPhrase(map));
+        model.addAttribute("nonFixEdu", monthTableService.getNonFixEdu(map));
+        model.addAttribute("nonFixCulture", monthTableService.getNonFixCulture(map));
+        model.addAttribute("nonFixHealth", monthTableService.getNonFixHealth(map));
+        model.addAttribute("nonFixEtc", monthTableService.getNonFixEtc(map));
         return "month";
     }
 }

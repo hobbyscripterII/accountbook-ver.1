@@ -8,12 +8,13 @@ table {
 
 .wrapper-account-book {
     display: flex;
-    width: 100%;
+    width: 500px;
 }
 .wrapper-table-write {
     display: block;
     width: 100%;
     text-align: center;
+    padding-right: 5px;
 }
 
 .div-account-book-list {
