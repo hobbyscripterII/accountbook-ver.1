@@ -24,115 +24,11 @@
         ORDER BY M.D_DATE
     </select>
 
-    <select id="getIncome" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
+    <select id="getTableInfo" parameterType="Map" resultType="MonthCategoryTableInfoDto">
+        SELECT C.C_CODE c_code, C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount
         FROM AC_CATEGORY C
                  INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'A%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getSave" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'N%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getFix" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'B%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixFood" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'C%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixLife" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'D%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixTraffic" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'E%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixRegular" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'F%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixFashion" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'G%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixBeauty" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'H%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixPhrase" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'I%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixEdu" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'J%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixCulture" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'K%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixHealth" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'L%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
-    </select>
-
-    <select id="getNonFixEtc" parameterType="Map" resultType="MonthCategoryTableInfoDto">
-        SELECT C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount, ROUND(SUM(M.M_AMOUNT) / SUM(SUM(M.M_AMOUNT)) OVER (), 2) * 100 m_percentage
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE C.C_CODE LIKE 'M%' AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_NAME
+        WHERE M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
+        GROUP BY C.C_CODE, C.C_NAME
     </select>
 </mapper>

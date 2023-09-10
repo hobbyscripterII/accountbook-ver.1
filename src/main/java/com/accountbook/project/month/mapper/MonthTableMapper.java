@@ -14,19 +14,5 @@ public interface MonthTableMapper {
     List<MonthCodeDto> getMonthCode(int m_id);
     List<MonthCodeDto> selectMonth(Map<String, Object> map);
     List<MonthTableDto> getMonth(Map<String, Object> map);
-
-    List<MonthCategoryDto.TableInfo> getIncome(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getSave(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getFix(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixFood(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixLife(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixTraffic(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixRegular(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixFashion(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixBeauty(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixPhrase(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixEdu(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixCulture(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixHealth(Map<String, Object> map);
-    List<MonthCategoryDto.TableInfo> getNonFixEtc(Map<String, Object> map);
+    List<MonthCategoryDto.TableInfo> getTableInfo(Map<String, Object> map);
 }
