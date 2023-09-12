@@ -44,30 +44,6 @@
         </form>
     </div>
 </section>
-
-<script>
-    function res() {
-        if(confirm("수정을 취소하시겠습니까?")) {
-            location.href ='/accountbook/notice/list/' + $('#n_id').val();
-        } else {
-        }
-    }
-
-    function upd() {
-        if(confirm("해당 글을 수정하시겠습니까?")) {
-            $.ajax({
-                type: 'post',
-                url: '/accountbook/notice/update',
-                data: {'n_id' : $('#n_id').val(), 'n_title' : $('#n_title').val(), 'n_content' : $('#n_content').val()},
-                success(data) {
-                    alert("수정이 완료되었습니다.");
-                    location.href ='/accountbook/notice/list/' + $('#n_id').val();
-                }
-            })
-        } else {
-            alert("게시글 수정이 취소되었습니다.");
-        }
-    }
-</script>
+<script type="text/javascript" src="../../resources/js/notice.js"></script>
 </body>
 </html>

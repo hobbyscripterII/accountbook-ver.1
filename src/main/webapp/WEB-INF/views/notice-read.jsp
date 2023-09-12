@@ -46,25 +46,6 @@
         </form>
     </div>
 </section>
-
-<script>
-    function del() {
-        if(confirm("삭제된 글은 복구할 수 없습니다. 정말로 삭제하시겠습니까?")) {
-            // 확인 분기문
-            $.ajax({
-                type: 'post',
-                url: '/accountbook/notice/delete',
-                data: {'n_id' : $('#n_id').val()},
-                success(data) {
-                    alert("해당 게시글이 삭제되었습니다.");
-                    location.href='/accountbook/notice/list';
-                }
-            })
-        } else {
-            // 취소 분기문
-            alert("게시글 삭제가 취소되었습니다.");
-        }
-    }
-</script>
+<script type="text/javascript" src="../../resources/js/notice.js"></script>
 </body>
 </html>

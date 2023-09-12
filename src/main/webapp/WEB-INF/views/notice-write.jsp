@@ -38,8 +38,7 @@
         </form>
     </div>
 </section>
-
-<script>
+<script type="text/javascript">
     function check() {
         if(!f.n_create_date.value) {
             alert("작성일자가 입력되지 않았습니다.");

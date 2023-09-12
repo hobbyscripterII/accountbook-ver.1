@@ -6,9 +6,7 @@
 <body>
 <section>
     <h1>ACCOUNT BOOK PAGE</h1>
-    <jsp:include page="layout/sheet-tap.jsp">
-        <jsp:param name="list" value="${list}"/>
-    </jsp:include>
+    <jsp:include page="layout/sheet-tap.jsp" />
 </section>
 </body>
 </html>

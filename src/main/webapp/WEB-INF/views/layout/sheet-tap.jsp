@@ -1,16 +1,11 @@
-<%@ page import="com.accountbook.project.SessionConst" %>
-<%@ page import="com.accountbook.project.accountbook.dto.AccountBookDto" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.springframework.beans.factory.annotation.Autowired" %>
-<%@ page import="com.accountbook.project.accountbook.service.AccountBookService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <body>
 <div class="div-account-book-list">
-    <input class="btn btn-dark" type="button" value="추가" data-bs-toggle="modal" data-bs-target="#modal-month-create">
-    <input class="btn btn-dark" type="button" value="삭제" data-bs-toggle="modal" data-bs-target="#modal-month-delete">
+    <input class="btn btn-success" type="button" value="가계부 추가" data-bs-toggle="modal" data-bs-target="#modal-month-create">
+    <input class="btn btn-danger" type="button" value="가계부 삭제" data-bs-toggle="modal" data-bs-target="#modal-month-delete">
     <c:forEach var="l" items="${list}">
         <input type="hidden" name="m_id" value="${l.m_id}">
         <input type="button" class="btn btn-primary" name="a_code" value="${l.a_code}" onclick="location.href = `/accountbook/mt/${l.m_id}/${l.a_code}`">
@@ -48,8 +43,8 @@
             <div class="modal-body">
                 <div>
                     <p>삭제할 가계부의 년월을 선택해주세요.</p>
-                    <select id="a_code_delete">
-                        <option value="null"> </option>
+                    <select class="form-control" id="a_code_delete">
+                        <option class="form-control" value="null"> </option>
                         <c:forEach var="l" items="${list}">
                             <option value="${l.a_code}">${l.a_code}</option>
                         </c:forEach>

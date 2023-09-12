@@ -1,5 +1,6 @@
 package com.accountbook.project;
 
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -7,6 +8,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class WebExceptionHandler {
     @ExceptionHandler(NullPointerException.class)
     public String errorNPE() {
-        return "error/error";
+        return "error/error-npe";
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public String errorNFE() {
+        return "error/error-nfe";
     }
 }
