@@ -1,0 +1,11 @@
+/target/
+.idea
+.settings
+.classpath
+.gitignore
+.project
+.springBeans
+project.iml
+config/
+META-INF/
+log4j.xml

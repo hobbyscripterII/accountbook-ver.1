@@ -1,6 +1,7 @@
 package com.accountbook.project.month.controller;
 
 import com.accountbook.project.SessionConst;
+import com.accountbook.project.accountbook.service.AccountBookService;
 import com.accountbook.project.month.dto.MonthCategoryDto;
 import com.accountbook.project.month.service.MonthTableService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class MonthTableController {
     private final MonthTableService monthTableService;
+    private final AccountBookService accountBookService;
 
     @GetMapping("/{m_id}/{a_code}")
     public String month(@PathVariable("m_id") int m_id, @PathVariable("a_code") int a_code, HttpServletRequest request, Model model) {
@@ -30,8 +32,8 @@ public class MonthTableController {
         map.put("me_id", m_id);
         map.put("a_code", a_code);
         model.addAttribute("category", monthTableService.getMonthCategory()); // 가계부 카테고리
-        model.addAttribute("list", monthTableService.getMonthCode(ID)); // 회원이 등록한 가계부 일련코드 목록
-        model.addAttribute("accountBook", monthTableService.selectMonth(map)); // 회원이 선택한 가계부 일련코드
+        model.addAttribute("list", accountBookService.getMonthCode(ID)); // 회원이 등록한 가계부 일련코드 목록
+        model.addAttribute("accountBook", accountBookService.selectMonth(map)); // 회원이 선택한 가계부 일련코드
         model.addAttribute("table", monthTableService.getMonth(map)); // 회원이 입력한 가계부 정보
 
         tableInfo(model, map);

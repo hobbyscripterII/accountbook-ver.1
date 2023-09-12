@@ -6,19 +6,16 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.accountbook.project.login.dto.LoginDto" alias="LoginDto" />
-
+        <typeAlias type="com.accountbook.project.accountbook.dto.AccountBookDto" alias="AccountBookDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthCategoryDto" alias="MonthCategoryDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthCategoryDto$TableInfo" alias="MonthCategoryTableInfoDto" />
-        <typeAlias type="com.accountbook.project.month.dto.MonthCodeDto" alias="MonthCodeDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthTableDto" alias="MonthTableDto" />
-
         <typeAlias type="com.accountbook.project.notice.dto.NoticeDto" alias="NoticeDto" />
         <typeAlias type="com.accountbook.project.notice.dto.NoticeDto$GetName" alias="NoticeGetNameDto" />
         <typeAlias type="com.accountbook.project.notice.dto.NoticeDto$Insert" alias="NoticeInsertDto" />
         <typeAlias type="com.accountbook.project.notice.dto.NoticeDto$GetContent" alias="NoticeGetContentDto" />
         <typeAlias type="com.accountbook.project.notice.dto.NoticeDto$SelectContent" alias="NoticeSelectContentDto" />
         <typeAlias type="com.accountbook.project.notice.dto.NoticeDto$UpdateContent" alias="NoticeUpdateContentDto" />
-<!--        <typeAlias type="com.accountbook.project.notice.dto.NoticeDto$UpdateContentCnt" alias="NoticeUpdateContentCntDto" />-->
         <typeAlias type="com.accountbook.project.notice.dto.NoticeDto$ModifyFlag" alias="NoticeModifyFlagDto" />
     </typeAliases>
 </configuration>

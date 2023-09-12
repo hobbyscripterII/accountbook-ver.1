@@ -8,14 +8,6 @@
         SELECT * FROM AC_CATEGORY ORDER BY C_CODE
     </select>
 
-    <select id="getMonthCode" parameterType="java.lang.Integer" resultType="MonthCodeDto">
-        SELECT * FROM AC_ACCOUNTBOOK WHERE M_ID = #{m_id} ORDER BY A_CODE
-    </select>
-
-    <select id="selectMonth" parameterType="Map" resultType="MonthCodeDto">
-        SELECT * FROM AC_ACCOUNTBOOK WHERE A_CODE = ${a_code} AND M_ID = ${m_id}
-    </select>
-
     <select id="getMonth" parameterType="Map" resultType="MonthTableDto">
         SELECT M.M_ID, M.ME_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
         FROM AC_MONTH M, AC_CATEGORY C

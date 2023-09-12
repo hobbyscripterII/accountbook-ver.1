@@ -31,7 +31,7 @@
 			<mvc:exclude-mapping path="/login"/>
 			<mvc:exclude-mapping path="/notice/list"/>
 			<mvc:exclude-mapping path="/ac/home"/>
-			<mvc:exclude-mapping path="/resources/css/**"/>
+			<mvc:exclude-mapping path="/resources/**"/>
 			<bean class="com.accountbook.project.interceptor.LogInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

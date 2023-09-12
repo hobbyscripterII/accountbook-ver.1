@@ -13,13 +13,7 @@
 
 <body>
 <section>
-    <div class="div-account-book-list">
-        <input class="btn btn-dark" type="button" name="" value="가계부 추가">
-            <c:forEach var="l" items="${list}">
-                    <input type="hidden" name="m_id" value="${l.m_id}">
-                    <input type="button" class="btn btn-primary" name="a_code" value="${l.a_code}" onclick="location.href = `/accountbook/mt/${l.m_id}/${l.a_code}`">
-            </c:forEach>
-    </div>
+    <jsp:include page="layout/sheet-tap.jsp"/>
 
     <div class="wrapper-account-book">
         <div class="table-side">
