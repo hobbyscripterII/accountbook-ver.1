@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" href="<c:url value="/resources/css/chart.css?=v3" />">
 <html>
 <jsp:include page="layout/head.jsp"/>
 <jsp:include page="layout/header.jsp"/>
@@ -158,6 +159,8 @@
                             <th scope="col" style="text-align: center">금액</th>
                             <th scope="col" style="text-align: center">퍼센티지</th>
                         </tr>
+                        <c:set var="totalAmount" value="0" />
+                        <c:set var="totalPercentage" value="100" />
                         <c:forEach var="nff_" items="${nonFixFood}" varStatus="status">
                             <c:set var="totalAmount" value="${totalAmount + nff_.m_amount}" />
                         </c:forEach>
@@ -405,8 +408,8 @@
                                 <fmt:parseDate var="d_date" value="${t.d_date}" pattern="yyyy-mm-dd" />
                                 <td><input type="date" id="d_date" name="d_date" value="<fmt:formatDate value="${d_date}" pattern="yyyy-mm-dd"/>" class="form-control form-control-sm"></td>
                                 <td>
-                                    <select id="category" class="form-control form-control-sm">
-                                        <option id="c_code" name="c_code" value="${t.c_code}">${t.c_name}</option>
+                                    <select id="c_code" name="c_code" class="form-control form-control-sm">
+                                        <option value="${t.c_code}">${t.c_name}</option>
                                         <c:forEach var="c" items="${category}">
                                             <option value="${c.c_code}">${c.c_name}</option>
                                         </c:forEach>
@@ -436,7 +439,10 @@
     </div>
 
     <div class="chart">
-
+        <div id="chart-income" class="chart-main"> </div>
+        <div id="chart-save" class="chart-main"> </div>
+        <div id="chart-fix" class="chart-main"> </div>
+        <div id="chart-nonfix" class="chart-main"> </div>
     </div>
 
     <div class="modal" id="modal-row-delete" tabindex="-1">
@@ -502,14 +508,8 @@
     </div>
 </section>
 
+<script src="https://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('.btn-click').click(function () {
-            $('.account-book').animate({width: 'toggle'}, 500, function () {
-            })
-        })
-    });
-
     function rowCreate() {
         var dynamic_tr =
             '<tr>' +
@@ -536,20 +536,145 @@
         $('.form-table').append(dynamic_tr);
     }
 
-    var income = [<c:forEach var="i" items="${income}" varStatus="status"> { category: "${i.c_name}", amount: ${i.m_amount} }, </c:forEach>];
-    var save = [<c:forEach var="s" items="${save}" varStatus="status"> { category: "${s.c_name}", amount: ${s.m_amount} }, </c:forEach>];
-    var fix = [<c:forEach var="f" items="${fix}" varStatus="status"> { category: "${f.c_name}", amount: ${f.m_amount} }, </c:forEach>];
-    var nonFixFood = [<c:forEach var="nff" items="${nonFixFood}" varStatus="status"> { category: "${nff.c_name}", amount: ${nff.m_amount} }, </c:forEach>];
-    var nonFixLife = [<c:forEach var="nfl" items="${nonFixLife}" varStatus="status"> { category: "${nfl.c_name}", amount: ${nfl.m_amount} }, </c:forEach>];
-    var nonFixTraffic = [<c:forEach var="nft" items="${nonFixTraffic}" varStatus="status"> { category: "${nft.c_name}", amount: ${nft.m_amount} }, </c:forEach>];
-    var nonFixRegular = [<c:forEach var="nfr" items="${nonFixRegular}" varStatus="status"> { category: "${nfr.c_name}", amount: ${nfr.m_amount} }, </c:forEach>];
-    var nonFixFashion = [<c:forEach var="nff" items="${nonFixFashion}" varStatus="status"> { category: "${nff.c_name}", amount: ${nff.m_amount} }, </c:forEach>];
-    var nonFixBeauty = [<c:forEach var="nfb" items="${nonFixBeauty}" varStatus="status"> { category: "${nfb.c_name}", amount: ${nfb.m_amount} }, </c:forEach>];
-    var nonFixPhrase = [<c:forEach var="nfp" items="${nonFixPhrase}" varStatus="status"> { category: "${nfp.c_name}", amount: ${nfp.m_amount} }, </c:forEach>];
-    var nonFixEdu = [<c:forEach var="nfe" items="${nonFixEdu}" varStatus="status"> { category: "${nfe.c_name}", amount: ${nfe.m_amount} }, </c:forEach>];
-    var nonFixCulture = [<c:forEach var="nfc" items="${nonFixCulture}" varStatus="status"> { category: "${nfc.c_name}", amount: ${nfc.m_amount} }, </c:forEach>];
-    var nonFixHealth = [<c:forEach var="nfh" items="${nonFixHealth}" varStatus="status"> {category: "${nfh.c_name}", amount: ${nfh.m_amount} },</c:forEach>];
-    var nonFixEtc = [<c:forEach var="nfe" items="${nonFixEtc}" varStatus="status"> { category: "${nfe.c_name}", amount: ${nfe.m_amount} }, </c:forEach>];
+    const income_ = [
+        <c:forEach var="i" items="${income}" varStatus="status">
+        {
+            category: "${i.c_name}",
+            amount: ${i.m_amount}
+        },
+        </c:forEach>
+    ];
+
+    const income = [];
+    income_.forEach(item => {
+        income.push([item.category, item.amount]);
+    });
+
+    Highcharts.chart('chart-income', {
+        chart: {
+            type: 'pie'
+        },
+        title: {
+            text: '수입'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: '50%',
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        series: [{
+            name: '금액',
+            data: income
+        }]
+    });
+
+    const save_ = [
+        <c:forEach var="s" items="${save}" varStatus="status">
+        {
+            category: "${s.c_name}", amount: ${s.m_amount}
+        },
+        </c:forEach>
+    ];
+
+    const save = [];
+    save_.forEach(item => {
+        save.push([item.category, item.amount]);
+    });
+
+    Highcharts.chart('chart-save', {
+        chart: {
+            type: 'pie'
+        },
+        title: {
+            text: '저축'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: '50%',
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        series: [{
+            name: '금액',
+            data: save
+        }]
+    });
+
+    const fix_ = [
+        <c:forEach var="f" items="${fix}" varStatus="status">
+        {
+            category: "${f.c_name}",
+            amount: ${f.m_amount}
+        },
+        </c:forEach>
+    ];
+
+    const fix = [];
+    fix_.forEach(item => {
+        fix.push([item.category, item.amount]);
+    });
+
+    Highcharts.chart('chart-fix', {
+        chart: {
+            type: 'pie'
+        },
+        title: {
+            text: '고정지출'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: '50%',
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        series: [{
+            name: '금액',
+            data: fix
+        }]
+    });
+
+    const nonFix_ = [
+        <c:forEach var="m" items="${member}" varStatus="status">
+        {
+            category: "${m.category}",
+            amount: ${m.amount}
+        },
+        </c:forEach>
+    ];
+
+    const nonFix = [];
+    nonFix_.forEach(item => {
+        nonFix.push([item.category, item.amount]);
+    });
+
+    Highcharts.chart('chart-nonfix', {
+        chart: {
+            type: 'pie'
+        },
+        title: {
+            text: '비고정지출'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: '50%',
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        series: [{
+            name: '금액',
+            data: nonFix
+        }]
+    });
+
 </script>
 <script type="text/javascript" src="../../resources/js/month.js"></script>
 </body>

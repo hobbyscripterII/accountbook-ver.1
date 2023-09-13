@@ -2,7 +2,9 @@ package com.accountbook.project.month.controller;
 
 import com.accountbook.project.SessionConst;
 import com.accountbook.project.accountbook.service.AccountBookService;
-import com.accountbook.project.month.dto.MonthCategoryDto;
+import com.accountbook.project.month.dto.MonthTableDto;
+import com.accountbook.project.month.dto.MonthChartDto;
+import com.accountbook.project.month.service.MonthChartService;
 import com.accountbook.project.month.service.MonthTableService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,21 +23,21 @@ import java.util.*;
 public class MonthTableController {
     private final MonthTableService monthTableService;
     private final AccountBookService accountBookService;
+    private final MonthChartService monthChartService;
 
     @GetMapping("/{m_id}/{a_code}")
     public String month(@PathVariable("m_id") int m_id, @PathVariable("a_code") int a_code, HttpServletRequest request, Model model) {
         Map<String, Object> map = new HashMap<String, Object>();
         HttpSession session = request.getSession();
         int ID = (Integer) session.getAttribute(SessionConst.MEMBER_ID);
-
         map.put("m_id", m_id);
         map.put("me_id", m_id);
         map.put("a_code", a_code);
-        model.addAttribute("category", monthTableService.getMonthCategory()); // 가계부 카테고리
+        model.addAttribute("category", monthTableService.getCategory()); // 가계부 카테고리
         model.addAttribute("list", accountBookService.getMonthCode(ID)); // 회원이 등록한 가계부 일련코드 목록
         model.addAttribute("accountBook", accountBookService.selectMonth(map)); // 회원이 선택한 가계부 일련코드
         model.addAttribute("table", monthTableService.getMonth(map)); // 회원이 입력한 가계부 정보
-
+        model.addAttribute("member", monthChartService.getMemberMonthCategorySum(map));
         tableInfo(model, map);
 
         return "month";
@@ -43,16 +45,16 @@ public class MonthTableController {
 
     public void tableInfo(Model model, Map<String, Object> map) {
         // 테이블 정보가 담겨있는 List를 담는다.
-        List<MonthCategoryDto.TableInfo> table = monthTableService.getTableInfo(map);
-        Map<String, List<MonthCategoryDto.TableInfo>> temp = new HashMap<String, List<MonthCategoryDto.TableInfo>>();
+        List<MonthTableDto.getTable> table = monthTableService.getTableInfo(map);
+        Map<String, List<MonthTableDto.getTable>> temp = new HashMap<String, List<MonthTableDto.getTable>>();
         // 카테고리를 분류하기위해 카테고리 식별코드를 배열로 담는다.
         String[] categoryCodeArray = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"};
 
         for(String categoryCode : categoryCodeArray)
             // key: categoryCode value: List<tableInfo>
-            temp.put(categoryCode, new ArrayList<MonthCategoryDto.TableInfo>());
+            temp.put(categoryCode, new ArrayList<MonthTableDto.getTable>());
 
-        for(MonthCategoryDto.TableInfo dto : table) {
+        for(MonthTableDto.getTable dto : table) {
             String categoryCode = dto.getC_code();
             for(String categoryCode_ : categoryCodeArray) {
                 // dto.getC_code에 담긴 값이 배열에 담긴 값일 경우 카테고리 식별코드와 일치하는 key를 꺼내 데이터를 담는다.

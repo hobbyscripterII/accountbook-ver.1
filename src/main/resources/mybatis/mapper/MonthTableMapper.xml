@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.accountbook.project.month.mapper.MonthTableMapper">
-    <select id="getMonthCategory" resultType="MonthCategoryDto">
+    <select id="getCategory" resultType="MonthCategoryDto">
         SELECT * FROM AC_CATEGORY ORDER BY C_CODE
     </select>
 
-    <select id="getMonth" parameterType="Map" resultType="MonthTableDto">
+    <select id="getMonth" parameterType="Map" resultType="MonthRegisterTableDto">
         SELECT M.M_ID, M.ME_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
         FROM AC_MONTH M, AC_CATEGORY C
         WHERE M.C_CODE = C.C_CODE AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
@@ -16,7 +16,7 @@
         ORDER BY M.D_DATE
     </select>
 
-    <select id="getTableInfo" parameterType="Map" resultType="MonthCategoryTableInfoDto">
+    <select id="getTable" parameterType="Map" resultType="MonthTableDto">
         SELECT C.C_CODE c_code, C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount
         FROM AC_CATEGORY C
                  INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE

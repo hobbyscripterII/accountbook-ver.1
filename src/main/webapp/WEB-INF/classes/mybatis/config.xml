@@ -7,9 +7,11 @@
     <typeAliases>
         <typeAlias type="com.accountbook.project.login.dto.LoginDto" alias="LoginDto" />
         <typeAlias type="com.accountbook.project.accountbook.dto.AccountBookDto" alias="AccountBookDto" />
-        <typeAlias type="com.accountbook.project.month.dto.MonthCategoryDto" alias="MonthCategoryDto" />
-        <typeAlias type="com.accountbook.project.month.dto.MonthCategoryDto$TableInfo" alias="MonthCategoryTableInfoDto" />
-        <typeAlias type="com.accountbook.project.month.dto.MonthTableDto" alias="MonthTableDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthTableDto$getCategory" alias="MonthCategoryDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthTableDto$getTable" alias="MonthTableDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthRegisterTableDto" alias="MonthRegisterTableDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthRegisterTableDto$Update" alias="MonthRegisterTableUpdateDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthChartDto" alias="MonthChartDto" />
         <typeAlias type="com.accountbook.project.notice.dto.NoticeDto" alias="NoticeDto" />
         <typeAlias type="com.accountbook.project.notice.dto.NoticeDto$GetName" alias="NoticeGetNameDto" />
         <typeAlias type="com.accountbook.project.notice.dto.NoticeDto$Insert" alias="NoticeInsertDto" />

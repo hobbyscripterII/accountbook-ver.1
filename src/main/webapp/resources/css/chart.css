@@ -1,0 +1,12 @@
+.chart {
+    display: none;
+    height: 100%;
+    flex-grow: 1;
+    align-items: center;
+    overflow: hidden;
+}
+
+.chart-main {
+    width: 35%;
+    border: 2px solid midnightblue;
+}

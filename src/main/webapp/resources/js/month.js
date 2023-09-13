@@ -1,3 +1,15 @@
+$(document).ready(function () {
+    $('.btn-click').click(function () {
+        $('.account-book').animate({ width: 'toggle' }, 500, function () {
+            if ($('.account-book').is(':visible')) {
+                $('.chart').css('display', 'none');
+            } else {
+                $('.chart').css('display', 'flex');
+            }
+        });
+    });
+});
+
 $(document).on('click', '#create', function() {
     const cre = document.querySelectorAll('#create');
     const row = this.closest('tr');
@@ -28,37 +40,43 @@ $(document).on('click', '#create', function() {
 })
 
 $(document).on('click', '#update', function() {
-    // $('#d_date').attr('disabled', false);
-    // $('#category').attr('disabled', false);
-    // $('#m_amount').attr('disabled', false);
-    // $('#m_memo').attr('disabled', false);
-
-    const mod = document.querySelectorAll('#update');
     const row = this.closest('tr');
-    const m_id = row.querySelector(`[name = 'm_id']`).value;
-    const me_id = row.querySelector(`[name = 'me_id']`).value;
-    const d_date = row.querySelector(`[name = 'd_date']`).value;
-    const c_code = row.querySelector(`[name = 'c_code']`).value;
-    const m_amount = row.querySelector(`[name = 'm_amount']`).value;
-    const m_memo = row.querySelector(`[name = 'm_memo']`).value;
-    const btn = document.querySelectorAll('#update-flag')
+    const m_id = row.querySelector(`[name='m_id']`).value;
+    const d_date = row.querySelector(`[name='d_date']`).value;
+    const c_code = row.querySelector(`[name='c_code']`).value;
+    const m_amount = row.querySelector(`[name='m_amount']`).value;
+    const m_memo = row.querySelector(`[name='m_memo']`).value;
 
-    btn.forEach(btn => {
-        btn.addEventListener('click', function() {
+    // btn 클릭 이벤트 핸들러 내에서 변수 사용
+    const btn = document.querySelectorAll('#update-flag');
+    btn.forEach(btnElement => {
+        btnElement.addEventListener('click', function() {
             $.ajax({
                 type: 'post',
                 url: '/accountbook/mw/update',
-                data: {'m_id' : m_id, 'me_id' : me_id, 'd_date': d_date, 'c_code':c_code ,'m_amount' :m_amount , 'm_memo':m_memo},
+                data: {
+                    'm_id': m_id,
+                    'd_date': d_date,
+                    'c_code': c_code,
+                    'm_amount': m_amount,
+                    'm_memo': m_memo
+                },
                 success(data) {
+                    console.log(m_id);
+                    console.log(d_date);
+                    console.log(c_code);
+                    console.log(m_amount);
+                    console.log(m_memo);
                     alert('수정이 완료되었습니다.');
                     location.reload();
-                }, error() {
-                    alert("수정이 취소되었습니다. 잠시 후 다시 이용해주세요.");
+                },
+                error() {
+                    alert('수정이 취소되었습니다. 잠시 후 다시 이용해주세요.');
                 }
-            })
-        })
-    })
-})
+            });
+        });
+    });
+});
 
 const del = document.querySelectorAll('#delete');
 del.forEach(btn => {

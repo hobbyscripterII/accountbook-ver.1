@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accountbook.project.month.mapper.MonthChartMapper">
+    <resultMap id="monthChartResultMap" type="com.accountbook.project.month.dto.MonthChartDto">
+        <result property="category" column="항목" />
+        <result property="amount" column="금액" />
+    </resultMap>
+
+    <select id="getMemberMonthCategorySum" parameterType="map" resultMap="monthChartResultMap">
+        SELECT 항목, 금액
+        FROM
+            (
+                SELECT
+                    '식비' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'C%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+                UNION
+                SELECT
+                    '생활' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'D%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+                UNION
+                SELECT
+                    '교통' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'E%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+                UNION
+                SELECT
+                    '정기결제' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'F%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+                UNION
+                SELECT
+                    '패션' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'G%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+                UNION
+                SELECT
+                    '뷰티' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'H%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+                UNION
+                SELECT
+                    '문구' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'I%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+                UNION
+                SELECT
+                    '교육' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'J%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+                UNION
+                SELECT
+                    '문화' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'K%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+                UNION
+                SELECT
+                    '건강' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'L%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+                UNION
+                SELECT
+                    '기타' AS 항목,
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'M%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                FROM AC_MONTH
+            )
+        ORDER BY
+            CASE
+                WHEN 항목 = '식비' THEN 1
+                WHEN 항목 = '생활' THEN 2
+                WHEN 항목 = '교통' THEN 3
+                WHEN 항목 = '정기결제' THEN 4
+                WHEN 항목 = '패션' THEN 5
+                WHEN 항목 = '뷰티' THEN 6
+                WHEN 항목 = '문구' THEN 7
+                WHEN 항목 = '교육' THEN 8
+                WHEN 항목 = '문화' THEN 9
+                WHEN 항목 = '건강' THEN 10
+                WHEN 항목 = '기타' THEN 11
+                END
+    </select>
+</mapper>
