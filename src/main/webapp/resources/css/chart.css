@@ -2,11 +2,16 @@
     display: none;
     height: 100%;
     flex-grow: 1;
-    align-items: center;
     overflow: hidden;
+    flex-wrap: wrap;
 }
 
-.chart-main {
-    width: 35%;
-    border: 2px solid midnightblue;
+.chart-top {
+    width: 33%;
+    height: 40vh;
+}
+
+.chart-bottom {
+    width: 100vw;
+    height: 40vh;
 }

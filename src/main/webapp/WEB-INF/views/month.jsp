@@ -439,10 +439,10 @@
     </div>
 
     <div class="chart">
-        <div id="chart-income" class="chart-main"> </div>
-        <div id="chart-save" class="chart-main"> </div>
-        <div id="chart-fix" class="chart-main"> </div>
-        <div id="chart-nonfix" class="chart-main"> </div>
+            <div id="chart-income" class="chart-top"> </div>
+            <div id="chart-save" class="chart-top"> </div>
+            <div id="chart-fix" class="chart-top"> </div>
+            <div id="chart-nonfix" class="chart-bottom"> </div>
     </div>
 
     <div class="modal" id="modal-row-delete" tabindex="-1">
@@ -509,6 +509,9 @@
 </section>
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script type="text/javascript">
     function rowCreate() {
         var dynamic_tr =
@@ -536,7 +539,7 @@
         $('.form-table').append(dynamic_tr);
     }
 
-    const income_ = [
+    const income = [
         <c:forEach var="i" items="${income}" varStatus="status">
         {
             category: "${i.c_name}",
@@ -545,33 +548,33 @@
         </c:forEach>
     ];
 
-    const income = [];
-    income_.forEach(item => {
-        income.push([item.category, item.amount]);
+    const incomeData = [];
+    income.forEach(item => {
+        incomeData.push([item.category, item.amount]);
     });
 
     Highcharts.chart('chart-income', {
-        chart: {
-            type: 'pie'
-        },
         title: {
             text: '수입'
         },
-        plotOptions: {
-            pie: {
-                innerSize: '50%',
-                dataLabels: {
-                    enabled: true
-                }
-            }
+        xAxis: {
+            categories: incomeData,
         },
         series: [{
-            name: '금액',
-            data: income
+            type: 'pie',
+            allowPointSelect: true,
+            data: incomeData,
+            showInLegend: true,
+            dataLabels: {
+                enabled: true,
+                formatter: function() {
+                    return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
+                }
+            }
         }]
     });
 
-    const save_ = [
+    const save = [
         <c:forEach var="s" items="${save}" varStatus="status">
         {
             category: "${s.c_name}", amount: ${s.m_amount}
@@ -579,33 +582,38 @@
         </c:forEach>
     ];
 
-    const save = [];
-    save_.forEach(item => {
-        save.push([item.category, item.amount]);
+    const saveCategory = [];
+    save.forEach(item => {
+        saveCategory.push(item.category);
+    });
+
+    const saveData = [];
+    save.forEach(item => {
+        saveData.push([item.category, item.amount]);
     });
 
     Highcharts.chart('chart-save', {
-        chart: {
-            type: 'pie'
-        },
         title: {
             text: '저축'
         },
-        plotOptions: {
-            pie: {
-                innerSize: '50%',
-                dataLabels: {
-                    enabled: true
-                }
-            }
+        xAxis: {
+            categories: saveCategory,
         },
         series: [{
-            name: '금액',
-            data: save
+            type: 'pie',
+            allowPointSelect: true,
+            data: saveData,
+            showInLegend: true,
+            dataLabels: {
+                enabled: true,
+                formatter: function() {
+                    return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
+                }
+            }
         }]
     });
 
-    const fix_ = [
+    const fix = [
         <c:forEach var="f" items="${fix}" varStatus="status">
         {
             category: "${f.c_name}",
@@ -614,33 +622,33 @@
         </c:forEach>
     ];
 
-    const fix = [];
-    fix_.forEach(item => {
-        fix.push([item.category, item.amount]);
+    const fixData = [];
+    fix.forEach(item => {
+        fixData.push([item.category, item.amount]);
     });
 
     Highcharts.chart('chart-fix', {
-        chart: {
-            type: 'pie'
-        },
         title: {
             text: '고정지출'
         },
-        plotOptions: {
-            pie: {
-                innerSize: '50%',
-                dataLabels: {
-                    enabled: true
-                }
-            }
+        xAxis: {
+            categories: fixData,
         },
         series: [{
-            name: '금액',
-            data: fix
+            type: 'pie',
+            allowPointSelect: true,
+            data: fixData,
+            showInLegend: true,
+            dataLabels: {
+                enabled: true,
+                formatter: function() {
+                    return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
+                }
+            }
         }]
     });
 
-    const nonFix_ = [
+    const nonFix = [
         <c:forEach var="m" items="${member}" varStatus="status">
         {
             category: "${m.category}",
@@ -649,33 +657,38 @@
         </c:forEach>
     ];
 
-    const nonFix = [];
-    nonFix_.forEach(item => {
-        nonFix.push([item.category, item.amount]);
+    const nonFixCategory = [];
+    nonFix.forEach(item => {
+        nonFixCategory.push(item.category);
+    });
+    const nonFixAmount = [];
+    nonFix.forEach(item => {
+        nonFixAmount.push(item.amount);
     });
 
     Highcharts.chart('chart-nonfix', {
-        chart: {
-            type: 'pie'
-        },
         title: {
             text: '비고정지출'
         },
-        plotOptions: {
-            pie: {
-                innerSize: '50%',
-                dataLabels: {
-                    enabled: true
-                }
-            }
+        xAxis: {
+            categories: nonFixCategory,
         },
         series: [{
-            name: '금액',
-            data: nonFix
+            type: 'column',
+            allowPointSelect: true,
+            data: nonFixAmount,
+            showInLegend: false,
+            dataLabels: {
+                enabled: true,
+                formatter: function() {
+                    return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
+                }
+            }
         }]
     });
 
 </script>
 <script type="text/javascript" src="../../resources/js/month.js"></script>
+<script type="text/javascript" src="../../resources/js/chart.js"></script>
 </body>
 </html>
