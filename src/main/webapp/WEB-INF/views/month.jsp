@@ -518,7 +518,7 @@
 <script type="text/javascript">
     document.getElementById("btn-compare").addEventListener("click", function() {
         const url = "/accountbook/mt/amount-compare";
-        window.open(url, "naver", "width=1900,height=1500");
+        window.open(url, " ", "width=1900,height=1500");
     });
 
     function rowCreate() {

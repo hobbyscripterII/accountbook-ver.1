@@ -6,6 +6,9 @@
 <nav>
     <a href="<c:url value="/" />">홈</a>
     <a href="<c:url value="/notice/list" />">공지사항</a>
+    <a href="<c:url value="/free/list" />">자유 게시판</a>
+    <a href="<c:url value="/question/list" />">질문 게시판</a>
+    <a href="<c:url value="/suggest/list" />">건의 게시판</a>
     <a href="<c:url value="/ac/home"/>">가계부</a>
 
     <c:choose>

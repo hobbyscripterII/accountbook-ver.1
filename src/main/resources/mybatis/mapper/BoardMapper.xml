@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accountbook.project.board.mapper.BoardMapper">
+    <select id="getName" parameterType="java.lang.Integer" resultType="BoardGetNameDto">
+        SELECT M_ID, M_NAME, TO_CHAR(SYSDATE, 'YYYY-MM-DD') AS N_CREATE_DATE
+        FROM AC_MEMBER
+        WHERE M_ID = #{m_id}
+    </select>
+
+    <insert id="insertNotice" parameterType="BoardInsertDto">
+        INSERT INTO AC_BOARD(N_ID, B_CODE, M_ID, N_TITLE, N_CONTENT, N_VIEW, N_CREATE_DATE) VALUES(BOARD_SEQ.NEXTVAL, #{b_code}, #{m_id}, #{n_title}, #{n_content}, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'))
+    </insert>
+
+     <select id="getContent" parameterType="map" resultType="BoardGetContentDto">
+        SELECT B.N_ID, BC.B_CODE, M.M_NAME, B.N_TITLE, B.N_CREATE_DATE, B.N_VIEW
+        FROM AC_BOARD B
+                 INNER JOIN AC_MEMBER M
+                            ON M.M_ID = B.M_ID
+                 INNER JOIN AC_BOARD_CODE BC
+                            ON B.B_CODE = BC.B_CODE
+                 INNER JOIN (
+            SELECT ROWNUM RN, A.*
+            FROM (
+                     SELECT * FROM AC_BOARD
+                     ORDER BY N_ID desc
+                 ) A
+        ) SUB ON B.N_ID = SUB.N_ID
+        WHERE SUB.RN BETWEEN #{begin} AND #{end} AND BC.B_CODE = #{b_code}
+    </select>
+
+
+    <select id="getContentCnt" resultType="int">
+        SELECT COUNT(*) FROM AC_BOARD
+    </select>
+
+    <select id="selectContent" parameterType="map" resultType="BoardSelectContentDto">
+        SELECT B.N_ID, BC.B_CODE, M.M_ID, M.M_NAME, B.N_TITLE, B.N_CONTENT, B.N_CREATE_DATE, B.N_VIEW
+        FROM AC_BOARD B, AC_MEMBER M, AC_BOARD_CODE BC
+        WHERE M.M_ID = B.M_ID AND B.B_CODE = BC.B_CODE AND BC.B_CODE = #{b_code} AND B.N_ID = ${n_id}
+        GROUP BY B.N_ID,BC.B_CODE, M.M_ID, M.M_NAME, B.N_TITLE, B.N_CONTENT, B.N_CREATE_DATE, B.N_VIEW
+    </select>
+
+    <delete id="deleteContent" parameterType="java.lang.Integer">
+        DELETE AC_BOARD WHERE N_ID = #{n_id}
+    </delete>
+
+    <update id="updateContent" parameterType="BoardUpdateContentDto">
+        UPDATE AC_BOARD SET N_TITLE = #{n_title}, N_CONTENT = #{n_content}, N_UPDATE_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI') WHERE N_ID = #{n_id}
+    </update>
+
+    <update id="updateContentCnt" parameterType="java.lang.Integer">
+        UPDATE AC_BOARD SET N_VIEW = N_VIEW + 1 WHERE N_ID = #{n_id}
+    </update>
+
+    <select id="modifyFlag" parameterType="java.lang.Integer" resultType="NoticeModifyFlagDto">
+        SELECT B.N_ID, M.M_ID
+        FROM AC_BOARD B, AC_MEMBER M
+        WHERE M.M_ID = B.M_ID AND B.N_ID = #{n_id}
+        GROUP BY B.N_ID, M.M_ID
+    </select>
+</mapper>

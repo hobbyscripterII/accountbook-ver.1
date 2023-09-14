@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<jsp:include page="layout/head.jsp"/>
-<jsp:include page="layout/header.jsp"/>
+<jsp:include page="../layout/head.jsp"/>
+<jsp:include page="../layout/header.jsp"/>
 <body>
 <section>
-    <h1>NOTICE WRITE</h1>
+    <h1>${title} 작성</h1>
 
     <div class="wrapper-notice-write">
         <form id="f" method="post">
