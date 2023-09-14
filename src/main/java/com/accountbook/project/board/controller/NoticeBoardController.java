@@ -33,14 +33,14 @@ public class NoticeBoardController {
         return "board/board";
     }
 
-    @GetMapping("/list/{n_id}")
-    public String board(@PathVariable(name = "n_id") int n_id, Model model) {
-        boardService.updateContentCnt(n_id);
+    @GetMapping("/list/{b_id}")
+    public String board(@PathVariable(name = "b_id") int b_id, Model model) {
+        boardService.updateContentCnt(b_id);
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("n_id", n_id);
+        map.put("b_id", b_id);
         map.put("b_code", 1);
         List<BoardDto.SelectContent> list = boardService.selectContent(map);
-        BoardDto.ModifyFlag flag = boardService.modifyFlag(n_id);
+        BoardDto.ModifyFlag flag = boardService.modifyFlag(b_id);
         model.addAttribute("list", list);
         model.addAttribute("flag", flag);
         boardInfo(model);
@@ -64,14 +64,14 @@ public class NoticeBoardController {
 
     @ResponseBody
     @PostMapping("/delete")
-    public void delete(@RequestParam int n_id) {
-        boardService.deleteContent(n_id);
+    public void delete(@RequestParam int b_id) {
+        boardService.deleteContent(b_id);
     }
 
-    @GetMapping("/update/{n_id}")
-    public String update(@PathVariable(name = "n_id") int n_id, Model model) {
+    @GetMapping("/update/{b_id}")
+    public String update(@PathVariable(name = "b_id") int b_id, Model model) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("n_id", n_id);
+        map.put("b_id", b_id);
         map.put("b_code", 1);
         List<BoardDto.SelectContent> list = boardService.selectContent(map);
         model.addAttribute("list", list);
@@ -81,8 +81,8 @@ public class NoticeBoardController {
 
     @ResponseBody
     @PostMapping("/update")
-    public void update(BoardDto.UpdateContent board, @RequestParam int n_id, @RequestParam String n_title, @RequestParam String n_content) {
-        board.setN_id(n_id);
+    public void update(BoardDto.UpdateContent board, @RequestParam int b_id, @RequestParam String n_title, @RequestParam String n_content) {
+        board.setB_id(b_id);
         board.setN_title(n_title);
         board.setN_content(n_content);
         boardService.updateContent(board);

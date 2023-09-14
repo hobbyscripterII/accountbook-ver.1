@@ -12,7 +12,7 @@
         <form id="f" method="post">
             <div class="notice-write">
                 <c:forEach var="l" items="${list}">
-                    <input type="hidden" class="form-control" id="n_id" name="n_id" value="${l.n_id}">
+                    <input type="hidden" class="form-control" id="b_id" name="b_id" value="${l.b_id}">
                     <input type="hidden" class="form-control" id="m_id" name="m_id" value="${l.m_id}" readonly>
                     <input type="hidden" class="form-control" value="${l.m_name}" readonly>
                     <input type="hidden" class="form-control" name="n_create_date" value="${l.n_create_date}" readonly>
@@ -37,7 +37,7 @@
 
                     <div style="text-align: right">
                 <c:if test="${sessionScope.MEMBER_ID eq flag.m_id}">
-                        <input type="button" class="btn btn-primary" value="수정" onclick="location.href='/accountbook/${boardName}/update/${flag.n_id}'">
+                        <input type="button" class="btn btn-primary" value="수정" onclick="location.href='/accountbook/${boardName}/update/${flag.b_id}'">
                         <input type="button" class="btn btn-primary" value="삭제" onclick="del()">
                 </c:if>
                         <input type="button" class="btn btn-primary" value="목록" onclick="location.href='/accountbook/${boardName}/list'">
@@ -62,7 +62,7 @@
             $.ajax({
                 type: 'post',
                 url: '/accountbook/${boardName}/delete',
-                data: {'n_id' : $('#n_id').val()},
+                data: {'b_id' : $('#b_id').val()},
                 success(data) {
                     alert("해당 게시글이 삭제되었습니다.");
                     location.href='/accountbook/${boardName}/list';

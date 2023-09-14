@@ -30,8 +30,8 @@
                 </tr>
                 <c:forEach var="c" items="${content}">
                     <tr style="text-align: center">
-                        <td><c:out value="${c.n_id}"/></td>
-                        <td style="text-align: left"><a href="<c:url value="list/${c.n_id}" />">${c.n_title}</a></td>
+                        <td><c:out value="${c.b_id}"/></td>
+                        <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />">${c.n_title}</a></td>
                         <td>${c.m_name}</td>
                         <td>${c.n_create_date}</td>
                         <td>${c.n_view}</td>

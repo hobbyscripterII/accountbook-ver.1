@@ -12,7 +12,7 @@
         <form id="f" method="post">
             <div class="notice-write">
                 <c:forEach var="l" items="${list}">
-                    <input type="hidden" class="form-control" id="n_id" name="n_id" value="${l.n_id}">
+                    <input type="hidden" class="form-control" id="b_id" name="b_id" value="${l.b_id}">
                     <input type="hidden" class="form-control" id="m_id" name="m_id" value="${l.m_id}" readonly>
                     <input type="hidden" class="form-control" value="${l.m_name}" readonly>
                     <input type="hidden" class="form-control" name="n_create_date" value="${l.n_create_date}" readonly>
@@ -48,7 +48,7 @@
 <script type="text/javascript">
     function res() {
         if(confirm("수정을 취소하시겠습니까?")) {
-            location.href ='/accountbook/${boardName}/list/' + $('#n_id').val();
+            location.href ='/accountbook/${boardName}/list/' + $('#b_id').val();
         } else {
         }
     }
@@ -58,10 +58,10 @@
             $.ajax({
                 type: 'post',
                 url: '/accountbook/${boardName}/update',
-                data: {'n_id' : $('#n_id').val(), 'n_title' : $('#n_title').val(), 'n_content' : $('#n_content').val()},
+                data: {'b_id' : $('#b_id').val(), 'n_title' : $('#n_title').val(), 'n_content' : $('#n_content').val()},
                 success(data) {
                     alert("수정이 완료되었습니다.");
-                    location.href ='/accountbook/${boardName}/list/' + $('#n_id').val();
+                    location.href ='/accountbook/${boardName}/list/' + $('#b_id').val();
                 }
             })
         } else {

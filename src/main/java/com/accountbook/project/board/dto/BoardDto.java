@@ -31,7 +31,7 @@ public class BoardDto {
     @Setter
     @ToString
     public static class GetContent {
-        private int n_id;
+        private int b_id;
         private int b_code;
         private String m_name;
         private String n_title;
@@ -43,7 +43,7 @@ public class BoardDto {
     @Setter
     @ToString
     public static class SelectContent {
-        private int n_id;
+        private int b_id;
         private int b_code;
         private int m_id;
         private String m_name;
@@ -57,14 +57,14 @@ public class BoardDto {
     @Setter
     @ToString
     public static class UpdateContent {
-        private int n_id;
+        private int b_id;
         private String n_title;
         private String n_content;
     }
 
     @Getter
     public static class ModifyFlag {
-        private int n_id;
+        private int b_id;
         private int m_id;
     }
 }
