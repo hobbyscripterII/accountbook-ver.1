@@ -14,8 +14,6 @@
 
 <body>
 <section>
-    <jsp:include page="layout/sheet-tap.jsp"/>
-
     <div class="account-book" style="display: flex; width: 100%">
         <div class="wrapper-account-book">
             <div class="table-side">
@@ -431,6 +429,7 @@
             </div>
         </div>
     </div>
+    <jsp:include page="layout/sheet-tap.jsp"/>
 
     <div class="btn-click" style="display: block; width: 30px">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -439,10 +438,13 @@
     </div>
 
     <div class="chart">
-            <div id="chart-income" class="chart-top"> </div>
-            <div id="chart-save" class="chart-top"> </div>
-            <div id="chart-fix" class="chart-top"> </div>
-            <div id="chart-nonfix" class="chart-bottom"> </div>
+        <div style="width: 100%">
+            <input type="button" id="btn-compare" class="btn btn-warning" value="내 평균 지출 금액과 다른 사용자의 평균 지출 금액 비교하기" style="width: 100%; margin-bottom: 10px" />
+        </div>
+        <div id="chart-income" class="chart-top"> </div>
+        <div id="chart-save" class="chart-top"> </div>
+        <div id="chart-fix" class="chart-top"> </div>
+        <div id="chart-nonfix" class="chart-bottom" style="z-index: 99"> </div>
     </div>
 
     <div class="modal" id="modal-row-delete" tabindex="-1">
@@ -514,6 +516,11 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script type="text/javascript">
+    document.getElementById("btn-compare").addEventListener("click", function() {
+        const url = "/accountbook/mt/amount-compare";
+        window.open(url, "naver", "width=1900,height=1500");
+    });
+
     function rowCreate() {
         var dynamic_tr =
             '<tr>' +
@@ -711,6 +718,7 @@
             }
         },
         tooltip: {
+            zIndex: 9999,
             pointFormatter: function() {
                 return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ':' + Highcharts.numberFormat(this.y, 0, '.', ',') + '￦';
             }

@@ -28,19 +28,25 @@ public class MonthTableController {
     @GetMapping("/{m_id}/{a_code}")
     public String month(@PathVariable("m_id") int m_id, @PathVariable("a_code") int a_code, HttpServletRequest request, Model model) {
         Map<String, Object> map = new HashMap<String, Object>();
-        HttpSession session = request.getSession();
-        int ID = (Integer) session.getAttribute(SessionConst.MEMBER_ID);
         map.put("m_id", m_id);
         map.put("me_id", m_id);
         map.put("a_code", a_code);
         model.addAttribute("category", monthTableService.getCategory()); // 가계부 카테고리
-        model.addAttribute("list", accountBookService.getMonthCode(ID)); // 회원이 등록한 가계부 일련코드 목록
+        model.addAttribute("list", accountBookService.getMonthCode(getId(request))); // 회원이 등록한 가계부 일련코드 목록
         model.addAttribute("accountBook", accountBookService.selectMonth(map)); // 회원이 선택한 가계부 일련코드
         model.addAttribute("table", monthTableService.getMonth(map)); // 회원이 입력한 가계부 정보
         model.addAttribute("member", monthChartService.getMemberMonthCategorySum(map));
         tableInfo(model, map);
 
         return "month";
+    }
+
+    @GetMapping("/amount-compare")
+    public String monthAmountCompare(Model model, HttpServletRequest request) {
+        model.addAttribute("member", monthChartService.getMemberMonthCategoryAvg(getId(request)));
+        model.addAttribute("notMember", monthChartService.getNotMemberMonthCategoryAvg(getId(request)));
+        model.addAttribute("name", monthChartService.getName(getId(request)));
+        return "amount-compare";
     }
 
     public void tableInfo(Model model, Map<String, Object> map) {
@@ -65,6 +71,7 @@ public class MonthTableController {
 
         model.addAttribute("income", temp.get("A"));
         model.addAttribute("fix", temp.get("B"));
+        model.addAttribute("save", temp.get("N"));
         model.addAttribute("nonFixFood", temp.get("C"));
         model.addAttribute("nonFixLife", temp.get("D"));
         model.addAttribute("nonFixTraffic", temp.get("E"));
@@ -76,6 +83,10 @@ public class MonthTableController {
         model.addAttribute("nonFixCulture", temp.get("K"));
         model.addAttribute("nonFixHealth", temp.get("L"));
         model.addAttribute("nonFixEtc", temp.get("M"));
-        model.addAttribute("save", temp.get("N"));
+    }
+
+    private static int getId(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return (Integer) session.getAttribute(SessionConst.MEMBER_ID);
     }
 }

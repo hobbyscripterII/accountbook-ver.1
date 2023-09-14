@@ -4,10 +4,12 @@
     flex-grow: 1;
     overflow: hidden;
     flex-wrap: wrap;
+    margin-right: 10px;
+    padding-bottom: 50px;
 }
 
 .chart-top {
-    width: 33%;
+    width: 30%;
     height: 40vh;
 }
 

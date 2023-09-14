@@ -16,4 +16,15 @@ public class MonthChartService {
     public List<MonthChartDto> getMemberMonthCategorySum(Map<String, Object> map) {
         return monthChartMapper.getMemberMonthCategorySum(map);
     }
+
+    public List<MonthChartDto> getMemberMonthCategoryAvg(int me_id) {
+        return monthChartMapper.getMemberMonthCategoryAvg(me_id);
+    }
+    public List<MonthChartDto> getNotMemberMonthCategoryAvg(int me_id) {
+        return monthChartMapper.getNotMemberMonthCategoryAvg(me_id);
+    }
+
+    public String getName(int m_id) {
+        return monthChartMapper.getName(m_id);
+    }
 }
