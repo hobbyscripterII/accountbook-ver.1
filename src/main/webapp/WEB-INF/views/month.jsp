@@ -569,7 +569,7 @@
             dataLabels: {
                 enabled: true,
                 formatter: function() {
-                    return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
+                    return this.point.name + ': ' + Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
                 }
             }
         }],
@@ -588,11 +588,6 @@
         </c:forEach>
     ];
 
-    const saveCategory = [];
-    save.forEach(item => {
-        saveCategory.push(item.category);
-    });
-
     const saveData = [];
     save.forEach(item => {
         saveData.push([item.category, item.amount]);
@@ -603,7 +598,7 @@
             text: '저축'
         },
         xAxis: {
-            categories: saveCategory,
+            categories: saveData,
         },
         colors: ['#00008B', '#006400', '#FFD700', '#FF4500', '#FF0000', '#4B0082', '#2E0854'],
         series: [{
@@ -615,7 +610,7 @@
             dataLabels: {
                 enabled: true,
                 formatter: function() {
-                    return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
+                    return this.point.name + ': ' + Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
                 }
             }
         }],
@@ -657,7 +652,7 @@
             dataLabels: {
                 enabled: true,
                 formatter: function() {
-                    return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
+                    return this.point.name + ': ' + Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
                 }
             }
         }],
