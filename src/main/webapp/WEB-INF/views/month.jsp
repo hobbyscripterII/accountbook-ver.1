@@ -508,6 +508,7 @@
     </div>
 </section>
 
+<script type="text/javascript" src="../../resources/js/month.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -516,8 +517,6 @@
     function rowCreate() {
         var dynamic_tr =
             '<tr>' +
-            // '<input type="hidden" id="m_id" name="m_id" value="1" class="form-control form-control-sm" readonly>' +
-            // '<input type="hidden" id="a_id" name="a_id" value="202308" class="form-control form-control-sm" readonly>' + // 추후, 가계부 년월 아이디 버튼으로 값 가져오기
             '<td><input type="date" id="d_date" name="d_date" class="form-control form-control-sm"></td>' +
             '<td>' +
             '<select id="c_code" name="c_code" class="form-control form-control-sm">' +
@@ -560,8 +559,10 @@
         xAxis: {
             categories: incomeData,
         },
+        colors: ['#FF0000', '#FF4500', '#FFD700', '#006400', '#00008B', '#2E0854', '#4B0082'],
         series: [{
             type: 'pie',
+            name: '수입',
             allowPointSelect: true,
             data: incomeData,
             showInLegend: true,
@@ -571,7 +572,12 @@
                     return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
                 }
             }
-        }]
+        }],
+        tooltip: {
+            pointFormatter: function() {
+                return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ':' + Highcharts.numberFormat(this.y, 0, '.', ',') + '￦';
+            }
+        }
     });
 
     const save = [
@@ -599,8 +605,10 @@
         xAxis: {
             categories: saveCategory,
         },
+        colors: ['#00008B', '#006400', '#FFD700', '#FF4500', '#FF0000', '#4B0082', '#2E0854'],
         series: [{
             type: 'pie',
+            name: '저축',
             allowPointSelect: true,
             data: saveData,
             showInLegend: true,
@@ -610,7 +618,12 @@
                     return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
                 }
             }
-        }]
+        }],
+        tooltip: {
+            pointFormatter: function() {
+                return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ':' + Highcharts.numberFormat(this.y, 0, '.', ',') + '￦';
+            }
+        }
     });
 
     const fix = [
@@ -634,8 +647,10 @@
         xAxis: {
             categories: fixData,
         },
+        colors: ['#FF0000', '#FF4500', '#FFD700', '#006400', '#00008B', '#2E0854', '#4B0082'],
         series: [{
             type: 'pie',
+            name: '고정지출',
             allowPointSelect: true,
             data: fixData,
             showInLegend: true,
@@ -645,7 +660,12 @@
                     return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
                 }
             }
-        }]
+        }],
+        tooltip: {
+            pointFormatter: function() {
+                return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ':' + Highcharts.numberFormat(this.y, 0, '.', ',') + '￦';
+            }
+        }
     });
 
     const nonFix = [
@@ -673,22 +693,34 @@
         xAxis: {
             categories: nonFixCategory,
         },
+        colors: ['#8B0000', '#FF4500', '#FFD700', '#006400', '#00008B', '#2E0854', '#4B0082'],
         series: [{
             type: 'column',
+            name: '비고정지출',
+            colorByPoint: true,
             allowPointSelect: true,
             data: nonFixAmount,
             showInLegend: false,
             dataLabels: {
                 enabled: true,
                 formatter: function() {
-                    return Highcharts.numberFormat(this.y, 0, '', ',') + '₩';
+                    return Highcharts.numberFormat(this.y, 0, '', ',') + '￦';
                 }
             }
-        }]
+        }],
+        yAxis: {
+            labels: {
+                formatter: function() {
+                    return Highcharts.numberFormat(this.value, 0, '', ',') + '￦';
+                }
+            }
+        },
+        tooltip: {
+            pointFormatter: function() {
+                return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ':' + Highcharts.numberFormat(this.y, 0, '.', ',') + '￦';
+            }
+        }
     });
-
 </script>
-<script type="text/javascript" src="../../resources/js/month.js"></script>
-<script type="text/javascript" src="../../resources/js/chart.js"></script>
 </body>
 </html>
