@@ -12,9 +12,9 @@ public interface BoardMapper {
     List<BoardDto.GetContent> getContent(Map<String, Integer> map);
     void insertNotice(BoardDto.Insert notice);
     List<BoardDto.SelectContent> selectContent(Map<String, Object> map);
-    void deleteContent(int n_id);
+    void deleteContent(int b_id);
     void updateContent(BoardDto.UpdateContent notice);
-    void updateContentCnt(int n_id);
+    void updateContentCnt(int b_id);
     int getContentCnt();
-    BoardDto.ModifyFlag modifyFlag(int n_id);
+    BoardDto.ModifyFlag modifyFlag(int b_id);
 }

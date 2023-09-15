@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accountbook.project.board.mapper.BoardCommentMapper">
+    <select id="getComment" parameterType="int" resultType="BoardCommentDto">
+        SELECT C.C_ID, C.B_ID, C.M_ID, M.M_NAME, C.C_CONTENT, C.C_CREATE_DATE
+        FROM AC_COMMENT C, AC_MEMBER M
+        WHERE C.M_ID = M.M_ID AND B_ID = #{b_id}
+        GROUP BY C.C_ID, C.B_ID, C.M_ID, M.M_NAME, C.C_CONTENT, C.C_CREATE_DATE
+    </select>
+
+    <insert id="insertComment" parameterType="map">
+        INSERT INTO AC_COMMENT(C_ID, B_ID, M_ID, C_CONTENT, C_CREATE_DATE) VALUES(COMMENT_SEQ.NEXTVAL, #{b_id}, #{m_id}, #{c_content}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'))
+    </insert>
+</mapper>

@@ -20,5 +20,8 @@
         <typeAlias type="com.accountbook.project.board.dto.BoardDto$SelectContent" alias="BoardSelectContentDto" />
         <typeAlias type="com.accountbook.project.board.dto.BoardDto$UpdateContent" alias="BoardUpdateContentDto" />
         <typeAlias type="com.accountbook.project.board.dto.BoardDto$ModifyFlag" alias="NoticeModifyFlagDto" />
+
+        <typeAlias type="com.accountbook.project.board.dto.BoardCommentDto" alias="BoardCommentDto" />
+
     </typeAliases>
 </configuration>

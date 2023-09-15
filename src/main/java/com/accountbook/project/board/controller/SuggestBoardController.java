@@ -1,7 +1,7 @@
 package com.accountbook.project.board.controller;
 
-import com.accountbook.project.SessionConst;
 import com.accountbook.project.board.dto.BoardDto;
+import com.accountbook.project.board.service.BoardCommentService;
 import com.accountbook.project.board.service.BoardService;
 import com.accountbook.project.pagination.PaginationDto;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,30 +28,26 @@ public class SuggestBoardController {
         List<BoardDto.GetContent> content = boardService.getContent(paginationDto.getBegin(), paginationDto.getEnd(), 4);
         model.addAttribute("content", content);
         model.addAttribute("paging", paginationDto);
-        tableInfo(model);
+        boardInfo(model);
         return "board/board";
     }
 
-
     @GetMapping("/list/{b_id}")
-    public String board(@PathVariable(name = "b_id") int b_id, Model model) {
+    public String board(@PathVariable(name = "b_id") int b_id, Model model, HttpServletRequest request) {
         boardService.updateContentCnt(b_id);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("b_id", b_id);
         map.put("b_code", 4);
-        List<BoardDto.SelectContent> list = boardService.selectContent(map);
-        BoardDto.ModifyFlag flag = boardService.modifyFlag(b_id);
-        model.addAttribute("list", list);
-        model.addAttribute("flag", flag);
-        tableInfo(model);
+        boardService.getBoard(b_id, model, request, map);
+        boardInfo(model);
         return "board/board-read";
     }
 
     @GetMapping("/write")
     public String board(Model model, HttpServletRequest request) {
-        List<BoardDto.GetName> name = boardService.getName(getId(request));
+        List<BoardDto.GetName> name = boardService.getName(boardService.getId(request));
         model.addAttribute("name", name);
-        tableInfo(model);
+        boardInfo(model);
         return "board/board-write";
     }
 
@@ -70,13 +65,12 @@ public class SuggestBoardController {
     }
 
     @GetMapping("/update/{b_id}")
-    public String update(@PathVariable(name = "b_id") int b_id, Model model) {
+    public String update(@PathVariable(name = "b_id") int b_id, Model model, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("b_id", b_id);
         map.put("b_code", 4);
-        List<BoardDto.SelectContent> list = boardService.selectContent(map);
-        model.addAttribute("list", list);
-        tableInfo(model);
+        boardService.getBoard(b_id, model, request, map);
+        boardInfo(model);
         return "board/board-update";
     }
 
@@ -89,12 +83,8 @@ public class SuggestBoardController {
         boardService.updateContent(board);
     }
 
-    private static void tableInfo(Model model) {
+    public static void boardInfo(Model model) {
         model.addAttribute("title", "건의 게시판");
         model.addAttribute("boardName", "suggest");
-    }
-    private static int getId(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        return (Integer) session.getAttribute(SessionConst.MEMBER_ID);
     }
 }

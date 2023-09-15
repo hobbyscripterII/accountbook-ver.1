@@ -53,7 +53,7 @@
             f.n_content.focus();
             return false;
         } else {
-            alert("공지사항 등록이 완료되었습니다.");
+            alert("게시글 등록이 완료되었습니다.");
             f.submit();
             return true;
         }

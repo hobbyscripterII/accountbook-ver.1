@@ -9,53 +9,108 @@
     <h1>${title}</h1>
 
     <div class="wrapper-notice-write">
-        <form id="f" method="post">
-            <div class="notice-write">
-                <c:forEach var="l" items="${list}">
-                    <input type="hidden" class="form-control" id="b_id" name="b_id" value="${l.b_id}">
-                    <input type="hidden" class="form-control" id="m_id" name="m_id" value="${l.m_id}" readonly>
-                    <input type="hidden" class="form-control" value="${l.m_name}" readonly>
-                    <input type="hidden" class="form-control" name="n_create_date" value="${l.n_create_date}" readonly>
+        <div class="notice-write">
+            <c:forEach var="l" items="${list}">
+                <input type="hidden" class="form-control" id="b_id" name="b_id" value="${l.b_id}">
+                <input type="hidden" class="form-control" id="m_id" name="m_id" value="${l.m_id}" readonly>
+                <input type="hidden" class="form-control" value="${l.m_name}" readonly>
+                <input type="hidden" class="form-control" name="n_create_date" value="${l.n_create_date}" readonly>
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" style="width: 100px">작성일자</span>
-                        <input type="text" class="form-control" value="${l.n_create_date}" style="width: 210px" disabled>
-                        <span class="input-group-text" style="width: 100px">조회수</span>
-                        <input type="text" class="form-control" value="${l.n_view}" style="text-align: center" disabled>
-                    </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" style="width: 100px">작성일자</span>
+                    <input type="text" class="form-control" value="${l.n_create_date}" style="width: 210px" disabled>
+                    <span class="input-group-text" style="width: 100px">조회수</span>
+                    <input type="text" class="form-control" value="${l.n_view}" style="text-align: center" disabled>
+                </div>
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" style="width: 100px">제목</span>
-                        <input type="text" class="form-control" id="n_title" name="n_title" value="${l.n_title}" disabled>
-                    </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" style="width: 100px">제목</span>
+                    <input type="text" class="form-control" id="n_title" name="n_title" value="${l.n_title}" disabled>
+                </div>
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" style="width: 100px">내용</span>
-                        <textarea class="form-control" id="n_content" name="n_content" style="height: 300px; resize: none" disabled>${l.n_content}</textarea>
-                    </div>
-                </c:forEach>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" style="width: 100px">내용</span>
+                    <textarea class="form-control" id="n_content" name="n_content" style="height: 300px; resize: none" disabled>${l.n_content}</textarea>
+                </div>
+            </c:forEach>
 
-                    <div style="text-align: right">
+            <div style="text-align: right">
                 <c:if test="${sessionScope.MEMBER_ID eq flag.m_id}">
-                        <input type="button" class="btn btn-primary" value="수정" onclick="location.href='/accountbook/${boardName}/update/${flag.b_id}'">
-                        <input type="button" class="btn btn-primary" value="삭제" onclick="del()">
+                    <input type="button" class="btn btn-primary" value="수정" onclick="location.href='/accountbook/${boardName}/update/${flag.b_id}'">
+                    <input type="button" class="btn btn-primary" value="삭제" onclick="del()">
                 </c:if>
-                        <input type="button" class="btn btn-primary" value="목록" onclick="location.href='/accountbook/${boardName}/list'">
-                    </div>
-
-                <c:choose>
-                    <c:when test="${empty sessionScope.MEMBER_ID}">
-                    </c:when>
-                    <c:otherwise>
-
-                    </c:otherwise>
-                </c:choose>
+                <input type="button" class="btn btn-primary" value="목록" onclick="location.href='/accountbook/${boardName}/list'">
             </div>
-        </form>
+
+            <div style="margin-bottom: 20px">
+                <h4>댓글</h4>
+
+                <table class="table"> <!-- table-bordered -->
+                    <c:forEach var="c" items="${comment}">
+                    <input type="hidden" name="c_id" id="c_id" value="${c.c_id}">
+                    <tr style="font-size: 11px; font-weight: bold">
+                        <td style="width: 15%">${c.m_name}</td>
+                        <td style="width: 75%">${c.c_create_date}</td>
+                        <td style="width: 45px; text-align: center; color: gray">수정</td>
+                        <td style="width: 45px; text-align: center; color: gray">삭제</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">${c.c_content}</td>
+                        </c:forEach>
+                    </tr>
+                </table>
+            </div>
+
+            <h4>댓글 작성</h4> <!-- b_id, m_id, , c_create_date -->
+            <form id="f">
+                <table class="table"> <!-- table-bordered -->
+                    <c:forEach var="n" items="${name}">
+                        <input type="hidden" value="${n.m_id}">
+                        <tr style="font-size: 11px; font-weight: bold">
+                            <td style="width: 15%"><c:out value="${n.m_name}" /></td>
+                            <td style="width: 75%">${n.n_create_date}</td>
+                            <td style="width: 45px; text-align: center"><a id="comment-create" style="cursor: pointer; text-decoration: none; color: gray">등록</a></td>
+                            <td style="width: 45px; text-align: center; color: gray"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><textarea name="c_content" id="c_content" class="form-control" style="height: 100px; resize: none"></textarea></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </form>
+        </div>
+
+        <c:choose>
+            <c:when test="${empty sessionScope.MEMBER_ID}">
+            </c:when>
+            <c:otherwise>
+
+            </c:otherwise>
+        </c:choose>
     </div>
 </section>
 
 <script type="text/javascript">
+    $(document).on('click', '#comment-create', function() {
+        if(!$('#c_content').val()) {
+            alert("내용을 작성해주세요.");
+        } else {
+            if(confirm("댓글을 등록하시겠습니까?")) {
+                $.ajax({
+                    type: 'post',
+                    url: '/accountbook/cmt/insert',
+                    data: {'b_id' : $('#b_id').val(), 'c_content' : f.c_content.value},
+                    success(data) {
+                        alert("댓글이 등록되었습니다.");
+                        location.reload();
+                    }
+                })
+            } else {
+                alert("등록을 취소하셨습니다.");
+            }
+        }
+    })
+
     function del() {
         if(confirm("삭제된 글은 복구할 수 없습니다. 정말로 삭제하시겠습니까?")) {
             // 확인 분기문

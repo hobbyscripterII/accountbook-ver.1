@@ -62,11 +62,6 @@ $(document).on('click', '#update', function() {
                     'm_memo': m_memo
                 },
                 success(data) {
-                    console.log(m_id);
-                    console.log(d_date);
-                    console.log(c_code);
-                    console.log(m_amount);
-                    console.log(m_memo);
                     alert('수정이 완료되었습니다.');
                     location.reload();
                 },
