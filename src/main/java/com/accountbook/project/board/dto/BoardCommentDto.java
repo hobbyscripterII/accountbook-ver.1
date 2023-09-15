@@ -18,7 +18,7 @@ public class BoardCommentDto {
     @Getter
     @Setter
     @ToString
-    public static class getComment {
+    public static class selectComment {
         private int c_id;
         private String c_content;
     }

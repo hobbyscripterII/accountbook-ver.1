@@ -42,6 +42,11 @@
                 <input type="button" class="btn btn-primary" value="목록" onclick="location.href='/accountbook/${boardName}/list'">
             </div>
 
+            <c:choose>
+            <c:when test="${boardName eq 'notice'}">
+
+            </c:when>
+            <c:otherwise>
             <div style="margin-bottom: 20px">
                 <h4>댓글</h4>
 
@@ -51,29 +56,30 @@
                             작성된 댓글이 없습니다.
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="c" items="${comment}">
-                                <input type="hidden" name="c_id" id="c_id" value="${c.c_id}">
-                                <tr style="font-size: 11px; font-weight: bold">
-                                    <td style="width: 15%">${c.m_name}</td>
-                                    <td style="width: 75%">${c.c_create_date}</td>
-                                    <td style="width: 45px; text-align: center">
-                                        <c:if test="${sessionScope.MEMBER_ID eq c.m_id}">
-                                            <a onclick="window.open('<c:url value='/cmt/update/${c.c_id}' />', '새창이름', 'width=500,height=500'); return false;" style="cursor: pointer; text-decoration: none; color: gray">수정</a>
-                                        </c:if>
-                                    </td>
-                                    <td style="width: 45px; text-align: center; color: gray">
 
-                                        <c:if test="${sessionScope.MEMBER_ID eq c.m_id}">
-                                            <a id="btn-cmt-delete" style="cursor: pointer; text-decoration: none; color: gray">삭제</a>
-                                        </c:if>
-                                    </td>
-                                </tr>
-                                <tr>
-                                <td colspan="4">${c.c_content}</td>
-                            </c:forEach>
-                            </tr>
                         </c:otherwise>
                     </c:choose>
+                    <c:forEach var="c" items="${comment}">
+                    <input type="hidden" name="c_id" id="c_id" value="${c.c_id}">
+                    <tr style="font-size: 11px; font-weight: bold">
+                        <td style="width: 15%">${c.m_name}</td>
+                        <td style="width: 75%">${c.c_create_date}</td>
+                        <td style="width: 45px; text-align: center">
+                            <c:if test="${sessionScope.MEMBER_ID eq c.m_id}">
+                                <a onclick="window.open('<c:url value='/cmt/update/${c.c_id}' />', '댓글 수정', 'width = 500, height = 500'); return false;" style="cursor: pointer; text-decoration: none; color: gray">수정</a>
+                            </c:if>
+                        </td>
+                        <td style="width: 45px; text-align: center; color: gray">
+
+                            <c:if test="${sessionScope.MEMBER_ID eq c.m_id}">
+                                <a id="btn-cmt-delete" style="cursor: pointer; text-decoration: none; color: gray">삭제</a>
+                            </c:if>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">${c.c_content}</td>
+                        </c:forEach>
+                    </tr>
                 </table>
             </div>
 
@@ -95,6 +101,8 @@
                 </table>
             </form>
         </div>
+        </c:otherwise>
+        </c:choose>
 
         <c:choose>
             <c:when test="${empty sessionScope.MEMBER_ID}">

@@ -9,13 +9,14 @@
         FROM AC_COMMENT C, AC_MEMBER M
         WHERE C.M_ID = M.M_ID AND B_ID = #{b_id}
         GROUP BY C.C_ID, C.B_ID, C.M_ID, M.M_NAME, C.C_CONTENT, C.C_CREATE_DATE
+        ORDER BY C_CREATE_DATE
     </select>
 
     <insert id="insertComment" parameterType="map">
         INSERT INTO AC_COMMENT(C_ID, B_ID, M_ID, C_CONTENT, C_CREATE_DATE) VALUES(COMMENT_SEQ.NEXTVAL, #{b_id}, #{m_id}, #{c_content}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'))
     </insert>
 
-    <select id="selectComment" parameterType="int" resultType="BoardGetCommentDto">
+    <select id="selectComment" parameterType="int" resultType="BoardSelectCommentDto">
         SELECT C_ID, C_CONTENT FROM AC_COMMENT WHERE C_ID = #{c_id}
     </select>
 

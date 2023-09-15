@@ -4,6 +4,7 @@ import com.accountbook.project.SessionConst;
 import com.accountbook.project.board.dto.BoardDto;
 import com.accountbook.project.board.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BoardService {
@@ -45,7 +47,7 @@ public class BoardService {
         model.addAttribute("comment", boardCommentService.getComment(b_id));
     }
 
-    public int getId(HttpServletRequest request) {
+    public Integer getId(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return (Integer) session.getAttribute(SessionConst.MEMBER_ID);
     }
