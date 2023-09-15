@@ -9,5 +9,8 @@ import java.util.Map;
 @Mapper
 public interface BoardCommentMapper {
     List<BoardCommentDto> getComment(int b_id);
+    BoardCommentDto.getComment selectComment(int c_id);
     void insertComment(Map<String, Object> map);
+    void updateComment(Map<String, Object> map);
+    void deleteComment(int c_id);
 }

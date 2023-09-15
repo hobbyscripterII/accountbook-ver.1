@@ -15,12 +15,11 @@ public class BoardCommentDto {
     private String c_content;
     private String c_create_date;
 
-//    @Getter
-//    @Setter
-//    @ToString
-//    public static class GetName {
-//        private int m_id;
-//        private String m_name;
-//        private String n_create_date;
-//    }
+    @Getter
+    @Setter
+    @ToString
+    public static class getComment {
+        private int c_id;
+        private String c_content;
+    }
 }

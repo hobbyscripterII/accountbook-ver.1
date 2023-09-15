@@ -46,18 +46,34 @@
                 <h4>댓글</h4>
 
                 <table class="table"> <!-- table-bordered -->
-                    <c:forEach var="c" items="${comment}">
-                    <input type="hidden" name="c_id" id="c_id" value="${c.c_id}">
-                    <tr style="font-size: 11px; font-weight: bold">
-                        <td style="width: 15%">${c.m_name}</td>
-                        <td style="width: 75%">${c.c_create_date}</td>
-                        <td style="width: 45px; text-align: center; color: gray">수정</td>
-                        <td style="width: 45px; text-align: center; color: gray">삭제</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">${c.c_content}</td>
-                        </c:forEach>
-                    </tr>
+                    <c:choose>
+                        <c:when test="${empty comment}">
+                            작성된 댓글이 없습니다.
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="c" items="${comment}">
+                                <input type="hidden" name="c_id" id="c_id" value="${c.c_id}">
+                                <tr style="font-size: 11px; font-weight: bold">
+                                    <td style="width: 15%">${c.m_name}</td>
+                                    <td style="width: 75%">${c.c_create_date}</td>
+                                    <td style="width: 45px; text-align: center">
+                                        <c:if test="${sessionScope.MEMBER_ID eq c.m_id}">
+                                            <a onclick="window.open('<c:url value='/cmt/update/${c.c_id}' />', '새창이름', 'width=500,height=500'); return false;" style="cursor: pointer; text-decoration: none; color: gray">수정</a>
+                                        </c:if>
+                                    </td>
+                                    <td style="width: 45px; text-align: center; color: gray">
+
+                                        <c:if test="${sessionScope.MEMBER_ID eq c.m_id}">
+                                            <a id="btn-cmt-delete" style="cursor: pointer; text-decoration: none; color: gray">삭제</a>
+                                        </c:if>
+                                    </td>
+                                </tr>
+                                <tr>
+                                <td colspan="4">${c.c_content}</td>
+                            </c:forEach>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose>
                 </table>
             </div>
 
@@ -109,6 +125,26 @@
                 alert("등록을 취소하셨습니다.");
             }
         }
+    })
+
+    document.querySelectorAll('#btn-cmt-delete').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if(confirm("삭제된 댓글은 복구할 수 없습니다. 정말로 삭제하시겠습니까?")) {
+                const row = this.closest('table');
+                const c_id = row.querySelector(`[name = 'c_id']`).value;
+                $.ajax({
+                    type: 'post',
+                    url: '/accountbook/cmt/delete',
+                    data: {'c_id' : c_id},
+                    success(data) {
+                        alert("해당 댓글이 삭제되었습니다.");
+                        location.href='/accountbook/${boardName}/list/' + $('#b_id').val();
+                    }
+                })
+            } else {
+                alert("댓글 삭제가 취소되었습니다.");
+            }
+        })
     })
 
     function del() {

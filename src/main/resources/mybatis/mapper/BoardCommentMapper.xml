@@ -14,4 +14,16 @@
     <insert id="insertComment" parameterType="map">
         INSERT INTO AC_COMMENT(C_ID, B_ID, M_ID, C_CONTENT, C_CREATE_DATE) VALUES(COMMENT_SEQ.NEXTVAL, #{b_id}, #{m_id}, #{c_content}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'))
     </insert>
+
+    <select id="selectComment" parameterType="int" resultType="BoardGetCommentDto">
+        SELECT C_ID, C_CONTENT FROM AC_COMMENT WHERE C_ID = #{c_id}
+    </select>
+
+    <update id="updateComment" parameterType="map">
+        UPDATE AC_COMMENT SET C_CONTENT = #{c_content}, C_UPDATE_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI') WHERE C_ID = #{c_id}
+    </update>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE AC_COMMENT WHERE C_ID = #{c_id}
+    </delete>
 </mapper>
