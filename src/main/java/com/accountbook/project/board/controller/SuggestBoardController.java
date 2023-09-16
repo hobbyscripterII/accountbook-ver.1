@@ -1,7 +1,6 @@
 package com.accountbook.project.board.controller;
 
 import com.accountbook.project.board.dto.BoardDto;
-import com.accountbook.project.board.service.BoardCommentService;
 import com.accountbook.project.board.service.BoardService;
 import com.accountbook.project.pagination.PaginationDto;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -34,10 +30,7 @@ public class SuggestBoardController {
     @GetMapping("/list/{b_id}")
     public String board(@PathVariable(name = "b_id") int b_id, Model model, HttpServletRequest request) {
         boardService.updateContentCnt(b_id);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("b_id", b_id);
-        map.put("b_code", 4);
-        boardService.getBoard(b_id, model, request, map);
+        boardService.getBoard(b_id, 4, model, request);
         boardInfo(model);
         return "board/board-read";
     }
@@ -64,10 +57,7 @@ public class SuggestBoardController {
 
     @GetMapping("/update/{b_id}")
     public String update(@PathVariable(name = "b_id") int b_id, Model model, HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("b_id", b_id);
-        map.put("b_code", 4);
-        boardService.getBoard(b_id, model, request, map);
+        boardService.getBoard(b_id, 4, model, request);
         boardInfo(model);
         return "board/board-update";
     }

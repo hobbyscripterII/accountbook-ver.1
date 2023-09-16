@@ -11,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -34,10 +32,7 @@ public class NoticeBoardController {
     @GetMapping("/list/{b_id}")
     public String board(@PathVariable(name = "b_id") int b_id, Model model) {
         boardService.updateContentCnt(b_id);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("b_id", b_id);
-        map.put("b_code", 1);
-        getBoard(b_id, model, map);
+        getBoard(b_id, 1, model);
         boardInfo(model);
         return "board/board-read";
     }
@@ -64,10 +59,7 @@ public class NoticeBoardController {
 
     @GetMapping("/update/{b_id}")
     public String update(@PathVariable(name = "b_id") int b_id, Model model) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("b_id", b_id);
-        map.put("b_code", 1);
-        model.addAttribute("list", boardService.selectContent(map));
+        model.addAttribute("list", boardService.selectContent(b_id, 1));
         boardInfo(model);
         return "board/board-update";
     }
@@ -78,8 +70,8 @@ public class NoticeBoardController {
         boardService.updateContent(board);
     }
 
-    public void getBoard(int b_id, Model model, Map<String, Object> map) {
-        model.addAttribute("list", boardService.selectContent(map));
+    public void getBoard(int b_id, int b_code, Model model) {
+        model.addAttribute("list", boardService.selectContent(b_id, b_code));
         model.addAttribute("flag", boardService.accessFlag(b_id));
         model.addAttribute("comment", boardCommentService.getComment(b_id));
     }

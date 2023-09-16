@@ -11,9 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -37,10 +35,7 @@ public class QuestionBoardController {
         BoardDto.AccessFlag flag = boardService.accessFlag(b_id);
         int id = boardService.getId(request);
         if(id == flag.getM_id() || id == 1 || flag.getB_alt().equals("Y")) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("b_id", b_id);
-            map.put("b_code", 3);
-            boardService.getBoard(b_id, model, request, map);
+            boardService.getBoard(b_id,3, model, request);
             boardService.updateContentCnt(b_id);
             boardInfo(model);
         } else {
@@ -72,10 +67,7 @@ public class QuestionBoardController {
 
     @GetMapping("/update/{b_id}")
     public String update(@PathVariable(name = "b_id") int b_id, Model model) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("b_id", b_id);
-        map.put("b_code", 3);
-        model.addAttribute("list", boardService.selectContent(map));
+        model.addAttribute("list", boardService.selectContent(b_id, 3));
         boardInfo(model);
         return "board/board-update";
     }
