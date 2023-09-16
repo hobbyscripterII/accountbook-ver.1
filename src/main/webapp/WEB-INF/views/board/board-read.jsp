@@ -69,7 +69,6 @@
 
             <c:choose>
             <c:when test="${boardName eq 'notice'}">
-
             </c:when>
             <c:otherwise>
             <div style="margin-bottom: 20px">

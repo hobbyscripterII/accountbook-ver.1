@@ -19,4 +19,8 @@
     <select id="getHeartCnt" parameterType="map" resultType="int">
         SELECT COUNT(*) FROM AC_HEART WHERE B_ID = #{b_id}
     </select>
+
+    <delete id ="deleteAllHeart" parameterType="int">
+        DELETE AC_HEART WHERE B_ID = #{b_id}
+    </delete>
 </mapper>

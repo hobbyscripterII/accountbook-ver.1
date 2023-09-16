@@ -20,6 +20,10 @@ public class BoardLikeService {
         boardLikeMapper.deleteHeart(map);
     }
 
+    public void deleteAllHeart(int b_id) {
+        boardLikeMapper.deleteAllHeart(b_id);
+    }
+
     public int getHeart(int b_id, int m_id) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("b_id", b_id);

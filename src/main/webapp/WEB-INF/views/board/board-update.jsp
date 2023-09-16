@@ -13,7 +13,7 @@
             <div class="notice-write">
                 <c:if test="${sessionScope.MEMBER_ID eq '1'}">
                     <div style="display: flex; font-size: 12px; margin-bottom: 5px; align-items: center">
-                        알림글 여부
+                        고정글 여부
                         <select id="b_alt" name="b_alt" class="form-select form-select-sm" style="margin-left: 3px">
                             <option value="N">미등록</option>
                             <option value="Y">등록</option>

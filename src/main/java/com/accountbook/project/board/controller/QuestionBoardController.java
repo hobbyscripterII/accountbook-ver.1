@@ -1,6 +1,7 @@
 package com.accountbook.project.board.controller;
 
 import com.accountbook.project.board.dto.BoardDto;
+import com.accountbook.project.board.service.BoardLikeService;
 import com.accountbook.project.board.service.BoardService;
 import com.accountbook.project.exception.QuestionException;
 import com.accountbook.project.pagination.PaginationDto;
@@ -19,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QuestionBoardController {
     private final BoardService boardService;
+    private final BoardLikeService boardLikeService;
 
     @GetMapping("/list")
     public String board(Model model, @RequestParam(defaultValue = "1") int page) {
@@ -62,6 +64,7 @@ public class QuestionBoardController {
     @ResponseBody
     @PostMapping("/delete")
     public void delete(@RequestParam int b_id) {
+        boardLikeService.deleteAllHeart(b_id);
         boardService.deleteContent(b_id);
     }
 

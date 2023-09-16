@@ -58,21 +58,7 @@
                 <c:forEach var="c" items="${content}">
                     <tr style="text-align: center">
                         <td><c:out value="${c.b_id}"/></td>
-                        <c:choose>
-                            <c:when test="${boardName eq 'question'}">
-                                <c:choose>
-                                    <c:when test="${sessionScope.MEMBER_ID eq '1'}">
-                                        <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td onclick="accessFlag()" style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:when>
-                            <c:otherwise>
-                                <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
-                            </c:otherwise>
-                        </c:choose>
+                        <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
                         <td>${c.m_name}</td>
                         <td>${c.n_create_date}</td>
                         <c:choose>
@@ -131,10 +117,5 @@
         </div>
     </div>
 </section>
-<script type="text/javascript">
-    function accessFlag() {
-        alert("질문글은 작성자와 관리자만 읽기 가능합니다.");
-    }
-</script>
 </body>
 </html>

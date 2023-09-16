@@ -8,6 +8,7 @@ import java.util.Map;
 public interface BoardLikeMapper {
     void insertHeart(Map<String, Object> map);
     void deleteHeart(Map<String, Object> map);
+    void deleteAllHeart(int b_id);
     int getHeart(Map<String, Object> map);
     int getHeartCnt(int b_id);
 }

@@ -11,13 +11,15 @@
     <div class="wrapper-notice-write">
         <form id="f" method="post">
             <div class="notice-write">
-                <div style="display: flex; font-size: 12px; margin-bottom: 5px; align-items: center">
-                    알림글 여부
-                    <select id="b_alt" name="b_alt" class="form-select form-select-sm" style="margin-left: 3px">
-                        <option value="N">미등록</option>
-                        <option value="Y">등록</option>
-                    </select>
-                </div>
+                <c:if test="${sessionScope.MEMBER_ID eq '1'}">
+                    <div style="display: flex; font-size: 12px; margin-bottom: 5px; align-items: center">
+                        고정글 여부
+                        <select id="b_alt" name="b_alt" class="form-select form-select-sm" style="margin-left: 3px">
+                            <option value="N">미등록</option>
+                            <option value="Y">등록</option>
+                        </select>
+                    </div>
+                </c:if>
 
                 <c:forEach var="n" items="${name}">
                     <input type="hidden" class="form-control" name="m_id" value="${n.m_id}" readonly>

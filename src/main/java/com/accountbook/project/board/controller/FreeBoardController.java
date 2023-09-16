@@ -47,6 +47,9 @@ public class FreeBoardController {
 
     @PostMapping("/write")
     public String insert(@ModelAttribute BoardDto.Insert board) {
+        if(board.getB_alt() == null) {
+            board.setB_alt("N");
+        }
         board.setB_code(2);
         boardService.insertBoard(board);
         return "redirect:list";
@@ -55,6 +58,7 @@ public class FreeBoardController {
     @ResponseBody
     @PostMapping("/delete")
     public void delete(@RequestParam int b_id) {
+        boardLikeService.deleteAllHeart(b_id);
         boardService.deleteContent(b_id);
     }
 

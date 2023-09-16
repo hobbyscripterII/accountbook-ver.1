@@ -8,13 +8,14 @@ import java.util.Map;
 
 @Mapper
 public interface BoardMapper {
-    List<BoardDto.GetName> getName(int m_id);
-    List<BoardDto.GetContent> getContent(Map<String, Integer> map);
     void insertBoard(BoardDto.Insert notice);
+    List<BoardDto.GetContent> getContent(Map<String, Integer> map);
     List<BoardDto.SelectContent> selectContent(Map<String, Object> map);
-    void deleteContent(int b_id);
     void updateContent(BoardDto.UpdateContent notice);
+    BoardDto.AccessFlag accessFlag(int b_id);
+
+    List<BoardDto.GetName> getName(int m_id);
+    void deleteContent(int b_id);
     void updateContentCnt(int b_id);
     int getContentCnt();
-    BoardDto.AccessFlag accessFlag(int b_id);
 }
