@@ -25,8 +25,7 @@ public class SuggestBoardController {
     @GetMapping("/list")
     public String board(Model model, @RequestParam(defaultValue = "1") int page) {
         PaginationDto paginationDto = new PaginationDto(page, boardService.getContentCnt());
-        List<BoardDto.GetContent> content = boardService.getContent(paginationDto.getBegin(), paginationDto.getEnd(), 4);
-        model.addAttribute("content", content);
+        model.addAttribute("content", boardService.getContent(paginationDto.getBegin(), paginationDto.getEnd(), 4));
         model.addAttribute("paging", paginationDto);
         boardInfo(model);
         return "board/board";
@@ -45,8 +44,7 @@ public class SuggestBoardController {
 
     @GetMapping("/write")
     public String board(Model model, HttpServletRequest request) {
-        List<BoardDto.GetName> name = boardService.getName(boardService.getId(request));
-        model.addAttribute("name", name);
+        model.addAttribute("name", boardService.getName(boardService.getId(request)));
         boardInfo(model);
         return "board/board-write";
     }
@@ -54,7 +52,7 @@ public class SuggestBoardController {
     @PostMapping("/write")
     public String insert(@ModelAttribute BoardDto.Insert board) {
         board.setB_code(4);
-        boardService.insertNotice(board);
+        boardService.insertBoard(board);
         return "redirect:list";
     }
 
@@ -76,10 +74,7 @@ public class SuggestBoardController {
 
     @ResponseBody
     @PostMapping("/update")
-    public void update(BoardDto.UpdateContent board, @RequestParam int b_id, @RequestParam String n_title, @RequestParam String n_content) {
-        board.setB_id(b_id);
-        board.setN_title(n_title);
-        board.setN_content(n_content);
+    public void update(@ModelAttribute BoardDto.UpdateContent board) {
         boardService.updateContent(board);
     }
 

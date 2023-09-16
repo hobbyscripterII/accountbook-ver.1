@@ -23,8 +23,8 @@ public class BoardCommentController {
     @ResponseBody
     public void insertComment(@RequestParam int b_id, @RequestParam String c_content, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("b_id", b_id);
         map.put("m_id", boardService.getId(request));
+        map.put("b_id", b_id);
         map.put("c_content", c_content);
         boardCommentService.insertComment(map);
     }

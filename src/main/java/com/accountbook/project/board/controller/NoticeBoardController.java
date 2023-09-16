@@ -1,6 +1,5 @@
 package com.accountbook.project.board.controller;
 
-import com.accountbook.project.SessionConst;
 import com.accountbook.project.board.dto.BoardDto;
 import com.accountbook.project.board.service.BoardCommentService;
 import com.accountbook.project.board.service.BoardService;
@@ -12,9 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -28,8 +25,7 @@ public class NoticeBoardController {
     @GetMapping("/list")
     public String board(Model model, @RequestParam(defaultValue = "1") int page) {
         PaginationDto paginationDto = new PaginationDto(page, boardService.getContentCnt());
-        List<BoardDto.GetContent> content = boardService.getContent(paginationDto.getBegin(), paginationDto.getEnd(), 1);
-        model.addAttribute("content", content);
+        model.addAttribute("content", boardService.getContent(paginationDto.getBegin(), paginationDto.getEnd(), 1));
         model.addAttribute("paging", paginationDto);
         boardInfo(model);
         return "board/board";
@@ -48,8 +44,7 @@ public class NoticeBoardController {
 
     @GetMapping("/write")
     public String board(Model model, HttpServletRequest request) {
-        List<BoardDto.GetName> name = boardService.getName(boardService.getId(request));
-        model.addAttribute("name", name);
+        model.addAttribute("name", boardService.getName(boardService.getId(request)));
         boardInfo(model);
         return "board/board-write";
     }
@@ -57,7 +52,7 @@ public class NoticeBoardController {
     @PostMapping("/write")
     public String insert(@ModelAttribute BoardDto.Insert board) {
         board.setB_code(1);
-        boardService.insertNotice(board);
+        boardService.insertBoard(board);
         return "redirect:list";
     }
 
@@ -72,24 +67,20 @@ public class NoticeBoardController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("b_id", b_id);
         map.put("b_code", 1);
-        List<BoardDto.SelectContent> list = boardService.selectContent(map);
-        model.addAttribute("list", list);
+        model.addAttribute("list", boardService.selectContent(map));
         boardInfo(model);
         return "board/board-update";
     }
 
     @ResponseBody
     @PostMapping("/update")
-    public void update(BoardDto.UpdateContent board, @RequestParam int b_id, @RequestParam String n_title, @RequestParam String n_content) {
-        board.setB_id(b_id);
-        board.setN_title(n_title);
-        board.setN_content(n_content);
+    public void update(@ModelAttribute BoardDto.UpdateContent board) {
         boardService.updateContent(board);
     }
 
     public void getBoard(int b_id, Model model, Map<String, Object> map) {
         model.addAttribute("list", boardService.selectContent(map));
-        model.addAttribute("flag", boardService.modifyFlag(b_id));
+        model.addAttribute("flag", boardService.accessFlag(b_id));
         model.addAttribute("comment", boardCommentService.getComment(b_id));
     }
 

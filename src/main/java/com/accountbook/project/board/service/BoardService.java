@@ -23,13 +23,13 @@ public class BoardService {
     private final BoardLikeService boardLikeService;
 
     public List<BoardDto.GetName> getName(int m_id) { return boardMapper.getName(m_id); }
-    public void insertNotice(BoardDto.Insert board) { boardMapper.insertNotice(board); }
+    public void insertBoard(BoardDto.Insert board) { boardMapper.insertBoard(board); }
     public List<BoardDto.SelectContent> selectContent(Map<String, Object> map) { return boardMapper.selectContent(map); }
     public void deleteContent(int b_id) { boardMapper.deleteContent(b_id); }
     public void updateContent(BoardDto.UpdateContent board) { boardMapper.updateContent(board); }
     public void updateContentCnt(int b_id) { boardMapper.updateContentCnt(b_id); }
     public int getContentCnt() { return boardMapper.getContentCnt(); }
-    public BoardDto.ModifyFlag modifyFlag(int b_id) {return boardMapper.modifyFlag(b_id);}
+    public BoardDto.AccessFlag accessFlag(int b_id) {return boardMapper.accessFlag(b_id);}
 
     // 게시판 목록(페이지네이션)
     public List<BoardDto.GetContent> getContent(int begin, int end, int b_code) {
@@ -43,11 +43,10 @@ public class BoardService {
     // 게시판 정보
     public void getBoard(int b_id, Model model, HttpServletRequest request, Map<String, Object> map) {
         model.addAttribute("list", selectContent(map));
-        model.addAttribute("flag", modifyFlag(b_id));
+        model.addAttribute("flag", accessFlag(b_id));
         model.addAttribute("name", getName(getId(request)));
         model.addAttribute("comment", boardCommentService.getComment(b_id));
         model.addAttribute("heart", boardLikeService.getHeart(b_id, getId(request))); // 게시글 좋아요 여부
-        log.info("heart = {}", boardLikeService.getHeart(b_id, getId(request)));
     }
 
     public int getId(HttpServletRequest request) {

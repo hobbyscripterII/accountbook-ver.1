@@ -26,16 +26,62 @@
                     <td>제목</td>
                     <td>작성자</td>
                     <td>작성일</td>
-                    <td>좋아요</td>
+                    <c:choose>
+                        <c:when test="${boardName eq 'notice' || boardName eq 'question'}">
+                        </c:when>
+                        <c:otherwise>
+                            <td>좋아요</td>
+                        </c:otherwise>
+                    </c:choose>
                     <td>조회수</td>
                 </tr>
                 <c:forEach var="c" items="${content}">
+                    <c:choose>
+                        <c:when test="${c.b_alt eq 'Y'}">
+                            <tr style="text-align: center; background-color: lightgray !important;">
+                                <td style="font-weight: bold"><c:out value="[공지]"/></td>
+                                <td style="text-align: left; font-weight: bold"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
+                                <td>${c.m_name}</td>
+                                <td>${c.n_create_date}</td>
+                                <c:choose>
+                                    <c:when test="${boardName eq 'notice' || boardName eq 'question'}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td>${c.h_cnt } </td>
+                                    </c:otherwise>
+                                </c:choose>
+                                <td>${c.n_view}</td>
+                            </tr>
+                        </c:when>
+                    </c:choose>
+                </c:forEach>
+                <c:forEach var="c" items="${content}">
                     <tr style="text-align: center">
                         <td><c:out value="${c.b_id}"/></td>
-                        <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
+                        <c:choose>
+                            <c:when test="${boardName eq 'question'}">
+                                <c:choose>
+                                    <c:when test="${sessionScope.MEMBER_ID eq '1'}">
+                                        <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td onclick="accessFlag()" style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:when>
+                            <c:otherwise>
+                                <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
+                            </c:otherwise>
+                        </c:choose>
                         <td>${c.m_name}</td>
                         <td>${c.n_create_date}</td>
-                        <td>${c.h_cnt } </td>
+                        <c:choose>
+                            <c:when test="${boardName eq 'notice' || boardName eq 'question'}">
+                            </c:when>
+                            <c:otherwise>
+                                <td>${c.h_cnt} </td>
+                            </c:otherwise>
+                        </c:choose>
                         <td>${c.n_view}</td>
                     </tr>
                 </c:forEach>
@@ -85,5 +131,10 @@
         </div>
     </div>
 </section>
+<script type="text/javascript">
+    function accessFlag() {
+        alert("질문글은 작성자와 관리자만 읽기 가능합니다.");
+    }
+</script>
 </body>
 </html>

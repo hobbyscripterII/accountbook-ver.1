@@ -19,7 +19,7 @@ public class LogInterceptor implements HandlerInterceptor {
         String url = request.getRequestURI();
         String ip = Inet4Address.getLocalHost().getHostAddress();
         request.setAttribute(IP, ip);
-        log.info("REQUEST [{}][{}]", ip, url);
+//        log.info("REQUEST [{}][{}]", ip, url);
 
         HttpSession session = request.getSession(false);
 
@@ -33,14 +33,14 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        log.info("POSTHANDLE [{}]", modelAndView);
+//        log.info("POSTHANDLE [{}]", modelAndView);
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         String url = request.getRequestURI();
         String ip = (String)request.getAttribute(IP);
-        log.info("RESPONSE [{}][{}]", ip, url);
+//        log.info("RESPONSE [{}][{}]", ip, url);
 
         if(ex != null)
             log.error("AFTERCOMPLETION ERROR", ex);

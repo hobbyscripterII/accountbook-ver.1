@@ -29,7 +29,6 @@ public class BoardLikeController {
     @PostMapping("/like-delete")
     @ResponseBody
     public void deleteHeart(@RequestParam int b_id, HttpServletRequest request) {
-        log.info("delete");
         boardLikeService.deleteHeart(common(b_id, request));
     }
 

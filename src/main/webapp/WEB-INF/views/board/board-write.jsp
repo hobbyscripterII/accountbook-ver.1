@@ -3,6 +3,7 @@
 <html>
 <jsp:include page="../layout/head.jsp"/>
 <jsp:include page="../layout/header.jsp"/>
+
 <body>
 <section>
     <h1>${title} 작성</h1>
@@ -10,6 +11,14 @@
     <div class="wrapper-notice-write">
         <form id="f" method="post">
             <div class="notice-write">
+                <div style="display: flex; font-size: 12px; margin-bottom: 5px; align-items: center">
+                    알림글 여부
+                    <select id="b_alt" name="b_alt" class="form-select form-select-sm" style="margin-left: 3px">
+                        <option value="N">미등록</option>
+                        <option value="Y">등록</option>
+                    </select>
+                </div>
+
                 <c:forEach var="n" items="${name}">
                     <input type="hidden" class="form-control" name="m_id" value="${n.m_id}" readonly>
                     <input type="hidden" class="form-control" value="${n.m_name}" readonly>
@@ -31,7 +40,7 @@
                 </div>
 
                 <div style="text-align: right">
-                    <input type="button" class="btn btn-primary" value="등록" onclick="check()">
+                    <input type="button" id="btn-register" class="btn btn-primary" value="등록">
                     <input type="button" class="btn btn-primary" value="취소" onclick="location.href='list'">
                 </div>
             </div>
@@ -39,8 +48,8 @@
     </div>
 </section>
 <script type="text/javascript">
-    function check() {
-        if(!f.n_create_date.value) {
+    $(document).on('click', '#btn-register', function() {
+        if (!f.n_create_date.value) {
             alert("작성일자가 입력되지 않았습니다.");
             f.n_create_date.focus();
             return false;
@@ -57,7 +66,7 @@
             f.submit();
             return true;
         }
-    }
+    });
 </script>
 </body>
 </html>

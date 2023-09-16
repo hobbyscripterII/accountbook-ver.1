@@ -1,4 +1,4 @@
-package com.accountbook.project;
+package com.accountbook.project.exception;
 
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,5 +14,10 @@ public class WebExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     public String errorNFE() {
         return "error/error-nfe";
+    }
+
+    @ExceptionHandler(QuestionException.class)
+    public String errorQSTN() {
+        return "error/error-qstn";
     }
 }

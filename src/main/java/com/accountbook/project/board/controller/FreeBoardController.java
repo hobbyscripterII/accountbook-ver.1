@@ -34,7 +34,7 @@ public class FreeBoardController {
 
     @GetMapping("/list/{b_id}")
     public String board(@PathVariable(name = "b_id") int b_id, Model model, HttpServletRequest request) {
-//        boardService.updateContentCnt(b_id);
+        boardService.updateContentCnt(b_id);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("b_id", b_id);
         map.put("b_code", 2);
@@ -46,8 +46,7 @@ public class FreeBoardController {
 
     @GetMapping("/write")
     public String board(Model model, HttpServletRequest request) {
-        List<BoardDto.GetName> name = boardService.getName(boardService.getId(request));
-        model.addAttribute("name", name);
+        model.addAttribute("name", boardService.getName(boardService.getId(request)));
         boardInfo(model);
         return "board/board-write";
     }
@@ -55,7 +54,7 @@ public class FreeBoardController {
     @PostMapping("/write")
     public String insert(@ModelAttribute BoardDto.Insert board) {
         board.setB_code(2);
-        boardService.insertNotice(board);
+        boardService.insertBoard(board);
         return "redirect:list";
     }
 
@@ -77,10 +76,7 @@ public class FreeBoardController {
 
     @ResponseBody
     @PostMapping("/update")
-    public void update(BoardDto.UpdateContent board, @RequestParam int b_id, @RequestParam String n_title, @RequestParam String n_content) {
-        board.setB_id(b_id);
-        board.setN_title(n_title);
-        board.setN_content(n_content);
+    public void update(@ModelAttribute BoardDto.UpdateContent board) {
         boardService.updateContent(board);
     }
 
@@ -88,9 +84,4 @@ public class FreeBoardController {
         model.addAttribute("title", "자유 게시판");
         model.addAttribute("boardName", "free");
     }
-
-//    public int getId(HttpServletRequest request) {
-//        HttpSession session = request.getSession();
-//        return (Integer)session.getAttribute(SessionConst.MEMBER_ID);
-//    }
 }

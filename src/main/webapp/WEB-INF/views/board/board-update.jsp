@@ -11,6 +11,16 @@
     <div class="wrapper-notice-write">
         <form id="f" method="post">
             <div class="notice-write">
+                <c:if test="${sessionScope.MEMBER_ID eq '1'}">
+                    <div style="display: flex; font-size: 12px; margin-bottom: 5px; align-items: center">
+                        알림글 여부
+                        <select id="b_alt" name="b_alt" class="form-select form-select-sm" style="margin-left: 3px">
+                            <option value="N">미등록</option>
+                            <option value="Y">등록</option>
+                        </select>
+                    </div>
+                </c:if>
+
                 <c:forEach var="l" items="${list}">
                     <input type="hidden" class="form-control" id="b_id" name="b_id" value="${l.b_id}">
                     <input type="hidden" class="form-control" id="m_id" name="m_id" value="${l.m_id}" readonly>
@@ -18,6 +28,8 @@
                     <input type="hidden" class="form-control" name="n_create_date" value="${l.n_create_date}" readonly>
 
                     <div class="input-group mb-3">
+                        <span class="input-group-text" style="width: 100px">작성자</span>
+                        <input type="text" class="form-control" value="${l.m_name}" style="width: 100px" disabled>
                         <span class="input-group-text" style="width: 100px">작성일자</span>
                         <input type="text" class="form-control" value="${l.n_create_date}" style="width: 210px" disabled>
                         <span class="input-group-text" style="width: 100px">조회수</span>
@@ -54,11 +66,12 @@
     }
 
     function upd() {
+        console.log($('#b_alt').val());
         if(confirm("해당 글을 수정하시겠습니까?")) {
             $.ajax({
                 type: 'post',
                 url: '/accountbook/${boardName}/update',
-                data: {'b_id' : $('#b_id').val(), 'n_title' : $('#n_title').val(), 'n_content' : $('#n_content').val()},
+                data: {'b_id' : $('#b_id').val(), 'n_title' : $('#n_title').val(), 'n_content' : $('#n_content').val(), 'b_alt' : $('#b_alt').val()},
                 success(data) {
                     alert("수정이 완료되었습니다.");
                     location.href ='/accountbook/${boardName}/list/' + $('#b_id').val();

@@ -10,12 +10,12 @@
         WHERE M_ID = #{m_id}
     </select>
 
-    <insert id="insertNotice" parameterType="BoardInsertDto">
-        INSERT INTO AC_BOARD(B_ID, B_CODE, M_ID, N_TITLE, N_CONTENT, N_VIEW, N_CREATE_DATE) VALUES(BOARD_SEQ.NEXTVAL, #{b_code}, #{m_id}, #{n_title}, #{n_content}, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'))
+    <insert id="insertBoard" parameterType="BoardInsertDto">
+        INSERT INTO AC_BOARD(B_ID, B_CODE, M_ID, N_TITLE, N_CONTENT, N_VIEW, N_CREATE_DATE, B_ALT) VALUES(BOARD_SEQ.NEXTVAL, #{b_code}, #{m_id}, #{n_title}, #{n_content}, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), #{b_alt})
     </insert>
 
      <select id="getContent" parameterType="map" resultType="BoardGetContentDto">
-         SELECT B.B_ID, BC.B_CODE, M.M_NAME, B.N_TITLE, B.N_CREATE_DATE,
+         SELECT B.B_ID, BC.B_CODE, M.M_ID, M.M_NAME, B.N_TITLE, B.N_CREATE_DATE, B.B_ALT,
                 (SELECT COUNT(*) FROM AC_HEART H WHERE H.B_ID = B.B_ID) AS h_cnt,
                 B.N_VIEW
         FROM AC_BOARD B
@@ -39,10 +39,10 @@
     </select>
 
     <select id="selectContent" parameterType="map" resultType="BoardSelectContentDto">
-        SELECT B.B_ID, BC.B_CODE, M.M_ID, M.M_NAME, B.N_TITLE, B.N_CONTENT, B.N_CREATE_DATE, B.N_VIEW
+        SELECT B.B_ID, BC.B_CODE, M.M_ID, M.M_NAME, B.N_TITLE, B.N_CONTENT, B.N_CREATE_DATE, B.N_VIEW, B.B_ALT
         FROM AC_BOARD B, AC_MEMBER M, AC_BOARD_CODE BC
         WHERE M.M_ID = B.M_ID AND B.B_CODE = BC.B_CODE AND BC.B_CODE = #{b_code} AND B.B_ID = ${b_id}
-        GROUP BY B.B_ID,BC.B_CODE, M.M_ID, M.M_NAME, B.N_TITLE, B.N_CONTENT, B.N_CREATE_DATE, B.N_VIEW
+        GROUP BY B.B_ID,BC.B_CODE, M.M_ID, M.M_NAME, B.N_TITLE, B.N_CONTENT, B.N_CREATE_DATE, B.N_VIEW, B.B_ALT
     </select>
 
     <delete id="deleteContent" parameterType="java.lang.Integer">
@@ -50,17 +50,17 @@
     </delete>
 
     <update id="updateContent" parameterType="BoardUpdateContentDto">
-        UPDATE AC_BOARD SET N_TITLE = #{n_title}, N_CONTENT = #{n_content}, N_UPDATE_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI') WHERE B_ID = #{b_id}
+        UPDATE AC_BOARD SET N_TITLE = #{n_title}, N_CONTENT = #{n_content}, B_ALT = #{b_alt}, N_UPDATE_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI') WHERE B_ID = #{b_id}
     </update>
 
     <update id="updateContentCnt" parameterType="java.lang.Integer">
         UPDATE AC_BOARD SET N_VIEW = N_VIEW + 1 WHERE B_ID = #{b_id}
     </update>
 
-    <select id="modifyFlag" parameterType="java.lang.Integer" resultType="NoticeModifyFlagDto">
-        SELECT B.B_ID, M.M_ID
+    <select id="accessFlag" parameterType="java.lang.Integer" resultType="BoardAccessFlagDto">
+        SELECT B.B_ID, M.M_ID, B.B_ALT
         FROM AC_BOARD B, AC_MEMBER M
         WHERE M.M_ID = B.M_ID AND B.B_ID = #{b_id}
-        GROUP BY B.B_ID, M.M_ID
+        GROUP BY B.B_ID, M.M_ID, B.B_ALT
     </select>
 </mapper>

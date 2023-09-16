@@ -25,6 +25,7 @@ public class BoardDto {
         private int b_code;
         private String n_title;
         private String n_content;
+        private String b_alt;
     }
 
     @Getter
@@ -38,6 +39,8 @@ public class BoardDto {
         private String n_create_date;
         private int h_cnt;
         private int n_view;
+        private String b_alt; // 공지글 여부
+        private String m_id; // 질문글 접속 플래그
     }
 
     @Getter
@@ -52,6 +55,7 @@ public class BoardDto {
         private String n_content;
         private String n_create_date;
         private int n_view;
+        private String b_alt;
     }
 
     @Getter
@@ -61,11 +65,15 @@ public class BoardDto {
         private int b_id;
         private String n_title;
         private String n_content;
+        private String b_alt;
     }
 
     @Getter
-    public static class ModifyFlag {
+    @Setter
+    @ToString
+    public static class AccessFlag {
         private int b_id;
         private int m_id;
+        private String b_alt;
     }
 }
