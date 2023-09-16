@@ -1,6 +1,7 @@
 package com.accountbook.project.board.controller;
 
 import com.accountbook.project.board.dto.BoardDto;
+import com.accountbook.project.board.service.BoardLikeService;
 import com.accountbook.project.board.service.BoardService;
 import com.accountbook.project.pagination.PaginationDto;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class FreeBoardController {
     private final BoardService boardService;
+    private final BoardLikeService boardLikeService;
 
     @GetMapping("/list")
     public String board(Model model, @RequestParam(defaultValue = "1") int page) {
@@ -32,16 +34,15 @@ public class FreeBoardController {
 
     @GetMapping("/list/{b_id}")
     public String board(@PathVariable(name = "b_id") int b_id, Model model, HttpServletRequest request) {
-        boardService.updateContentCnt(b_id);
+//        boardService.updateContentCnt(b_id);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("b_id", b_id);
         map.put("b_code", 2);
         boardService.getBoard(b_id, model, request, map);
+        model.addAttribute("cnt", boardLikeService.getHeartCnt(b_id));
         boardInfo(model);
         return "board/board-read";
     }
-
-
 
     @GetMapping("/write")
     public String board(Model model, HttpServletRequest request) {
@@ -69,8 +70,7 @@ public class FreeBoardController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("b_id", b_id);
         map.put("b_code", 2);
-        List<BoardDto.SelectContent> list = boardService.selectContent(map);
-        model.addAttribute("list", list);
+        model.addAttribute("list", boardService.selectContent(map));
         boardInfo(model);
         return "board/board-update";
     }
@@ -84,8 +84,13 @@ public class FreeBoardController {
         boardService.updateContent(board);
     }
 
-    public static void boardInfo(Model model) {
+    public void boardInfo(Model model) {
         model.addAttribute("title", "자유 게시판");
         model.addAttribute("boardName", "free");
     }
+
+//    public int getId(HttpServletRequest request) {
+//        HttpSession session = request.getSession();
+//        return (Integer)session.getAttribute(SessionConst.MEMBER_ID);
+//    }
 }

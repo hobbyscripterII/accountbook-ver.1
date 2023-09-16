@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accountbook.project.board.mapper.BoardLikeMapper">
+    <insert id="insertHeart" parameterType="map">
+        INSERT INTO AC_HEART(H_ID, B_ID, M_ID, H_CREATE_DATE) VALUES(HEART_SEQ.NEXTVAL, #{b_id}, #{m_id}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'))
+    </insert>
+
+    <delete id="deleteHeart" parameterType="map">
+        DELETE AC_HEART WHERE B_ID = #{b_id} AND M_ID = #{m_id}
+    </delete>
+
+    <select id="getHeart" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM(SELECT M_ID, B_ID FROM AC_HEART WHERE B_ID = #{b_id} AND M_ID = #{m_id})
+    </select>
+
+    <select id="getHeartCnt" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM AC_HEART WHERE B_ID = #{b_id}
+    </select>
+</mapper>

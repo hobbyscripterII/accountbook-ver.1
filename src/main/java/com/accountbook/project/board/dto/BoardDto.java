@@ -36,6 +36,7 @@ public class BoardDto {
         private String m_name;
         private String n_title;
         private String n_create_date;
+        private int h_cnt;
         private int n_view;
     }
 

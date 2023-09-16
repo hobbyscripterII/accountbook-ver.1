@@ -15,7 +15,9 @@
     </insert>
 
      <select id="getContent" parameterType="map" resultType="BoardGetContentDto">
-        SELECT B.B_ID, BC.B_CODE, M.M_NAME, B.N_TITLE, B.N_CREATE_DATE, B.N_VIEW
+         SELECT B.B_ID, BC.B_CODE, M.M_NAME, B.N_TITLE, B.N_CREATE_DATE,
+                (SELECT COUNT(*) FROM AC_HEART H WHERE H.B_ID = B.B_ID) AS h_cnt,
+                B.N_VIEW
         FROM AC_BOARD B
                  INNER JOIN AC_MEMBER M
                             ON M.M_ID = B.M_ID

@@ -23,6 +23,5 @@
 
         <typeAlias type="com.accountbook.project.board.dto.BoardCommentDto" alias="BoardCommentDto" />
         <typeAlias type="com.accountbook.project.board.dto.BoardCommentDto$selectComment" alias="BoardSelectCommentDto" />
-
     </typeAliases>
 </configuration>

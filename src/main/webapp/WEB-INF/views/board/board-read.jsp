@@ -17,10 +17,12 @@
                 <input type="hidden" class="form-control" name="n_create_date" value="${l.n_create_date}" readonly>
 
                 <div class="input-group mb-3">
+                    <span class="input-group-text" style="width: 100px">작성자</span>
+                    <input type="text" class="form-control" value="${l.m_name}" style="width: 100px" disabled>
                     <span class="input-group-text" style="width: 100px">작성일자</span>
                     <input type="text" class="form-control" value="${l.n_create_date}" style="width: 210px" disabled>
                     <span class="input-group-text" style="width: 100px">조회수</span>
-                    <input type="text" class="form-control" value="${l.n_view}" style="text-align: center" disabled>
+                    <input type="text" class="form-control" value="${l.n_view}" style="" disabled>
                 </div>
 
                 <div class="input-group mb-3">
@@ -34,11 +36,34 @@
                 </div>
             </c:forEach>
 
+            <c:choose>
+                <c:when test="${boardName eq 'free'}">
+                    <c:choose>
+                        <c:when test="${heart eq 0}">
+                            <div class="wrapper-board-like">
+                                    <img id="non-heart" src="<c:url value="/resources/img/nonhearts-icon.png" />" style="cursor: pointer">
+                                    <div style="font-size: 14px; font-weight: bold; color: gray">${cnt }</div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="wrapper-board-like">
+                                    <img id="heart" src="<c:url value="/resources/img/hearts-icon.png" />" style="cursor: pointer">
+                                    <div style="font-size: 14px; font-weight: bold; color: gray">${cnt }</div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+                </c:when>
+                <c:otherwise>
+
+                </c:otherwise>
+            </c:choose>
+
             <div style="text-align: right">
                 <c:if test="${sessionScope.MEMBER_ID eq flag.m_id}">
                     <input type="button" class="btn btn-primary" value="수정" onclick="location.href='/accountbook/${boardName}/update/${flag.b_id}'">
                     <input type="button" class="btn btn-primary" value="삭제" onclick="del()">
                 </c:if>
+
                 <input type="button" class="btn btn-primary" value="목록" onclick="location.href='/accountbook/${boardName}/list'">
             </div>
 
@@ -103,18 +128,32 @@
         </div>
         </c:otherwise>
         </c:choose>
-
-        <c:choose>
-            <c:when test="${empty sessionScope.MEMBER_ID}">
-            </c:when>
-            <c:otherwise>
-
-            </c:otherwise>
-        </c:choose>
     </div>
 </section>
 
 <script type="text/javascript">
+    $(document).on('click', '#non-heart', function() {
+        $.ajax({
+            type: 'post',
+            url: '/accountbook/like-insert',
+            data: {'b_id' : $('#b_id').val()},
+            success(data) {
+                location.reload();
+            }
+        })
+    })
+
+    $(document).on('click', '#heart', function() {
+        $.ajax({
+            type: 'post',
+            url: '/accountbook/like-delete',
+            data: {'b_id' : $('#b_id').val()},
+            success(data) {
+                location.reload();
+            }
+        })
+    })
+
     $(document).on('click', '#comment-create', function() {
         if(!$('#c_content').val()) {
             alert("내용을 작성해주세요.");

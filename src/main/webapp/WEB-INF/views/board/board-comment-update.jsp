@@ -33,6 +33,7 @@
                 success(data) {
                     alert("댓글이 수정되었습니다.");
                     window.close();
+                    opener.location.reload();
                 }
             })
         } else {

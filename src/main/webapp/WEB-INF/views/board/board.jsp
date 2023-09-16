@@ -26,14 +26,16 @@
                     <td>제목</td>
                     <td>작성자</td>
                     <td>작성일</td>
+                    <td>좋아요</td>
                     <td>조회수</td>
                 </tr>
                 <c:forEach var="c" items="${content}">
                     <tr style="text-align: center">
                         <td><c:out value="${c.b_id}"/></td>
-                        <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />">${c.n_title}</a></td>
+                        <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
                         <td>${c.m_name}</td>
                         <td>${c.n_create_date}</td>
+                        <td>${c.h_cnt } </td>
                         <td>${c.n_view}</td>
                     </tr>
                 </c:forEach>
@@ -60,17 +62,24 @@
             </div>
 
             <c:choose>
-                <c:when test="${boardName eq 'notice'}">
-                    <c:if test="${sessionScope.MEMBER_ID eq '1'}">
-                        <div style="text-align: right">
-                            <input type="button" class="btn btn-primary" value="작성" onclick="location.href='write'">
-                        </div>
-                    </c:if>
+                <c:when test="${empty sessionScope.MEMBER_ID}">
+
                 </c:when>
                 <c:otherwise>
-                    <div style="text-align: right">
-                        <input type="button" class="btn btn-primary" value="작성" onclick="location.href='write'">
-                    </div>
+                    <c:choose>
+                        <c:when test="${boardName eq 'notice'}">
+                            <c:if test="${sessionScope.MEMBER_ID eq '1'}">
+                                <div style="text-align: right">
+                                    <input type="button" class="btn btn-primary" value="작성" onclick="location.href='write'">
+                                </div>
+                            </c:if>
+                        </c:when>
+                        <c:otherwise>
+                            <div style="text-align: right">
+                                <input type="button" class="btn btn-primary" value="작성" onclick="location.href='write'">
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                 </c:otherwise>
             </c:choose>
         </div>

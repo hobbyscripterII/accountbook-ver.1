@@ -20,6 +20,7 @@ import java.util.Map;
 public class BoardService {
     private final BoardMapper boardMapper;
     private final BoardCommentService boardCommentService;
+    private final BoardLikeService boardLikeService;
 
     public List<BoardDto.GetName> getName(int m_id) { return boardMapper.getName(m_id); }
     public void insertNotice(BoardDto.Insert board) { boardMapper.insertNotice(board); }
@@ -45,9 +46,11 @@ public class BoardService {
         model.addAttribute("flag", modifyFlag(b_id));
         model.addAttribute("name", getName(getId(request)));
         model.addAttribute("comment", boardCommentService.getComment(b_id));
+        model.addAttribute("heart", boardLikeService.getHeart(b_id, getId(request))); // 게시글 좋아요 여부
+        log.info("heart = {}", boardLikeService.getHeart(b_id, getId(request)));
     }
 
-    public Integer getId(HttpServletRequest request) {
+    public int getId(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return (Integer) session.getAttribute(SessionConst.MEMBER_ID);
     }

@@ -8,3 +8,11 @@
 .notice-write, .notice-list {
     width: 900px;
 }
+
+.wrapper-board-like {
+    width: 100%;
+    height: 50px;
+    border: 1px solid red;
+    margin-bottom: 10px;
+    text-align: center;
+}
