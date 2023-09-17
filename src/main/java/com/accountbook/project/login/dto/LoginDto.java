@@ -11,4 +11,5 @@ public class LoginDto {
     private int m_id;
     private String m_email;
     private String m_pwd;
+    private String m_name;
 }

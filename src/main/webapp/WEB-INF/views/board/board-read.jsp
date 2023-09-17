@@ -54,7 +54,6 @@
                     </c:choose>
                 </c:when>
                 <c:otherwise>
-
                 </c:otherwise>
             </c:choose>
 
@@ -69,61 +68,69 @@
 
             <c:choose>
             <c:when test="${boardName eq 'notice'}">
+
             </c:when>
             <c:otherwise>
-            <div style="margin-bottom: 20px">
-                <h4>댓글</h4>
+            <c:forEach var="l" items="${list}">
+                <c:set var="alt" value="${l.b_alt}" />
+            </c:forEach>
+            <c:choose>
+                <c:when test="${alt eq 'Y'}">
 
-                <table class="table"> <!-- table-bordered -->
-                    <c:choose>
-                        <c:when test="${empty comment}">
-                            작성된 댓글이 없습니다.
-                        </c:when>
-                        <c:otherwise>
+                </c:when>
+                <c:otherwise>
+                    <div style="margin-bottom: 20px">
+                        <h4>댓글</h4>
+                        <table class="table"> <!-- table-bordered -->
+                            <c:choose>
+                                <c:when test="${empty comment}">
+                                    작성된 댓글이 없습니다.
+                                </c:when>
+                                <c:otherwise>
 
-                        </c:otherwise>
-                    </c:choose>
-                    <c:forEach var="c" items="${comment}">
-                    <input type="hidden" name="c_id" id="c_id" value="${c.c_id}">
-                    <tr style="font-size: 11px; font-weight: bold">
-                        <td style="width: 15%">${c.m_name}</td>
-                        <td style="width: 75%">${c.c_create_date}</td>
-                        <td style="width: 45px; text-align: center">
-                            <c:if test="${sessionScope.MEMBER_ID eq c.m_id}">
-                                <a onclick="window.open('<c:url value='/cmt/update/${c.c_id}' />', '댓글 수정', 'width = 500, height = 500'); return false;" style="cursor: pointer; text-decoration: none; color: gray">수정</a>
-                            </c:if>
-                        </td>
-                        <td style="width: 45px; text-align: center; color: gray">
-
-                            <c:if test="${sessionScope.MEMBER_ID eq c.m_id}">
-                                <a id="btn-cmt-delete" style="cursor: pointer; text-decoration: none; color: gray">삭제</a>
-                            </c:if>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">${c.c_content}</td>
-                        </c:forEach>
-                    </tr>
-                </table>
-            </div>
-
-            <h4>댓글 작성</h4> <!-- b_id, m_id, , c_create_date -->
-            <form id="f">
-                <table class="table"> <!-- table-bordered -->
-                    <c:forEach var="n" items="${name}">
-                        <input type="hidden" value="${n.m_id}">
-                        <tr style="font-size: 11px; font-weight: bold">
-                            <td style="width: 15%"><c:out value="${n.m_name}" /></td>
-                            <td style="width: 75%">${n.n_create_date}</td>
-                            <td style="width: 45px; text-align: center"><a id="comment-create" style="cursor: pointer; text-decoration: none; color: gray">등록</a></td>
-                            <td style="width: 45px; text-align: center; color: gray"> </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><textarea name="c_content" id="c_content" class="form-control" style="height: 100px; resize: none"></textarea></td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </form>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:forEach var="c" items="${comment}">
+                            <input type="hidden" name="c_id" id="c_id" value="${c.c_id}">
+                            <tr style="font-size: 11px; font-weight: bold">
+                                <td style="width: 15%">${c.m_name}</td>
+                                <td style="width: 75%">${c.c_create_date}</td>
+                                <td style="width: 45px; text-align: center">
+                                    <c:if test="${sessionScope.MEMBER_ID eq c.m_id}">
+                                        <a onclick="window.open('<c:url value='/cmt/update/${c.c_id}' />', '댓글 수정', 'width = 500, height = 500'); return false;" style="cursor: pointer; text-decoration: none; color: gray">수정</a>
+                                    </c:if>
+                                </td>
+                                <td style="width: 45px; text-align: center; color: gray">
+                                    <c:if test="${sessionScope.MEMBER_ID eq c.m_id}">
+                                        <a id="btn-cmt-delete" style="cursor: pointer; text-decoration: none; color: gray">삭제</a>
+                                    </c:if>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">${c.c_content}</td>
+                                </c:forEach>
+                            </tr>
+                        </table>
+                    </div>
+                    <h4>댓글 작성</h4> <!-- b_id, m_id, , c_create_date -->
+                    <form id="f">
+                        <table class="table"> <!-- table-bordered -->
+                            <c:forEach var="n" items="${name}">
+                                <input type="hidden" value="${n.m_id}">
+                                <tr style="font-size: 11px; font-weight: bold">
+                                    <td style="width: 15%"><c:out value="${n.m_name}" /></td>
+                                    <td style="width: 75%">${n.n_create_date}</td>
+                                    <td style="width: 45px; text-align: center"><a id="comment-create" style="cursor: pointer; text-decoration: none; color: gray">등록</a></td>
+                                    <td style="width: 45px; text-align: center; color: gray"> </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"><textarea name="c_content" id="c_content" class="form-control" style="height: 100px; resize: none"></textarea></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </form>
+                </c:otherwise>
+            </c:choose>
         </div>
         </c:otherwise>
         </c:choose>

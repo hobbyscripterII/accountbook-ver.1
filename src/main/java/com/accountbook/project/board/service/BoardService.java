@@ -48,6 +48,7 @@ public class BoardService {
 
     // 게시판 정보
     public void getBoard(int b_id, int b_code, Model model, HttpServletRequest request) {
+
         model.addAttribute("list", selectContent(b_id, b_code));
         model.addAttribute("flag", accessFlag(b_id));
         model.addAttribute("name", getName(getId(request)));
