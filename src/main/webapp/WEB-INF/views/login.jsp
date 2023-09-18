@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <jsp:include page="layout/head.jsp"/>
@@ -13,12 +14,13 @@
             <input type="password" class="form-control" id="m_pwd" name="m_pwd" aria-describedby="pwdHelp">
             <div id="pwdHelp" class="form-text">비밀번호를 입력하세요.</div>
             <div style="display: flex">
+            </div>
                 <input type="submit" id="login" value="로그인" class="btn btn-success" style="margin: 10px 10px 0 0">
+                <img onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=cb038f5f9a3ebddca7cc97a4d8f6d398&redirect_uri=http://localhost:8080/accountbook/kakao-home&response_type=code'" src="<c:url value="/resources/img/kakao_login_medium_narrow.png"/>" style="cursor: pointer; height: 40px; margin-top: 10px">
                 <div style="display: flex; align-items: center">
                     <a href="#" class="form-text" style="text-decoration: none">이메일 찾기</a> &nbsp;
                     <a href="#" class="form-text" style="text-decoration: none">비밀번호 찾기</a>
                 </div>
-            </div>
         </form>
     </div>
 </section>

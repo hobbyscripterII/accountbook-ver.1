@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accountbook.project.kakao.KakaoMapper">
+    <select id="getId" parameterType="long" resultType="long">
+        SELECT M_ID FROM AC_MEMBER WHERE M_KAKAO_ID = #{m_kakao_id}
+    </select>
+
+    <select id="getKakaoId" parameterType="long" resultType="long">
+        SELECT M_KAKAO_ID FROM AC_MEMBER WHERE M_KAKAO_ID = #{m_kakao_id}
+    </select>
+
+    <insert id="insertKakaoId" parameterType="map">
+        INSERT INTO AC_MEMBER(M_ID, M_KAKAO_ID, M_NAME, M_CREATE_DATE) VALUES(MEMBER_SEQ.NEXTVAL, #{m_kakao_id}, #{m_name}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'))
+    </insert>
+</mapper>

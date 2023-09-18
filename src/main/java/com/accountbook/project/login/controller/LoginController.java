@@ -1,6 +1,7 @@
 package com.accountbook.project.login.controller;
 
 import com.accountbook.project.SessionConst;
+import com.accountbook.project.kakao.KakaoService;
 import com.accountbook.project.login.dto.LoginDto;
 import com.accountbook.project.login.service.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -9,12 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -29,7 +29,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute LoginDto loginDto, Model model, HttpServletRequest request) {
+    public String login(@ModelAttribute LoginDto loginDto, HttpServletRequest request) {
         LoginDto loginDto_ = loginService.login(loginDto.getM_email(), loginDto.getM_pwd());
         if (loginDto_ != null) {
             HttpSession session = request.getSession();
