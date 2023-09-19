@@ -3,7 +3,7 @@ package com.accountbook.project.board.controller;
 import com.accountbook.project.board.dto.BoardDto;
 import com.accountbook.project.board.service.BoardLikeService;
 import com.accountbook.project.board.service.BoardService;
-//import com.accountbook.project.exception.QuestionException;
+import com.accountbook.project.exception.QuestionException;
 import com.accountbook.project.pagination.PaginationDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,7 @@ public class QuestionBoardController {
 
 
     @GetMapping("/list/{b_id}")
-    public String board(@PathVariable(name = "b_id") int b_id, Model model, HttpServletRequest request) {
+    public String board(@PathVariable(name = "b_id") int b_id, Model model, HttpServletRequest request) throws QuestionException {
         BoardDto.AccessFlag flag = boardService.accessFlag(b_id);
         int id = boardService.getId(request);
         if(id == flag.getM_id() || id == 1 || flag.getB_alt().equals("Y")) {
@@ -41,7 +41,7 @@ public class QuestionBoardController {
             boardService.updateContentCnt(b_id);
             boardInfo(model);
         } else {
-//            throw new QuestionException();
+            throw new QuestionException();
         }
         return "board/board-read";
     }

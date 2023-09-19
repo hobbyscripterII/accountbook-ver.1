@@ -30,6 +30,7 @@ public class LoginController {
         if (loginDto_ != null) {
             HttpSession session = request.getSession();
             session.setAttribute(SessionConst.MEMBER_ID, loginDto_.getM_id());
+            loginService.updateVisitNum(loginDto_.getM_id());
             return "redirect:/";
         }
         return "login";

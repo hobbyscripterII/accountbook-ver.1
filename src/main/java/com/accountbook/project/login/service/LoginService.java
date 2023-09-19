@@ -17,4 +17,8 @@ public class LoginService {
         }
         return null;
     }
+
+    public void updateVisitNum(int m_id) {
+        loginMapper.updateVisitNum(m_id);
+    }
 }

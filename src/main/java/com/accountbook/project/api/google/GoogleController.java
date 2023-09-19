@@ -1,6 +1,7 @@
 package com.accountbook.project.api.google;
 
 import com.accountbook.project.SessionConst;
+import com.accountbook.project.login.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class GoogleController {
     private final GoogleService googleService;
+    private final LoginService loginService;
 
     @RequestMapping("/google-login")
     public String googleLogin(@RequestParam(name = "code", required = false) String code, Map<String, Object> map, HttpServletRequest request) throws Exception {
@@ -35,6 +37,7 @@ public class GoogleController {
             int m_id = googleService.getId(googleId);
             HttpSession session = request.getSession();
             session.setAttribute(SessionConst.MEMBER_ID, m_id);
+            loginService.updateVisitNum(m_id);
         }
         return "redirect:/";
     }

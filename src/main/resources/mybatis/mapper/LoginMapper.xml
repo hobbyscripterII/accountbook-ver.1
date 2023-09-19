@@ -7,4 +7,8 @@
     <select id="getEmail" parameterType="java.lang.String" resultType="LoginDto">
         SELECT * FROM AC_MEMBER WHERE M_EMAIL = #{m_email}
     </select>
+
+    <update id="updateVisitNum" parameterType="int">
+        UPDATE AC_MEMBER SET M_VISIT_NUM = M_VISIT_NUM + 1 WHERE M_ID = #{m_id}
+    </update>
 </mapper>
