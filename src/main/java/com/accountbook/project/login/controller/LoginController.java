@@ -1,20 +1,16 @@
 package com.accountbook.project.login.controller;
 
 import com.accountbook.project.SessionConst;
-import com.accountbook.project.kakao.KakaoService;
 import com.accountbook.project.login.dto.LoginDto;
 import com.accountbook.project.login.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 @Slf4j
 @Controller

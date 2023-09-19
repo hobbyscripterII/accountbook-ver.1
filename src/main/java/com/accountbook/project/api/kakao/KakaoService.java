@@ -1,10 +1,12 @@
-package com.accountbook.project.kakao;
+package com.accountbook.project.api.kakao;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -18,9 +20,17 @@ import java.util.Map;
 
 @Slf4j
 @Service
+@Component
 @RequiredArgsConstructor
 public class KakaoService {
     private final KakaoMapper kakaoMapper;
+
+    @Value("${kakao.grant_type}")
+    private String grant_type;
+    @Value("${kakao.client_id}")
+    private String client_id;
+    @Value("${kakao.redirect_uri}")
+    private String redirect_uri;
 
     public long getId(long id) {
         return kakaoMapper.getId(id);
@@ -46,10 +56,16 @@ public class KakaoService {
 
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(httpURLConnection.getOutputStream()));
         StringBuilder stringBuffer = new StringBuilder();
-        stringBuffer.append("grant_type=authorization_code");
-        stringBuffer.append("&client_id=cb038f5f9a3ebddca7cc97a4d8f6d398");
-        stringBuffer.append("&redirect_uri=http://localhost:8080/accountbook/kakao-home");
-        stringBuffer.append("&code=" + code);
+
+        log.info("grant_type = {}", grant_type);
+        log.info("client_id = {}", client_id);
+        log.info("redirect_uri = {}", redirect_uri);
+
+        stringBuffer.append("grant_type=").append(grant_type);
+        stringBuffer.append("&client_id=").append(client_id);
+        stringBuffer.append("&redirect_uri=").append(redirect_uri);
+        stringBuffer.append("&code=" + code)
+        ;
         bufferedWriter.write(stringBuffer.toString());
         bufferedWriter.flush();
 

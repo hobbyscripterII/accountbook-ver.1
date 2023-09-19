@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.accountbook.project.kakao.KakaoMapper">
+<mapper namespace="com.accountbook.project.api.kakao.KakaoMapper">
     <select id="getId" parameterType="long" resultType="long">
         SELECT M_ID FROM AC_MEMBER WHERE M_KAKAO_ID = #{m_kakao_id}
     </select>

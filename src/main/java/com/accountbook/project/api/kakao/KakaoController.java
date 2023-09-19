@@ -1,4 +1,4 @@
-package com.accountbook.project.kakao;
+package com.accountbook.project.api.kakao;
 
 import com.accountbook.project.SessionConst;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +16,8 @@ import java.util.Map;
 public class KakaoController {
     private final KakaoService kakaoService;
 
-    @RequestMapping("/kakao-home")
-    public String kakaoHome(@RequestParam(name = "code", required = false) String code, Map<String, Object> map, HttpServletRequest request) throws Exception {
+    @RequestMapping("/kakao-login")
+    public String kakaoLogin(@RequestParam(name = "code", required = false) String code, Map<String, Object> map, HttpServletRequest request) throws Exception {
         if (code != null) {
             String accessToken = kakaoService.getAccessToken(code);
             Map<String, Object> user = kakaoService.getKakaoUserInfo(accessToken);

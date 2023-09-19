@@ -1,4 +1,4 @@
-package com.accountbook.project.kakao;
+package com.accountbook.project.api.kakao;
 
 import org.apache.ibatis.annotations.Mapper;
 
