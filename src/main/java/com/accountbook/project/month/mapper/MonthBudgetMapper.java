@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MonthBudgetMapper {
-    void insertBudget(MonthBudgetDto.insertBudgetDto insertBudgetDto);
-    MonthBudgetDto selectBudget(MonthBudgetDto.selectBudgetDto selectBudgetDto);
+    void insertBudget(MonthBudgetDto.Insert insert);
+    MonthBudgetDto selectBudget(MonthBudgetDto.Select select);
+    void updateBudget(MonthBudgetDto.Update update);
 }

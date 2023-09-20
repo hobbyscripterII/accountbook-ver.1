@@ -40,7 +40,8 @@ public class AccountBookController {
         map.put("a_code", a_code);
         accountBookService.insertMonth(map);
 
-        budgetFlag(request);
+        // 가계부 등록시 기초 예산 금액이 없으면 0으로 초기화해서 INSERT한다.
+        monthBudgetService.selectBudget(getId(request));
     }
 
     @ResponseBody
@@ -52,15 +53,6 @@ public class AccountBookController {
         map.put("a_code", a_code);
         accountBookService.deleteMonth(map);
         accountBookService.deleteAccountBook(map);
-    }
-
-    public void budgetFlag(HttpServletRequest request) {
-        // 가계부 등록시 기초 예산 금액이 없으면 0으로 초기화해서 INSERT한다.
-        MonthBudgetDto.selectBudgetDto selectBudgetDto = new MonthBudgetDto.selectBudgetDto(getId(request), "ALL");
-        if(monthBudgetService.selectBudget(selectBudgetDto) == null) {
-            MonthBudgetDto.insertBudgetDto insertBudgetDto = new MonthBudgetDto.insertBudgetDto(getId(request), "ALL", 0, 0);
-            monthBudgetService.insertBudget(insertBudgetDto);
-        }
     }
 
     public int getId(HttpServletRequest request) {

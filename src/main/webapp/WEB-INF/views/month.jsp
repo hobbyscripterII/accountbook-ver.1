@@ -44,12 +44,12 @@
                         <tbody>
                         <tr style="text-align: center">
                             <td>고정지출</td>
-                            <td></td>
+                            <td><fmt:formatNumber value="${budget.b_fix}" pattern="###,###,###원"/></td>
                             <td></td>
                         </tr>
                         <tr style="text-align: center">
                             <td>비고정지출</td>
-                            <td></td>
+                            <td><fmt:formatNumber value="${budget.b_nonfix}" pattern="###,###,###원"/></td>
                             <td></td>
                         </tr>
                         </tbody>
@@ -526,26 +526,25 @@
                 <div class="modal-body">
                     <div>
                         <div class="btn-group" role="group" style="display: flex; width: 100%; text-align: center">
-                            <input type="radio" class="btn-check" name="b_cover" id="btn-fix" autocomplete="off" checked>
-                            <label class="btn btn-outline-dark" for="btn-fix">기존 예산</label>
-                            <input type="radio" class="btn-check" name="b_cover" id="btn-nonfix" autocomplete="off">
-                            <label class="btn btn-outline-dark" for="btn-nonfix">특정 예산</label>
-
+                            <input type="radio" class="btn-check" name="b_cover" id="b_cover" value="ALL" autocomplete="off" checked>
+                            <label class="btn btn-outline-dark" for="b_cover">기존 예산</label>
+<%--                            <input type="radio" class="btn-check" name="b_cover" id="b_cover" autocomplete="off">--%>
+<%--                            <label class="btn btn-outline-dark" for="b_cover">특정 예산</label>--%>
                         </div>
 
                         <div style="display: flex; width: 100%; text-align: center; margin-top: 20px">
                                 <span class="span-budget-modal-text">고정 지출</span>
-                                <input type="text" class="form-control" name="b_fix" id="b_fix">
+                                <input type="text" class="form-control" name="b_fix" id="b_fix" value="${budget.b_fix}">
                         </div>
                         <div style="display: flex; width: 100%; text-align: center; margin-top: 20px">
                                 <span class="span-budget-modal-text">비고정 지출</span>
-                                <input type="text" class="form-control" name="b_nonfix" id="b_nonfix">
+                                <input type="text" class="form-control" name="b_nonfix" id="b_nonfix" value="${budget.b_nonfix}">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="budget-flag" class="btn btn-danger">확인</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
+                    <input type="button" value="확인" id="budget-flag" class="btn btn-danger">
+                    <input type="button" value="취소" class="btn btn-primary" data-bs-dismiss="modal">
                 </div>
             </div>
         </div>
@@ -564,21 +563,26 @@
         } else if(!$('#b_nonfix').val()) {
             alert('비고정지출 예산 금액을 입력하지 않으셨습니다.');
         }
-        // else {
-        //     if(confirm('삭제할 가계부 코드는 [' + $('#a_code_delete').val() + ']입니다. 확인 버튼을 눌러주세요.')) {
-        //         $.ajax({
-        //             type: 'post',
-        //             url: '/accountbook/ac/delete',
-        //             data: {'a_code' : $('#a_code_delete').val()},
-        //             success(data) {
-        //                 alert('삭제가 완료되었습니다.');
-        //                 location.reload();
-        //             }
-        //         })
-        //     } else {
-        //         alert('삭제가 취소되었습니다.');
-        //     }
-        // }
+        else {
+            console.log($('#b_cover').val());
+            console.log($('#b_fix').val());
+            console.log($('#b_nonfix').val());
+
+            $.ajax({
+                type: 'post',
+                url: '/accountbook/update-budget',
+                data: {'b_cover' : $('#b_cover').val(), 'b_fix' : $('#b_fix').val(), 'b_nonfix' : $('#b_nonfix').val()},
+                success: function() {
+                    alert('기초 예산 수정이 완료되었습니다.');
+                    location.reload();
+                },
+                error: function(request, status, error) {
+                    console.log(request);
+                    console.log(status);
+                    console.log(error);
+                }
+            })
+        }
     })
 
     document.getElementById("btn-compare").addEventListener("click", function() {

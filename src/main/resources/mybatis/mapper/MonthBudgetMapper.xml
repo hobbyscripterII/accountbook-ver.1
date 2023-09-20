@@ -11,4 +11,8 @@
     <select id="selectBudget" parameterType="MonthBudgetSelectDto" resultType="MonthBudgetDto">
         SELECT ME_ID, B_COVER, B_FIX, B_NONFIX, B_CREATE_DATE FROM AC_BUDGET WHERE ME_ID = #{me_id} AND B_COVER = #{b_cover}
     </select>
+
+    <update id="updateBudget" parameterType="MonthBudgetUpdateDto">
+        UPDATE AC_BUDGET SET B_FIX = #{b_fix}, B_NONFIX = #{b_nonfix} WHERE ME_ID = #{me_id} AND B_COVER = #{b_cover}
+    </update>
 </mapper>

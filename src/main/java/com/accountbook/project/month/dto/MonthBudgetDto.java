@@ -1,8 +1,6 @@
 package com.accountbook.project.month.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
@@ -18,13 +16,13 @@ public class MonthBudgetDto {
     @Getter
     @Setter
     @ToString
-    public static class insertBudgetDto {
+    public static class Insert {
         private int me_id;
         private String b_cover;
         private int b_fix;
         private int b_nonfix;
 
-        public insertBudgetDto(int me_id, String b_cover, int b_fix, int b_nonfix) {
+        public Insert(int me_id, String b_cover, int b_fix, int b_nonfix) {
             this.me_id = me_id;
             this.b_cover = b_cover;
             this.b_fix = b_fix;
@@ -32,16 +30,17 @@ public class MonthBudgetDto {
         }
     }
 
-    @Getter
-    @Setter
-    @ToString
-    public static class selectBudgetDto {
+    @Builder
+    public static class Select {
         private int me_id;
         private String b_cover;
+    }
 
-        public selectBudgetDto(int me_id, String b_cover) {
-            this.me_id = me_id;
-            this.b_cover = b_cover;
-        }
+    @Builder
+    public static class Update {
+        private int b_fix;
+        private int b_nonfix;
+        private int me_id;
+        private String b_cover;
     }
 }

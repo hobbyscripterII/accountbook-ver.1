@@ -39,9 +39,9 @@ public class MonthTableController {
         model.addAttribute("accountBook", accountBookService.selectMonth(map)); // 회원이 선택한 가계부 일련코드
         model.addAttribute("table", monthTableService.getMonth(map)); // 회원이 입력한 가계부 정보
         model.addAttribute("member", monthChartService.getMemberMonthCategorySum(map));
-        // ** 예산 정보 담긴 메소드! 처음에 보낼 때는 기초 예산으로
-//        MonthBudgetDto.selectBudgetDto selectBudgetDto = new MonthBudgetDto.selectBudgetDto();
-//        monthBudgetService.selectBudget(selectBudgetDto);
+        model.addAttribute("budget", monthBudgetService.selectBudget(m_id));
+
+        monthBudgetService.selectBudget(m_id);
         tableInfo(model, map);
 
         return "month";
