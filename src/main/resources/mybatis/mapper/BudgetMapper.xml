@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accountbook.project.month.mapper.MonthBudgetMapper">
+    <insert id="insertBudget" parameterType="MonthBudgetInsertDto">
+        INSERT INTO AC_BUDGET(B_ID, ME_ID, B_COVER, B_FIX, B_NONFIX, B_CREATE_DATE) VALUES(BUDGET_SEQ.NEXTVAL, #{me_id}, #{b_cover}, #{b_fix}, #{b_nonfix}, TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI'))
+    </insert>
+
+    <select id="selectBudget" parameterType="MonthBudgetSelectDto" resultType="MonthBudgetDto">
+        SELECT ME_ID, B_COVER, B_FIX, B_NONFIX, B_CREATE_DATE FROM AC_BUDGET WHERE ME_ID = #{me_id} AND B_COVER = #{b_cover}
+    </select>
+</mapper>

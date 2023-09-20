@@ -11,10 +11,10 @@
 
     <div style="text-align: center; margin: 30px 0 40px 0">
         <div class="btn-group btn-group-lg" role="group" aria-label="Large button group" style="width: 900px">
-            <button type="button" class="btn btn-outline-secondary" onclick="location.href='<c:url value="/notice/list" />'">공지사항</button>
-            <button type="button" class="btn btn-outline-secondary" onclick="location.href='<c:url value="/free/list" />'">자유 게시판</button>
-            <button type="button" class="btn btn-outline-secondary" onclick="location.href='<c:url value="/question/list" />'">질문 게시판</button>
-            <button type="button" class="btn btn-outline-secondary" onclick="location.href='<c:url value="/suggest/list" />'">건의 게시판</button>
+            <button type="button" class="btn btn-outline-dark" onclick="location.href='<c:url value="/notice/list" />'">공지사항</button>
+            <button type="button" class="btn btn-outline-dark" onclick="location.href='<c:url value="/free/list" />'">자유 게시판</button>
+            <button type="button" class="btn btn-outline-dark" onclick="location.href='<c:url value="/question/list" />'">질문 게시판</button>
+            <button type="button" class="btn btn-outline-dark" onclick="location.href='<c:url value="/suggest/list" />'">건의 게시판</button>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
                 <c:forEach var="c" items="${content}">
                     <c:choose>
                         <c:when test="${c.b_alt eq 'Y'}">
-                            <tr style="text-align: center; background-color: lightgray !important;">
+                            <tr style="text-align: center; background-color: #f8f9fa">
                                 <td style="font-weight: bold"><c:out value="[공지]"/></td>
                                 <td style="text-align: left; font-weight: bold"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
                                 <td>${c.m_name}</td>
@@ -102,13 +102,13 @@
                         <c:when test="${boardName eq 'notice'}">
                             <c:if test="${sessionScope.MEMBER_ID eq '1'}">
                                 <div style="text-align: right">
-                                    <input type="button" class="btn btn-primary" value="작성" onclick="location.href='write'">
+                                    <input type="button" class="btn btn-warning" value="작성" onclick="location.href='write'">
                                 </div>
                             </c:if>
                         </c:when>
                         <c:otherwise>
                             <div style="text-align: right">
-                                <input type="button" class="btn btn-primary" value="작성" onclick="location.href='write'">
+                                <input type="button" class="btn btn-warning" value="작성" onclick="location.href='write'">
                             </div>
                         </c:otherwise>
                     </c:choose>

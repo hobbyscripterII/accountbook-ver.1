@@ -42,8 +42,8 @@
                 </div>
 
                 <div style="text-align: right">
-                    <input type="button" id="btn-register" class="btn btn-primary" value="등록">
-                    <input type="button" class="btn btn-primary" value="취소" onclick="location.href='list'">
+                    <input type="button" id="btn-register" class="btn btn-warning" value="등록">
+                    <input type="button" class="btn btn-warning" value="취소" onclick="location.href='list'">
                 </div>
             </div>
         </form>

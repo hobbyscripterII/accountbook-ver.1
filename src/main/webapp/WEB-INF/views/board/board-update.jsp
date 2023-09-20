@@ -48,9 +48,9 @@
                 </c:forEach>
 
                     <div style="text-align: right">
-                        <input type="button" class="btn btn-primary" value="완료" onclick="upd()">
-                        <input type="button" class="btn btn-primary" value="취소" onclick="res()">
-                        <input type="button" class="btn btn-primary" value="목록" onclick="location.href='/accountbook/${boardName}/list'">
+                        <input type="button" class="btn btn-warning" value="완료" onclick="upd()">
+                        <input type="button" class="btn btn-warning" value="취소" onclick="res()">
+                        <input type="button" class="btn btn-warning" value="목록" onclick="location.href='/accountbook/${boardName}/list'">
                     </div>
             </div>
         </form>

@@ -17,37 +17,44 @@
     <div class="account-book" style="display: flex; width: 100%">
         <div class="wrapper-account-book">
             <div class="table-side">
-                <%--            <form>--%>
-                <%--                <div style="width: 500px; text-align: right; margin-bottom: 5px">--%>
-                <%--&lt;%&ndash;                    <input class="btn btn-primary" type="button" name="modify" value="카테고리 수정">&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                    <input class="btn btn-primary" type="button" name="result" value="등록">&ndash;%&gt;--%>
-                <%--                </div>--%>
-
-                <%--                <table class="table">--%>
-                <%--                    <thead>--%>
-                <%--                    <tr>--%>
-                <%--                        <th colspan="3" scope="col" style="text-align: center">예산 측정</th>--%>
-                <%--                    </tr>--%>
-                <%--                    <tr style="text-align: center">--%>
-                <%--                        <th scope="col">카테고리</th>--%>
-                <%--                        <th scope="col">남은 금액</th>--%>
-                <%--                        <th scope="col">퍼센티지</th>--%>
-                <%--                    </tr>--%>
-                <%--                    </thead>--%>
-                <%--                    <tbody>--%>
-                <%--                    <tr style="text-align: center">--%>
-                <%--                        <td>고정지출</td>--%>
-                <%--                        <td></td>--%>
-                <%--                        <td></td>--%>
-                <%--                    </tr>--%>
-                <%--                    <tr style="text-align: center">--%>
-                <%--                        <td>비고정지출</td>--%>
-                <%--                        <td></td>--%>
-                <%--                        <td></td>--%>
-                <%--                    </tr>--%>
-                <%--                    </tbody>--%>
-                <%--                </table>--%>
-                <%--            </form>--%>
+                <form>
+                    <div class="wrapper-change-setting">
+                        <p class="d-inline-flex gap-1">
+                            <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#modal-budget-create" style="font-size: 13px; margin-right: 5px">
+                                가계부 예산 추가 및 수정
+                            </button>
+                        </p>
+                        <p class="d-inline-flex gap-1">
+                            <button class="btn btn-outline-dark" type="button"  style="font-size: 13px">
+                                사용자 정의 카테고리 추가 및 수정
+                            </button>
+                        </p>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th colspan="3" scope="col" style="text-align: center">예산 측정</th>
+                        </tr>
+                        <tr style="text-align: center">
+                            <th scope="col">카테고리</th>
+                            <th scope="col">남은 금액</th>
+                            <th scope="col">퍼센티지</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr style="text-align: center">
+                            <td>고정지출</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr style="text-align: center">
+                            <td>비고정지출</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
 
                 <form>
                     <!-- 수입 테이블 정보 -->
@@ -448,7 +455,7 @@
     </div>
 
     <div class="modal" id="modal-row-delete" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">알림</h5>
@@ -469,7 +476,7 @@
     </div>
 
     <div class="modal" id="modal-row-update" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">알림</h5>
@@ -490,7 +497,7 @@
     </div>
 
     <div class="modal" id="modal-row-create" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">알림</h5>
@@ -508,6 +515,41 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal-budget-create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">가계부 예산 추가 및 수정</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="btn-group" role="group" style="display: flex; width: 100%; text-align: center">
+                            <input type="radio" class="btn-check" name="b_cover" id="btn-fix" autocomplete="off" checked>
+                            <label class="btn btn-outline-dark" for="btn-fix">기존 예산</label>
+                            <input type="radio" class="btn-check" name="b_cover" id="btn-nonfix" autocomplete="off">
+                            <label class="btn btn-outline-dark" for="btn-nonfix">특정 예산</label>
+
+                        </div>
+
+                        <div style="display: flex; width: 100%; text-align: center; margin-top: 20px">
+                                <span class="span-budget-modal-text">고정 지출</span>
+                                <input type="text" class="form-control" name="b_fix" id="b_fix">
+                        </div>
+                        <div style="display: flex; width: 100%; text-align: center; margin-top: 20px">
+                                <span class="span-budget-modal-text">비고정 지출</span>
+                                <input type="text" class="form-control" name="b_nonfix" id="b_nonfix">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="budget-flag" class="btn btn-danger">확인</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script type="text/javascript" src="../../resources/js/month.js"></script>
@@ -516,6 +558,29 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script type="text/javascript">
+    $(document).on('click', '#budget-flag', function() {
+        if(!$('#b_fix').val()) {
+            alert('고정지출 예산 금액을 입력하지 않으셨습니다.');
+        } else if(!$('#b_nonfix').val()) {
+            alert('비고정지출 예산 금액을 입력하지 않으셨습니다.');
+        }
+        // else {
+        //     if(confirm('삭제할 가계부 코드는 [' + $('#a_code_delete').val() + ']입니다. 확인 버튼을 눌러주세요.')) {
+        //         $.ajax({
+        //             type: 'post',
+        //             url: '/accountbook/ac/delete',
+        //             data: {'a_code' : $('#a_code_delete').val()},
+        //             success(data) {
+        //                 alert('삭제가 완료되었습니다.');
+        //                 location.reload();
+        //             }
+        //         })
+        //     } else {
+        //         alert('삭제가 취소되었습니다.');
+        //     }
+        // }
+    })
+
     document.getElementById("btn-compare").addEventListener("click", function() {
         const url = "/accountbook/mt/amount-compare";
         window.open(url, " ", "width=1900,height=1500");

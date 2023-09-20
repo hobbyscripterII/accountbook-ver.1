@@ -18,7 +18,7 @@
             <input type="hidden" id="c_id" name="c_id" value="${comment.c_id}">
             <textarea id="c_content" name="c_content" class="form-control" style=" height: 300px; resize: none">${comment.c_content}</textarea>
             <div style="text-align: right; margin-top: 5px">
-                <input type="button" id="comment-update" class="btn btn-primary" value="수정">
+                <input type="button" id="comment-update" class="btn btn-warning" value="수정">
             </div>
     </div>
 </section>

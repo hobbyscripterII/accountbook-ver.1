@@ -2,8 +2,10 @@ package com.accountbook.project.month.controller;
 
 import com.accountbook.project.SessionConst;
 import com.accountbook.project.accountbook.service.AccountBookService;
+import com.accountbook.project.month.dto.MonthBudgetDto;
 import com.accountbook.project.month.dto.MonthTableDto;
 import com.accountbook.project.month.dto.MonthChartDto;
+import com.accountbook.project.month.service.MonthBudgetService;
 import com.accountbook.project.month.service.MonthChartService;
 import com.accountbook.project.month.service.MonthTableService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class MonthTableController {
     private final MonthTableService monthTableService;
     private final AccountBookService accountBookService;
     private final MonthChartService monthChartService;
+    private final MonthBudgetService monthBudgetService;
 
     @GetMapping("/{m_id}/{a_code}")
     public String month(@PathVariable("m_id") int m_id, @PathVariable("a_code") int a_code, HttpServletRequest request, Model model) {
@@ -36,6 +39,9 @@ public class MonthTableController {
         model.addAttribute("accountBook", accountBookService.selectMonth(map)); // 회원이 선택한 가계부 일련코드
         model.addAttribute("table", monthTableService.getMonth(map)); // 회원이 입력한 가계부 정보
         model.addAttribute("member", monthChartService.getMemberMonthCategorySum(map));
+        // ** 예산 정보 담긴 메소드! 처음에 보낼 때는 기초 예산으로
+//        MonthBudgetDto.selectBudgetDto selectBudgetDto = new MonthBudgetDto.selectBudgetDto();
+//        monthBudgetService.selectBudget(selectBudgetDto);
         tableInfo(model, map);
 
         return "month";

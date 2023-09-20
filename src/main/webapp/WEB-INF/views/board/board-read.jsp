@@ -59,11 +59,11 @@
 
             <div style="text-align: right">
                 <c:if test="${sessionScope.MEMBER_ID eq flag.m_id}">
-                    <input type="button" class="btn btn-primary" value="수정" onclick="location.href='/accountbook/${boardName}/update/${flag.b_id}'">
-                    <input type="button" class="btn btn-primary" value="삭제" onclick="del()">
+                    <input type="button" class="btn btn-warning" value="수정" onclick="location.href='/accountbook/${boardName}/update/${flag.b_id}'">
+                    <input type="button" class="btn btn-warning" value="삭제" onclick="del()">
                 </c:if>
 
-                <input type="button" class="btn btn-primary" value="목록" onclick="location.href='/accountbook/${boardName}/list'">
+                <input type="button" class="btn btn-warning" value="목록" onclick="location.href='/accountbook/${boardName}/list'">
             </div>
 
             <c:choose>
