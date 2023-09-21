@@ -16,6 +16,7 @@
         <typeAlias type="com.accountbook.project.month.dto.MonthBudgetDto$Insert" alias="MonthBudgetInsertDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthBudgetDto$Select" alias="MonthBudgetSelectDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthBudgetDto$Update" alias="MonthBudgetUpdateDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthCommentDto$Insert" alias="MonthCommentInsertDto" />
 
         <typeAlias type="com.accountbook.project.board.dto.BoardDto" alias="BoardDto" />
         <typeAlias type="com.accountbook.project.board.dto.BoardDto$GetName" alias="BoardGetNameDto" />

@@ -8,4 +8,4 @@ project.iml
 META-INF/
 log4j.xml
 api.properties
-database.properties
+.gitignore

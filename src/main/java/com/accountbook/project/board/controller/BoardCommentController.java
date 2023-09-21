@@ -3,6 +3,7 @@ package com.accountbook.project.board.controller;
 import com.accountbook.project.SessionConst;
 import com.accountbook.project.board.service.BoardCommentService;
 import com.accountbook.project.board.service.BoardService;
+import com.accountbook.project.month.dto.MonthCommentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +23,13 @@ public class BoardCommentController {
     @PostMapping("/insert")
     @ResponseBody
     public void insertComment(@RequestParam int b_id, @RequestParam String c_content, HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("m_id", boardService.getId(request));
-        map.put("b_id", b_id);
-        map.put("c_content", c_content);
-        boardCommentService.insertComment(map);
+        MonthCommentDto.Insert insert = MonthCommentDto.Insert.builder()
+                .b_id(b_id)
+                .m_id(boardService.getId(request))
+                .c_content(c_content)
+                .build();
+
+        boardCommentService.insertComment(insert);
     }
 
     @GetMapping("/update/{c_id}")

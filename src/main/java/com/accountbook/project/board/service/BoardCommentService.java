@@ -2,6 +2,8 @@ package com.accountbook.project.board.service;
 
 import com.accountbook.project.board.dto.BoardCommentDto;
 import com.accountbook.project.board.mapper.BoardCommentMapper;
+import com.accountbook.project.month.dto.MonthBudgetDto;
+import com.accountbook.project.month.dto.MonthCommentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,8 @@ public class BoardCommentService {
         return boardCommentMapper.getComment(b_id);
     }
     public BoardCommentDto.selectComment selectComment(int c_id) { return boardCommentMapper.selectComment(c_id); }
-    public void insertComment(Map<String, Object> map) { boardCommentMapper.insertComment(map); }
+    public void insertComment(MonthCommentDto.Insert insert) { boardCommentMapper.insertComment(insert); }
+//    public void insertComment(Map<String, Object> map) { boardCommentMapper.insertComment(map); }
     public void updateComment(Map<String, Object> map) { boardCommentMapper.updateComment(map); }
     public void deleteComment(int c_id) { boardCommentMapper.deleteComment(c_id); }
 }
