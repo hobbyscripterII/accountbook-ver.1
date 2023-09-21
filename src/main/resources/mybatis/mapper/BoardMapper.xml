@@ -10,7 +10,7 @@
         WHERE M_ID = #{m_id}
     </select>
 
-    <insert id="insertBoard" parameterType="BoardInsertDto">
+    <insert id="insertContent" parameterType="BoardInsertDto">
         INSERT INTO AC_BOARD(B_ID, B_CODE, M_ID, N_TITLE, N_CONTENT, N_VIEW, N_CREATE_DATE, B_ALT) VALUES(BOARD_SEQ.NEXTVAL, #{b_code}, #{m_id}, #{n_title}, #{n_content}, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), #{b_alt})
     </insert>
 
@@ -18,24 +18,23 @@
          SELECT B.B_ID, BC.B_CODE, M.M_ID, M.M_NAME, B.N_TITLE, B.N_CREATE_DATE, B.B_ALT,
                 (SELECT COUNT(*) FROM AC_HEART H WHERE H.B_ID = B.B_ID) AS h_cnt,
                 B.N_VIEW
-        FROM AC_BOARD B
-                 INNER JOIN AC_MEMBER M
-                            ON M.M_ID = B.M_ID
-                 INNER JOIN AC_BOARD_CODE BC
-                            ON B.B_CODE = BC.B_CODE
-                 INNER JOIN (
-            SELECT ROWNUM RN, A.*
-            FROM (
-                     SELECT * FROM AC_BOARD
-                     ORDER BY B_ID desc
-                 ) A
-        ) SUB ON B.B_ID = SUB.B_ID
-        WHERE SUB.RN BETWEEN #{begin} AND #{end} AND BC.B_CODE = #{b_code}
+         FROM AC_BOARD B
+                  INNER JOIN AC_MEMBER M
+                             ON M.M_ID = B.M_ID
+                  INNER JOIN AC_BOARD_CODE BC
+                             ON B.B_CODE = BC.B_CODE
+                  INNER JOIN (
+             SELECT ROWNUM RN, A.*
+             FROM (
+                      SELECT * FROM AC_BOARD
+                      ORDER BY B_ID desc
+                  ) A
+         ) SUB ON B.B_ID = SUB.B_ID
+         WHERE SUB.RN BETWEEN 1 AND 10 AND BC.B_CODE = #{b_code}
     </select>
 
-
-    <select id="getContentCnt" resultType="int">
-        SELECT COUNT(*) FROM AC_BOARD
+    <select id="getContentCnt" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM AC_BOARD WHERE B_CODE = #{b_code}
     </select>
 
     <select id="selectContent" parameterType="map" resultType="BoardSelectContentDto">

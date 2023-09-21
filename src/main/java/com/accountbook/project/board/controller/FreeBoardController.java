@@ -22,7 +22,7 @@ public class FreeBoardController {
 
     @GetMapping("/list")
     public String board(Model model, @RequestParam(defaultValue = "1") int page) {
-        PaginationDto paginationDto = new PaginationDto(page, boardService.getContentCnt());
+        PaginationDto paginationDto = new PaginationDto(page, boardService.getContentCnt(2));
         model.addAttribute("content", boardService.getContent(paginationDto.getBegin(), paginationDto.getEnd(), 2));
         model.addAttribute("paging", paginationDto);
         boardInfo(model);
@@ -51,15 +51,8 @@ public class FreeBoardController {
             board.setB_alt("N");
         }
         board.setB_code(2);
-        boardService.insertBoard(board);
+        boardService.InsertContent(board);
         return "redirect:list";
-    }
-
-    @ResponseBody
-    @PostMapping("/delete")
-    public void delete(@RequestParam int b_id) {
-        boardLikeService.deleteAllHeart(b_id);
-        boardService.deleteContent(b_id);
     }
 
     @GetMapping("/update/{b_id}")
@@ -67,6 +60,13 @@ public class FreeBoardController {
         model.addAttribute("list", boardService.selectContent(b_id, 2));
         boardInfo(model);
         return "board/board-update";
+    }
+
+    @ResponseBody
+    @PostMapping("/delete")
+    public void delete(@RequestParam int b_id) {
+        boardLikeService.deleteAllHeart(b_id);
+        boardService.deleteContent(b_id);
     }
 
     @ResponseBody

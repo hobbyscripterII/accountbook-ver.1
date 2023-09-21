@@ -35,8 +35,8 @@ public class MonthTableController {
         map.put("me_id", m_id);
         map.put("a_code", a_code);
         model.addAttribute("category", monthTableService.getCategory()); // 가계부 카테고리
-        model.addAttribute("list", accountBookService.getMonthCode(getId(request))); // 회원이 등록한 가계부 일련코드 목록
-        model.addAttribute("accountBook", accountBookService.selectMonth(map)); // 회원이 선택한 가계부 일련코드
+        model.addAttribute("list", accountBookService.getACode(getId(request))); // 회원이 등록한 가계부 일련코드 목록
+        model.addAttribute("accountBook", accountBookService.getAccountBook(map)); // 회원이 선택한 가계부 일련코드
         model.addAttribute("table", monthTableService.getMonth(map)); // 회원이 입력한 가계부 정보
         model.addAttribute("member", monthChartService.getMemberMonthCategorySum(map));
         model.addAttribute("budget", monthBudgetService.selectBudget(m_id));

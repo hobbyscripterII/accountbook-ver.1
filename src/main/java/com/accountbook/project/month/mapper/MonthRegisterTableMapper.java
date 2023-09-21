@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MonthRegisterTableMapper {
-    void insertRow(MonthRegisterTableDto monthRegisterTableDto);
+    void insertRow(MonthRegisterTableDto.Insert insert);
     void deleteRow(int m_id);
-    void updateRow(MonthRegisterTableDto.Update monthRegisterTableDto);
+    void updateRow(MonthRegisterTableDto.Update update);
 }

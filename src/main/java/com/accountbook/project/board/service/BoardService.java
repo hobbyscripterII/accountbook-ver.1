@@ -23,11 +23,10 @@ public class BoardService {
     private final BoardLikeService boardLikeService;
 
     public List<BoardDto.GetName> getName(int m_id) { return boardMapper.getName(m_id); }
-    public void insertBoard(BoardDto.Insert board) { boardMapper.insertBoard(board); }
+    public void InsertContent(BoardDto.Insert board) { boardMapper.InsertContent(board); }
     public void deleteContent(int b_id) { boardMapper.deleteContent(b_id); }
     public void updateContent(BoardDto.UpdateContent board) { boardMapper.updateContent(board); }
     public void updateContentCnt(int b_id) { boardMapper.updateContentCnt(b_id); }
-    public int getContentCnt() { return boardMapper.getContentCnt(); }
     public BoardDto.AccessFlag accessFlag(int b_id) {return boardMapper.accessFlag(b_id);}
 
     public List<BoardDto.SelectContent> selectContent(int b_id, int b_code) {
@@ -46,9 +45,10 @@ public class BoardService {
         return boardMapper.getContent(map);
     }
 
+    public int getContentCnt(int b_code) { return boardMapper.getContentCnt(b_code); }
+
     // 게시판 정보
     public void getBoard(int b_id, int b_code, Model model, HttpServletRequest request) {
-
         model.addAttribute("list", selectContent(b_id, b_code));
         model.addAttribute("flag", accessFlag(b_id));
         model.addAttribute("name", getName(getId(request)));

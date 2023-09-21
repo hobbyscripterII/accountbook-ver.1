@@ -391,7 +391,7 @@
             <div style="margin-left: 10px; margin-right: 3px">
                 <div style="text-align: right; margin-bottom: 5px">
                 </div>
-                <form action="insert" id="form" method="post" style="overflow: auto; height: 73vh; padding-bottom: 10px">
+                <form action="insert" id="form" method="post" style="overflow: auto; height: 70vh; padding-bottom: 10px">
                     <table class="table">
                         <thead>
                         <tr>

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.accountbook.project.month.mapper.MonthRegisterTableMapper">
-    <insert id="insertRow" parameterType="MonthRegisterTableDto">
+    <insert id="insertRow" parameterType="map">
         INSERT INTO AC_MONTH(M_ID, ME_ID, A_ID, A_CODE, C_CODE, D_DATE, M_AMOUNT, M_MEMO, M_CREATE_DATE) VALUES (MONTH_SEQ.NEXTVAL, #{me_id}, #{a_id}, #{a_code}, #{c_code}, TO_DATE(#{d_date},'YY/MM/DD'), #{m_amount}, #{m_memo}, SYSDATE)
     </insert>
 

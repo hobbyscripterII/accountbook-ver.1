@@ -13,9 +13,9 @@ import java.util.Map;
 public class AccountBookService {
     private final AccountBookMapper accountBookMapper;
 
-    public List<AccountBookDto> getMonthCode(int m_id) { return accountBookMapper.getMonthCode(m_id); }
-    public List<AccountBookDto> selectMonth(Map<String, Object> map) { return accountBookMapper.selectMonth(map); }
-    public void insertMonth(Map<String, Object> map) { accountBookMapper.insertMonth(map); }
-    public void deleteMonth(Map<String, Object> map) { accountBookMapper.deleteMonth(map); }
-    public void deleteAccountBook(Map<String, Object> map) { accountBookMapper.deleteAccountBook(map); }
+    public List<AccountBookDto> getACode(int m_id) { return accountBookMapper.getACode(m_id); }
+    public List<AccountBookDto> getAccountBook(Map<String, Object> map) { return accountBookMapper.getAccountBook(map); }
+    public void insertAccountBook(AccountBookDto.Insert insert) { accountBookMapper.insertAccountBook(insert); }
+    public void deleteAccountBook(AccountBookDto.Delete delete) { accountBookMapper.deleteAccountBook(delete); }
+    public void deleteMonth(AccountBookDto.Delete delete) { accountBookMapper.deleteMonth(delete); }
 }

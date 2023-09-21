@@ -22,7 +22,7 @@ public class SuggestBoardController {
 
     @GetMapping("/list")
     public String board(Model model, @RequestParam(defaultValue = "1") int page) {
-        PaginationDto paginationDto = new PaginationDto(page, boardService.getContentCnt());
+        PaginationDto paginationDto = new PaginationDto(page, boardService.getContentCnt(4));
         model.addAttribute("content", boardService.getContent(paginationDto.getBegin(), paginationDto.getEnd(), 4));
         model.addAttribute("paging", paginationDto);
         boardInfo(model);
@@ -47,7 +47,7 @@ public class SuggestBoardController {
     @PostMapping("/write")
     public String insert(@ModelAttribute BoardDto.Insert board) {
         board.setB_code(4);
-        boardService.insertBoard(board);
+        boardService.InsertContent(board);
         return "redirect:list";
     }
 

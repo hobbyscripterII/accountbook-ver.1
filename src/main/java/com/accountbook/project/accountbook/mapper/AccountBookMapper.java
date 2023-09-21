@@ -8,9 +8,9 @@ import java.util.Map;
 
 @Mapper
 public interface AccountBookMapper {
-    List<AccountBookDto> getMonthCode(int m_id);
-    List<AccountBookDto> selectMonth(Map<String, Object> map);
-    void insertMonth(Map<String, Object> map);
-    void deleteMonth(Map<String, Object> map);
-    void deleteAccountBook(Map<String, Object> map);
+    List<AccountBookDto> getACode(int m_id);
+    List<AccountBookDto> getAccountBook(Map<String, Object> map);
+    void insertAccountBook(AccountBookDto.Insert insert);
+    void deleteAccountBook(AccountBookDto.Delete delete);
+    void deleteMonth(AccountBookDto.Delete delete);
 }
