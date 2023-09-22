@@ -9,7 +9,7 @@
     <h1>${title} 작성</h1>
 
     <div class="wrapper-notice-write">
-        <form id="f" method="post">
+        <form id="f" action="/accountbook/${boardName}/write" method="post">
             <div class="notice-write">
                 <c:if test="${sessionScope.MEMBER_ID eq '1'}">
                     <div style="display: flex; font-size: 12px; margin-bottom: 5px; align-items: center">

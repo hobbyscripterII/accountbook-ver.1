@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Mapper
 public interface BoardMapper {
-    void InsertContent(BoardDto.Insert notice);
+    void insertContent(BoardDto.Insert notice);
     List<BoardDto.SelectContent> selectContent(Map<String, Object> map);
     void updateContent(BoardDto.UpdateContent notice);
     void deleteContent(int b_id);

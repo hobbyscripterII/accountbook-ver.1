@@ -51,7 +51,10 @@ public class FreeBoardController {
             board.setB_alt("N");
         }
         board.setB_code(2);
-        boardService.InsertContent(board);
+
+        log.info("board = {}", board);
+
+        boardService.insertContent(board);
         return "redirect:list";
     }
 

@@ -23,7 +23,7 @@ public class BoardService {
     private final BoardLikeService boardLikeService;
 
     public List<BoardDto.GetName> getName(int m_id) { return boardMapper.getName(m_id); }
-    public void InsertContent(BoardDto.Insert board) { boardMapper.InsertContent(board); }
+    public void insertContent(BoardDto.Insert board) { boardMapper.insertContent(board); }
     public void deleteContent(int b_id) { boardMapper.deleteContent(b_id); }
     public void updateContent(BoardDto.UpdateContent board) { boardMapper.updateContent(board); }
     public void updateContentCnt(int b_id) { boardMapper.updateContentCnt(b_id); }

@@ -57,7 +57,7 @@ public class QuestionBoardController {
     @PostMapping("/write")
     public String insert(@ModelAttribute BoardDto.Insert board) {
         board.setB_code(3);
-        boardService.InsertContent(board);
+        boardService.insertContent(board);
         return "redirect:list";
     }
 
