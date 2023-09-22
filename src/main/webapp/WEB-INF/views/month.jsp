@@ -44,11 +44,19 @@
                         <tbody>
                         <tr style="text-align: center">
                             <td>고정지출</td>
-                            <td><fmt:formatNumber value="${budget.b_fix}" pattern="###,###,###원"/></td>
-                            <td></td>
+
+                            <c:set var="totalAmountFix" value="0" />
+                            <c:set var="totalPercentageFix" value="100" />
+                            <c:forEach var="f_" items="${fix}" varStatus="status">
+                                <c:set var="totalAmount" value="${totalAmountFix + f_.m_amount}" />
+                                <c:set var="totalPercentage" value="${totalAmountFix}" />
+                            </c:forEach>
+                            <td><fmt:formatNumber value="${budget.b_fix - totalAmount}" pattern="###,###,###원"/></td>
+                            <td><c:out value="${totalAmount / budget.b_fix * 100}%" /></td>
                         </tr>
                         <tr style="text-align: center">
                             <td>비고정지출</td>
+                            <td>${budget.b_nonfix}</td>
                             <td><fmt:formatNumber value="${budget.b_nonfix}" pattern="###,###,###원"/></td>
                             <td></td>
                         </tr>
@@ -413,7 +421,7 @@
                                 <fmt:parseDate var="d_date" value="${t.d_date}" pattern="yyyy-mm-dd" />
                                 <td><input type="date" id="d_date" name="d_date" value="<fmt:formatDate value="${d_date}" pattern="yyyy-mm-dd"/>" class="form-control form-control-sm"></td>
                                 <td>
-                                    <select id="c_code" name="c_code" class="form-control form-control-sm">
+                                    <select id="c_code" name="c_code" class="form-control form-control-sm ">
                                         <option value="${t.c_code}">${t.c_name}</option>
                                         <c:forEach var="c" items="${category}">
                                             <option value="${c.c_code}">${c.c_name}</option>
