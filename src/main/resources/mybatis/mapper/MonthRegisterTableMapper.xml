@@ -5,14 +5,14 @@
 
 <mapper namespace="com.accountbook.project.month.mapper.MonthRegisterTableMapper">
     <insert id="insertRow" parameterType="map">
-        INSERT INTO AC_MONTH(M_ID, ME_ID, A_ID, A_CODE, C_CODE, D_DATE, M_AMOUNT, M_MEMO, M_CREATE_DATE) VALUES (MONTH_SEQ.NEXTVAL, #{me_id}, #{a_id}, #{a_code}, #{c_code}, TO_DATE(#{d_date},'YY/MM/DD'), #{m_amount}, #{m_memo}, SYSDATE)
+        INSERT INTO AC_MONTH(MO_ID, M_ID, A_ID, A_CODE, C_CODE, D_DATE, M_AMOUNT, M_MEMO, M_CREATE_DATE) VALUES (MONTH_SEQ.NEXTVAL, #{m_id}, #{a_id}, #{a_code}, #{c_code}, TO_DATE(#{d_date},'YY/MM/DD'), #{m_amount}, #{m_memo}, SYSDATE)
     </insert>
 
     <update id="updateRow" parameterType="MonthRegisterTableUpdateDto">
-        UPDATE AC_MONTH SET C_CODE = #{c_code}, D_DATE = TO_DATE(#{d_date},'YY/MM/DD'), M_AMOUNT = #{m_amount}, M_MEMO = #{m_memo}, M_UPDATE_DATE = TO_DATE(#{d_date},'YY/MM/DD') WHERE M_ID = #{m_id}
+        UPDATE AC_MONTH SET C_CODE = #{c_code}, D_DATE = TO_DATE(#{d_date},'YY/MM/DD'), M_AMOUNT = #{m_amount}, M_MEMO = #{m_memo}, M_UPDATE_DATE = TO_DATE(#{d_date},'YY/MM/DD') WHERE MO_ID = #{mo_id}
     </update>
 
     <delete id="deleteRow" parameterType="java.lang.Integer">
-        DELETE FROM AC_MONTH WHERE M_ID = #{m_id}
+        DELETE FROM AC_MONTH WHERE MO_ID = #{mo_id}
     </delete>
 </mapper>

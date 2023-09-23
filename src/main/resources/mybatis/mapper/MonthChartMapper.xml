@@ -15,57 +15,57 @@
             (
                 SELECT
                     '식비' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'C%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'C%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '생활' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'D%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'D%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '교통' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'E%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'E%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '정기결제' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'F%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'F%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '패션' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'G%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'G%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '뷰티' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'H%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'H%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '문구' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'I%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'I%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '교육' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'J%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'J%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '문화' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'K%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'K%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '건강' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'L%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'L%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '기타' AS 항목,
-                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'M%' AND ME_ID = #{me_id} AND A_CODE = #{a_code}) AS 금액
+                    (SELECT SUM(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'M%' AND m_id = #{m_id} AND A_CODE = #{a_code}) AS 금액
                 FROM AC_MONTH
             )
         ORDER BY
@@ -90,57 +90,57 @@
             (
                 SELECT
                     '식비' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'C%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'C%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '생활' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'D%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'D%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '교통' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'E%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'E%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '정기결제' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'F%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'F%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '패션' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'G%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'G%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '뷰티' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'H%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'H%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '문구' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'I%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'I%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '교육' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'J%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'J%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '문화' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'K%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'K%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '건강' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'L%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'L%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
                 UNION
                 SELECT
                     '기타' AS 항목,
-                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'M%' AND ME_ID = #{me_id}) AS 금액
+                    (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'M%' AND m_id = #{m_id}) AS 금액
                 FROM AC_MONTH
             )
         ORDER BY
@@ -166,57 +166,57 @@
         (
         SELECT
         '식비' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'C%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'C%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         UNION
         SELECT
         '생활' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'D%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'D%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         UNION
         SELECT
         '교통' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'E%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'E%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         UNION
         SELECT
         '정기결제' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'F%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'F%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         UNION
         SELECT
         '패션' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'G%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'G%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         UNION
         SELECT
         '뷰티' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'H%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'H%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         UNION
         SELECT
         '문구' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'I%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'I%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         UNION
         SELECT
         '교육' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'J%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'J%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         UNION
         SELECT
         '문화' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'K%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'K%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         UNION
         SELECT
         '건강' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'L%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'L%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         UNION
         SELECT
         '기타' AS 항목,
-        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'M%' AND ME_ID <> #{me_id}) AS 금액
+        (SELECT AVG(M_AMOUNT) FROM AC_MONTH WHERE C_CODE LIKE 'M%' AND m_id <> #{m_id}) AS 금액
         FROM AC_MONTH
         )
         ORDER BY

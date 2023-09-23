@@ -16,19 +16,19 @@ public class MonthRegisterTableController {
 
     @ResponseBody
     @RequestMapping("/insert")
-    public void insert(@RequestParam int me_id, @RequestParam int a_id, @RequestParam int a_code, @RequestParam String c_code, @RequestParam String d_date, @RequestParam int m_amount, @RequestParam String m_memo) {
-        monthRegisterTableService.insertRow(me_id, a_id, a_code, c_code, d_date, m_amount, m_memo);
+    public void insert(@RequestParam int m_id, @RequestParam int a_id, @RequestParam int a_code, @RequestParam String c_code, @RequestParam String d_date, @RequestParam int m_amount, @RequestParam String m_memo) {
+        monthRegisterTableService.insertRow(m_id, a_id, a_code, c_code, d_date, m_amount, m_memo);
     }
 
     @ResponseBody
     @RequestMapping("/update")
-    public void update(@RequestParam int m_id, @RequestParam String c_code, @RequestParam String d_date, @RequestParam int m_amount, @RequestParam String m_memo) {
-        monthRegisterTableService.updateRow(m_id, c_code, d_date, m_amount, m_memo);
+    public void update(@RequestParam int mo_id, @RequestParam String c_code, @RequestParam String d_date, @RequestParam int m_amount, @RequestParam String m_memo) {
+        monthRegisterTableService.updateRow(mo_id, c_code, d_date, m_amount, m_memo);
     }
 
     @ResponseBody
     @PostMapping("/delete")
-    public void deleteRow(@RequestParam int m_id) {
-        monthRegisterTableService.deleteRow(m_id);
+    public void deleteRow(@RequestParam int mo_id) {
+        monthRegisterTableService.deleteRow(mo_id);
     }
 }

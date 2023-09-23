@@ -21,6 +21,6 @@
     </delete>
 
     <delete id="deleteMonth" parameterType="AccountBookDeleteDto">
-        DELETE AC_MONTH WHERE ME_ID = #{m_id} AND A_CODE = #{a_code}
+        DELETE AC_MONTH WHERE M_ID = #{m_id} AND A_CODE = #{a_code}
     </delete>
 </mapper>

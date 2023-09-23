@@ -414,8 +414,8 @@
                         <tbody class="form-table">
                         <c:forEach var="t" items="${table}">
                             <tr>
+                                <input type="hidden" id="mo_id" name="mo_id" value="${t.mo_id}">
                                 <input type="hidden" id="m_id" name="m_id" value="${t.m_id}">
-                                <input type="hidden" id="me_id" name="me_id" value="${t.me_id}">
                                 <input type="hidden" id="a_id" name="a_id" value="${t.a_id}">
                                 <input type="hidden" id="a_code" name="a_code" value="${t.a_code}">
                                 <fmt:parseDate var="d_date" value="${t.d_date}" pattern="yyyy-mm-dd" />
@@ -607,6 +607,7 @@
             '<option></option>' +
             '<c:forEach var="c" items="${category}">' +
             '<option value="${c.c_code}">${c.c_name}</option>' +
+            '<input type="hidden" id="c_code_num" name="c_code_num" value="${c.c_code_num}">' +
             '</c:forEach>' +
             '</select>' +
             '</td>' +
@@ -615,7 +616,7 @@
             '<td style="text-align: center"><input type="button" id="create" value="추가" data-bs-toggle="modal" data-bs-target="#modal-row-create" class="btn btn-primary btn-sm"></td>' +
             '<td style="text-align: center"><input type="button" id="delete" value="삭제" data-bs-toggle="modal" data-bs-target="#modal-row-delete" class="btn btn-danger btn-sm"></td>' +
             '<input type="hidden" id="a_id" name="a_id" value="${accountBook[0].a_id}">' +
-            '<input type="hidden" id="me_id" name="me_id" value="${accountBook[0].m_id}">' +
+            '<input type="hidden" id="m_id" name="m_id" value="${accountBook[0].m_id}">' +
             '<input type="hidden" id="a_code" name="a_code" value="${accountBook[0].a_code}">' +
             '</tr>';
 

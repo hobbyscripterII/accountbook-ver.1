@@ -5,14 +5,14 @@
 
 <mapper namespace="com.accountbook.project.month.mapper.MonthBudgetMapper">
     <insert id="insertBudget" parameterType="MonthBudgetInsertDto">
-        INSERT INTO AC_BUDGET(B_ID, ME_ID, B_COVER, B_FIX, B_NONFIX, B_CREATE_DATE) VALUES(BUDGET_SEQ.NEXTVAL, #{me_id}, #{b_cover}, #{b_fix}, #{b_nonfix}, TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI'))
+        INSERT INTO AC_BUDGET(B_ID, M_ID, B_COVER, B_FIX, B_NONFIX, B_CREATE_DATE) VALUES(BUDGET_SEQ.NEXTVAL, #{m_id}, #{b_cover}, #{b_fix}, #{b_nonfix}, TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI'))
     </insert>
 
     <select id="selectBudget" parameterType="MonthBudgetSelectDto" resultType="MonthBudgetDto">
-        SELECT ME_ID, B_COVER, B_FIX, B_NONFIX, B_CREATE_DATE FROM AC_BUDGET WHERE ME_ID = #{me_id} AND B_COVER = #{b_cover}
+        SELECT M_ID, B_COVER, B_FIX, B_NONFIX, B_CREATE_DATE FROM AC_BUDGET WHERE M_ID = #{m_id} AND B_COVER = #{b_cover}
     </select>
 
     <update id="updateBudget" parameterType="MonthBudgetUpdateDto">
-        UPDATE AC_BUDGET SET B_FIX = #{b_fix}, B_NONFIX = #{b_nonfix} WHERE ME_ID = #{me_id} AND B_COVER = #{b_cover}
+        UPDATE AC_BUDGET SET B_FIX = #{b_fix}, B_NONFIX = #{b_nonfix} WHERE M_ID = #{m_id} AND B_COVER = #{b_cover}
     </update>
 </mapper>

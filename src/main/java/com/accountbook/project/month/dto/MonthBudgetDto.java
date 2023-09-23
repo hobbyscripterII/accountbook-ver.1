@@ -7,7 +7,7 @@ import lombok.*;
 @ToString
 public class MonthBudgetDto {
     private int b_id;
-    private int me_id;
+    private int m_id;
     private String b_cover;
     private int b_fix;
     private int b_nonfix;
@@ -17,13 +17,13 @@ public class MonthBudgetDto {
     @Setter
     @ToString
     public static class Insert {
-        private int me_id;
+        private int m_id;
         private String b_cover;
         private int b_fix;
         private int b_nonfix;
 
-        public Insert(int me_id, String b_cover, int b_fix, int b_nonfix) {
-            this.me_id = me_id;
+        public Insert(int m_id, String b_cover, int b_fix, int b_nonfix) {
+            this.m_id = m_id;
             this.b_cover = b_cover;
             this.b_fix = b_fix;
             this.b_nonfix = b_nonfix;
@@ -32,7 +32,7 @@ public class MonthBudgetDto {
 
     @Builder
     public static class Select {
-        private int me_id;
+        private int m_id;
         private String b_cover;
     }
 

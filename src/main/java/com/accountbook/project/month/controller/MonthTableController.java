@@ -32,7 +32,6 @@ public class MonthTableController {
     public String month(@PathVariable("m_id") int m_id, @PathVariable("a_code") int a_code, HttpServletRequest request, Model model) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("m_id", m_id);
-        map.put("me_id", m_id);
         map.put("a_code", a_code);
         model.addAttribute("category", monthTableService.getCategory()); // 가계부 카테고리
         model.addAttribute("list", accountBookService.getACode(getId(request))); // 회원이 등록한 가계부 일련코드 목록

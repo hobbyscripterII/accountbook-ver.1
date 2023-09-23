@@ -9,8 +9,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MonthRegisterTableDto {
+    private int mo_id;
     private int m_id;
-    private int me_id;
     private int a_id;
     private int a_code;
     private String c_code;
@@ -21,7 +21,7 @@ public class MonthRegisterTableDto {
 
     @Builder
     public static class Insert {
-        private int me_id;
+        private int m_id;
         private int a_id;
         private int a_code;
         private String c_code;
@@ -34,7 +34,7 @@ public class MonthRegisterTableDto {
     @Setter
     @ToString
     public static class Update {
-        private int m_id;
+        private int mo_id;
         private String c_code;
         private String d_date;
         private int m_amount;

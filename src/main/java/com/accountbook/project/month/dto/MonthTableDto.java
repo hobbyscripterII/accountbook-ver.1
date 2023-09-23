@@ -13,6 +13,7 @@ public class MonthTableDto {
     @ToString
     public static class getCategory {
         private String c_code;
+        private int c_code_num;
         private String c_name;
     }
 

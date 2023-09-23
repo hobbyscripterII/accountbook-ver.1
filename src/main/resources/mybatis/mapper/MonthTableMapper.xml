@@ -5,14 +5,14 @@
 
 <mapper namespace="com.accountbook.project.month.mapper.MonthTableMapper">
     <select id="getCategory" resultType="MonthCategoryDto">
-        SELECT * FROM AC_CATEGORY ORDER BY C_CODE
+        SELECT C_ID, M_ID, C_CODE, C_CODE_NUM, C_NAME FROM AC_CATEGORY
     </select>
 
     <select id="getMonth" parameterType="Map" resultType="MonthRegisterTableDto">
-        SELECT M.M_ID, M.ME_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
+        SELECT M.MO_ID, M.M_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
         FROM AC_MONTH M, AC_CATEGORY C
-        WHERE M.C_CODE = C.C_CODE AND M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
-        GROUP BY M.M_ID, M.ME_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
+        WHERE M.C_CODE = C.C_CODE AND M.M_ID = #{m_id} AND M.A_CODE = #{a_code}
+        GROUP BY M.MO_ID, M.M_ID, M.A_ID, M.A_CODE, C.C_CODE, C.C_NAME, M.D_DATE, M.M_AMOUNT, M.M_MEMO
         ORDER BY M.D_DATE
     </select>
 
@@ -20,7 +20,7 @@
         SELECT C.C_CODE c_code, C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount
         FROM AC_CATEGORY C
                  INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE M.ME_ID = #{me_id} AND M.A_CODE = #{a_code}
+        WHERE M.M_ID = #{m_id} AND M.A_CODE = #{a_code}
         GROUP BY C.C_CODE, C.C_NAME
     </select>
 </mapper>
