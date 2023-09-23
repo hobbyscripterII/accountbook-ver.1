@@ -18,19 +18,17 @@ $(document).on('click', '#create', function() {
     const a_code = row.querySelector(`[name = 'a_code']`).value;
     const d_date = row.querySelector(`[name = 'd_date']`).value;
     const c_code = row.querySelector(`[name = 'c_code']`).value;
-    const c_code_num = row.querySelector(`[name = 'c_code_num']`).value;
-    console.log(c_code_num);
     const m_amount = row.querySelector(`[name = 'm_amount']`).value;
     const m_memo = row.querySelector(`[name = 'm_memo']`).value;
-    const btn = document.querySelectorAll('#create-flag')
+    const btn = document.querySelectorAll('#create-flag');
 
     btn.forEach(btn => {
         btn.addEventListener('click', function() {
             $.ajax({
                 type: 'post',
                 url: '/accountbook/mw/insert',
-                data: {'m_id' : m_id, 'a_id' : a_id, 'a_code' : a_code, 'd_date': d_date, 'c_code_num': c_code_num, 'c_code': c_code, 'm_amount' :m_amount , 'm_memo':m_memo},
-                success(data) {
+                data: {'m_id' : m_id, 'a_id' : a_id, 'a_code' : a_code, 'd_date': d_date, 'c_code': c_code, 'm_amount' :m_amount , 'm_memo':m_memo},
+                success() {
                     alert('추가가 완료되었습니다.');
                     location.reload();
                 },  error() {
@@ -56,14 +54,8 @@ $(document).on('click', '#update', function() {
             $.ajax({
                 type: 'post',
                 url: '/accountbook/mw/update',
-                data: {
-                    'mo_id': mo_id,
-                    'd_date': d_date,
-                    'c_code': c_code,
-                    'm_amount': m_amount,
-                    'm_memo': m_memo
-                },
-                success(data) {
+                data: {'mo_id': mo_id, 'd_date': d_date, 'c_code': c_code, 'm_amount': m_amount, 'm_memo': m_memo},
+                success() {
                     alert('수정이 완료되었습니다.');
                     location.reload();
                 },
@@ -89,7 +81,7 @@ del.forEach(btn => {
                     type: 'post',
                     url: '/accountbook/mw/delete',
                     data: {'mo_id' : mo_id},
-                    success(data) {
+                    success() {
                         alert('삭제가 완료되었습니다.');
                         location.reload();
                     }, error() {

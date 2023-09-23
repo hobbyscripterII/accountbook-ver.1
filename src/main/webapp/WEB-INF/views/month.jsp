@@ -607,7 +607,6 @@
             '<option></option>' +
             '<c:forEach var="c" items="${category}">' +
             '<option value="${c.c_code}">${c.c_name}</option>' +
-            '<input type="hidden" id="c_code_num" name="c_code_num" value="${c.c_code_num}">' +
             '</c:forEach>' +
             '</select>' +
             '</td>' +
