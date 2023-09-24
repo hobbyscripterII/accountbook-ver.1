@@ -6,7 +6,7 @@
 <section>
     <h1>평균 비고정지출 비교 차트</h1>
     <div style="display:flex; justify-content: center; align-items: center">
-        <img src="<c:url value="/resources/img/alert-icon.png" />" style="width: 60px">
+        <img src="<c:url value="/resources/img/icon/icon_alert.png" />" style="width: 60px">
         <div style="color:gray; font-weight: bold;">${name}님의 평균 비고정지출 금액과 다른 회원님들의 평균 비고정지출 금액을 비교합니다.</div>
     </div>
     <div id="chart"></div>

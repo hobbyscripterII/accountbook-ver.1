@@ -13,7 +13,7 @@
 
 <body>
 <section>
-    <img src="<c:url value="/resources/img/warning.png" />" style="width: 150px">
+    <img src="<c:url value="/resources/img/icon/icon_warning.png" />" style="width: 150px">
     <h2>잘못된 접근입니다.</h2>
     <h2>회원가입 후 이용해주세요.</h2>
 </section>

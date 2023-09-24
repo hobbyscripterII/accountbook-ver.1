@@ -56,6 +56,7 @@
         </form>
     </div>
 </section>
+<jsp:include page="../layout/footer.jsp"/>
 
 <script type="text/javascript">
     function res() {

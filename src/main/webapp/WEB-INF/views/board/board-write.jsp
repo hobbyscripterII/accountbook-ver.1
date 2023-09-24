@@ -49,6 +49,8 @@
         </form>
     </div>
 </section>
+<jsp:include page="../layout/footer.jsp"/>
+
 <script type="text/javascript">
     $(document).on('click', '#btn-register', function() {
         if (!f.n_create_date.value) {

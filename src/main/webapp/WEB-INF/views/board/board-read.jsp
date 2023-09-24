@@ -41,13 +41,13 @@
                     <c:choose>
                         <c:when test="${heart eq 0}">
                             <div class="wrapper-board-like">
-                                    <img id="non-heart" src="<c:url value="/resources/img/nonhearts-icon.png" />" style="cursor: pointer">
+                                    <img id="non-heart" src="<c:url value="/resources/img/icon/icon_nonhearts.png" />" style="cursor: pointer">
                                     <div style="font-size: 14px; font-weight: bold; color: gray">${cnt }</div>
                             </div>
                         </c:when>
                         <c:otherwise>
                             <div class="wrapper-board-like">
-                                    <img id="heart" src="<c:url value="/resources/img/hearts-icon.png" />" style="cursor: pointer">
+                                    <img id="heart" src="<c:url value="/resources/img/icon/icon_hearts.png" />" style="cursor: pointer">
                                     <div style="font-size: 14px; font-weight: bold; color: gray">${cnt }</div>
                             </div>
                         </c:otherwise>
@@ -136,6 +136,7 @@
         </c:choose>
     </div>
 </section>
+<jsp:include page="../layout/footer.jsp"/>
 
 <script type="text/javascript">
     $(document).on('click', '#non-heart', function() {

@@ -6,19 +6,24 @@
 }
 
 @font-face {
-    font-family: 'EF_jejudoldam';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
-    font-weight: normal;
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
 
 * {
     font-family: 'IBMPlexSansKR-Regular';
+    box-sizing: border-box;
+}
+
+html {
+    overflow: visible;
 }
 
 header {
     display: flex;
-    width: 100vw;
+    /*width: 100vw;*/
     line-height: 100%;
     justify-content: center;
     background-color: #13264E;
@@ -32,7 +37,7 @@ header > p {
 }
 
 header > p > a {
-    font-family: 'EF_jejudoldam';
+    font-family: 'Pretendard-Regular';
     line-height: 40px;
     text-decoration: none;
     color: white;
@@ -40,13 +45,14 @@ header > p > a {
 
 nav {
     display: flex;
-    width: 100vw;
+    /*width: 100vw;*/
     height: 40px;
     background-color: #13264E;
     justify-content: space-around;
 }
 
 nav > a {
+    font-family: 'Pretendard-Regular';
     line-height: 40px;
     text-decoration: none;
     color: white;
@@ -54,8 +60,21 @@ nav > a {
 
 section {
     width: 100%;
-    /*height: 91vh;*/
+    height: 81%;
     padding-top: 20px;
+}
+
+footer {
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    background-color: black;
+}
+
+footer > p {
+    font-family: 'Pretendard-Regular';
+    color: white;
 }
 
 h1 {
