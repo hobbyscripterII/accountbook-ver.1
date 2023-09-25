@@ -2,7 +2,6 @@ package com.accountbook.project.board.service;
 
 import com.accountbook.project.board.dto.BoardCommentDto;
 import com.accountbook.project.board.mapper.BoardCommentMapper;
-import com.accountbook.project.month.dto.MonthBudgetDto;
 import com.accountbook.project.month.dto.MonthCommentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

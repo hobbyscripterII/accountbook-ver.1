@@ -30,6 +30,18 @@
     width: 100%;
     font-family: 'Shrikhand', cursive;
     margin: 30px;
-    font-size: 50px;
+    font-size: 55px;
     text-align: center;
+}
+
+.div-aos-l, .div-aos-r {
+    margin-top: 200px;
+}
+
+.div-aos-l {
+    text-align: right;
+}
+
+.div-aos-r {
+    text-align: left;
 }

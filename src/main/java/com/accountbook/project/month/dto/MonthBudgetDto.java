@@ -40,7 +40,7 @@ public class MonthBudgetDto {
     public static class Update {
         private int b_fix;
         private int b_nonfix;
-        private int me_id;
+        private int m_id;
         private String b_cover;
     }
 }

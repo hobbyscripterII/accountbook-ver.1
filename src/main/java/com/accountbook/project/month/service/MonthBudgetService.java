@@ -27,7 +27,7 @@ public class MonthBudgetService {
         MonthBudgetDto.Update update = MonthBudgetDto.Update.builder()
                 .b_fix(b_fix)
                 .b_nonfix(b_nonfix)
-                .me_id(m_id)
+                .m_id(m_id)
                 .b_cover(b_cover)
                 .build();
         monthBudgetMapper.updateBudget(update);
