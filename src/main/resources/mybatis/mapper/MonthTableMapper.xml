@@ -16,11 +16,15 @@
         ORDER BY M.D_DATE
     </select>
 
-    <select id="getTable" parameterType="Map" resultType="MonthTableDto">
-        SELECT C.C_CODE c_code, C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount
-        FROM AC_CATEGORY C
-                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE
-        WHERE M.M_ID = #{m_id} AND M.A_CODE = #{a_code}
-        GROUP BY C.C_CODE, C.C_NAME
+    <select id="getTable" parameterType="map" resultType="MonthTableDto">
+        SELECT C.C_CODE c_code, C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount FROM AC_MONTH M, AC_CATEGORY C WHERE M.M_ID = C.M_ID AND M.C_CODE = C.C_CODE AND M.M_ID = #{m_id} AND M.A_CODE = #{a_code} GROUP BY C.C_CODE, C.C_NAME ORDER BY C.C_CODE
     </select>
+
+<!--    <select id="getTable" parameterType="Map" resultType="MonthTableDto">-->
+<!--        SELECT C.C_CODE c_code, C.C_NAME c_name, SUM(M.M_AMOUNT) m_amount-->
+<!--        FROM AC_CATEGORY C-->
+<!--                 INNER JOIN AC_MONTH M ON C.C_CODE = M.C_CODE-->
+<!--        WHERE M.M_ID = #{m_id} AND M.A_CODE = #{a_code}-->
+<!--        GROUP BY C.C_CODE, C.C_NAME-->
+<!--    </select>-->
 </mapper>

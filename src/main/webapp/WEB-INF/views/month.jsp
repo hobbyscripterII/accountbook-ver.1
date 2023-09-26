@@ -44,21 +44,25 @@
                         <tbody>
                         <tr style="text-align: center">
                             <td>고정지출</td>
-
                             <c:set var="totalAmountFix" value="0" />
                             <c:set var="totalPercentageFix" value="100" />
                             <c:forEach var="f_" items="${fix}" varStatus="status">
-                                <c:set var="totalAmount" value="${totalAmountFix + f_.m_amount}" />
-                                <c:set var="totalPercentage" value="${totalAmountFix}" />
+                                <c:set var="totalAmountFix" value="${totalAmountFix + f_.m_amount}" />
+                                <c:set var="totalPercentageFix" value="${totalAmountFix}" />
                             </c:forEach>
-                            <td><fmt:formatNumber value="${budget.b_fix - totalAmount}" pattern="###,###,###원"/></td>
-                            <td><c:out value="${totalAmount / budget.b_fix * 100}%" /></td>
+                            <td><fmt:formatNumber value="${budget.b_fix - totalAmountFix}" pattern="###,###,###원"/></td>
+                            <td><fmt:formatNumber value="${totalAmountFix / budget.b_fix * 100}" pattern="0.00" />%</td>
                         </tr>
                         <tr style="text-align: center">
                             <td>비고정지출</td>
-                            <td>${budget.b_nonfix}</td>
-                            <td><fmt:formatNumber value="${budget.b_nonfix}" pattern="###,###,###원"/></td>
-                            <td></td>
+                            <c:set var="totalAmountNonFix" value="0" />
+                            <c:set var="totalPercentageNonFix" value="100" />
+                            <c:forEach var="nf_" items="${nonFix}" varStatus="status">
+                                <c:set var="totalAmountNonFix" value="${totalAmountNonFix + nf_.m_amount}" />
+                                <c:set var="totalPercentageNonFix" value="${totalAmountNonFix}" />
+                            </c:forEach>
+                            <td><fmt:formatNumber value="${budget.b_nonfix - totalAmountNonFix}" pattern="###,###,###원"/></td>
+                            <td><fmt:formatNumber value="${totalAmountNonFix / budget.b_nonfix * 100}" pattern="0.00" />%</td>
                         </tr>
                         </tbody>
                     </table>
@@ -165,7 +169,7 @@
                     <!-- 비고정지출 테이블 정보 -->
                     <table class="table">
                         <tr>
-                            <th colspan="3" style="text-align: center">비고정지출<div style="color:gray">식비</div></th>
+                            <th colspan="3" style="text-align: center">비고정지출</th>
                         </tr>
                         <tr>
                             <th scope="col" style="text-align: center">카테고리</th>
@@ -174,10 +178,10 @@
                         </tr>
                         <c:set var="totalAmount" value="0" />
                         <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nff_" items="${nonFixFood}" varStatus="status">
+                        <c:forEach var="nff_" items="${nonFix}" varStatus="status">
                             <c:set var="totalAmount" value="${totalAmount + nff_.m_amount}" />
                         </c:forEach>
-                        <c:forEach var="nff" items="${nonFixFood}" varStatus="status">
+                        <c:forEach var="nff" items="${nonFix}" varStatus="status">
                             <tr style="text-align: center">
                                 <td><c:out value="${nff.c_name}" /></td>
                                 <td><fmt:formatNumber value="${nff.m_amount}" pattern="###,###,###원"/></td>
@@ -189,206 +193,231 @@
                             <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
                             <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
                         </tr>
-                        <tr>
-                            <th colspan="3" style="text-align: center"><div style="color:gray">생활</div></th>
-                        </tr>
-                        <c:set var="totalAmount" value="0" />
-                        <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nfl_" items="${nonFixLife}" varStatus="status">
-                            <c:set var="totalAmount" value="${totalAmount + nfl_.m_amount}" />
-                        </c:forEach>
-                        <c:forEach var="nfl" items="${nonFixLife}" varStatus="status">
-                            <tr style="text-align: center">
-                                <td><c:out value="${nfl.c_name}" /></td>
-                                <td><fmt:formatNumber value="${nfl.m_amount}" pattern="###,###,###원"/></td>
-                                <td><fmt:formatNumber value="${nfl.m_amount / totalAmount * 100}" pattern="0.00" />%</td>
-                            </tr>
-                        </c:forEach>
-                        <tr style="text-align: center">
-                            <td style="font-weight: bold; text-align: center">합계</td>
-                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
-                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" style="text-align: center"><div style="color:gray">교통</div></th>
-                        </tr>
-                        <c:set var="totalAmount" value="0" />
-                        <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nft_" items="${nonFixTraffic}" varStatus="status">
-                            <c:set var="totalAmount" value="${totalAmount + nft_.m_amount}" />
-                        </c:forEach>
-                        <c:forEach var="nft" items="${nonFixTraffic}" varStatus="status">
-                            <tr style="text-align: center">
-                                <td><c:out value="${nft.c_name}" /></td>
-                                <td><fmt:formatNumber value="${nft.m_amount}" pattern="###,###,###원"/></td>
-                                <td><fmt:formatNumber value="${nft.m_amount / totalAmount * 100}" pattern="0.00" />%</td>
-                            </tr>
-                        </c:forEach>
-                        <tr style="text-align: center">
-                            <td style="font-weight: bold; text-align: center">합계</td>
-                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
-                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" style="text-align: center"><div style="color:gray">정기 결제</div></th>
-                        </tr>
-                        <c:set var="totalAmount" value="0" />
-                        <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nfr_" items="${nonFixRegular}" varStatus="status">
-                            <c:set var="totalAmount" value="${totalAmount + nfr_.m_amount}" />
-                        </c:forEach>
-                        <c:forEach var="nfr" items="${nonFixRegular}" varStatus="status">
-                            <tr style="text-align: center">
-                                <td><c:out value="${nfr.c_name}" /></td>
-                                <td><fmt:formatNumber value="${nfr.m_amount}" pattern="###,###,###원"/></td>
-                                <td><fmt:formatNumber value="${nfr.m_amount / totalAmount * 100}" pattern="0.00" />%</td>
-                            </tr>
-                        </c:forEach>
-                        <tr style="text-align: center">
-                            <td style="font-weight: bold; text-align: center">합계</td>
-                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
-                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" style="text-align: center"><div style="color:gray">패션</div></th>
-                        </tr>
-                        <c:set var="totalAmount" value="0" />
-                        <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nffa_" items="${nonFixFashion}" varStatus="status">
-                            <c:set var="totalAmount" value="${totalAmount + nffa_.m_amount}" />
-                        </c:forEach>
-                        <c:forEach var="nffa" items="${nonFixFashion}" varStatus="status">
-                            <tr style="text-align: center">
-                                <td><c:out value="${nffa.c_name}" /></td>
-                                <td><fmt:formatNumber value="${nffa.m_amount}" pattern="###,###,###원"/></td>
-                                <td><fmt:formatNumber value="${nffa.m_amount / totalAmount * 100}" pattern="0.00" />%</td>
-                            </tr>
-                        </c:forEach>
-                        <tr style="text-align: center">
-                            <td style="font-weight: bold; text-align: center">합계</td>
-                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
-                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" style="text-align: center"><div style="color:gray">뷰티</div></th>
-                        </tr>
-                        <c:set var="totalAmount" value="0" />
-                        <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nfb_" items="${nonFixBeauty}" varStatus="status">
-                            <c:set var="totalAmount" value="${totalAmount + nfb_.m_amount}" />
-                        </c:forEach>
-                        <c:forEach var="nfb" items="${nonFixBeauty}" varStatus="status">
-                            <tr style="text-align: center">
-                                <td><c:out value="${nfb.c_name}" /></td>
-                                <td><fmt:formatNumber value="${nfb.m_amount}" pattern="###,###,###원"/></td>
-                                <td><fmt:formatNumber value="${nfb.m_amount / totalAmount * 100}" pattern="0.00" />%</td>
-                            </tr>
-                        </c:forEach>
-                        <tr style="text-align: center">
-                            <td style="font-weight: bold; text-align: center">합계</td>
-                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
-                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" style="text-align: center"><div style="color:gray">문구</div></th>
-                        </tr>
-                        <c:set var="totalAmount" value="0" />
-                        <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nfp_" items="${nonFixPhrase}" varStatus="status">
-                            <c:set var="totalAmount" value="${totalAmount + nfp_.m_amount}" />
-                        </c:forEach>
-                        <c:forEach var="nfp" items="${nonFixPhrase}" varStatus="status">
-                            <tr style="text-align: center">
-                                <td><c:out value="${nfp.c_name}" /></td>
-                                <td><fmt:formatNumber value="${nfp.m_amount}" pattern="###,###,###원"/></td>
-                                <td><fmt:formatNumber value="${nfp.m_amount / totalAmount * 100}" pattern="0.00" />%</td>
-                            </tr>
-                        </c:forEach>
-                        <tr style="text-align: center">
-                            <td style="font-weight: bold; text-align: center">합계</td>
-                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
-                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" style="text-align: center"><div style="color:gray">교육</div></th>
-                        </tr>
-                        <c:set var="totalAmount" value="0" />
-                        <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nfe_" items="${nonFixEdu}" varStatus="status">
-                            <c:set var="totalAmount" value="${totalAmount + nfe_.m_amount}" />
-                        </c:forEach>
-                        <c:forEach var="nfe" items="${nonFixEdu}" varStatus="status">
-                            <tr style="text-align: center">
-                                <td><c:out value="${nfe.c_name}" /></td>
-                                <td><fmt:formatNumber value="${nfe.m_amount}" pattern="###,###,###원"/></td>
-                                <td><fmt:formatNumber value="${nfe.m_amount / totalAmount * 100}" pattern="0.00" />%</td>
-                            </tr>
-                        </c:forEach>
-                        <tr style="text-align: center">
-                            <td style="font-weight: bold; text-align: center">합계</td>
-                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
-                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" style="text-align: center"><div style="color:gray">문화</div></th>
-                        </tr>
-                        <c:set var="totalAmount" value="0" />
-                        <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nfc_" items="${nonFixCulture}" varStatus="status">
-                            <c:set var="totalAmount" value="${totalAmount + nfc_.m_amount}" />
-                        </c:forEach>
-                        <c:forEach var="nfc" items="${nonFixCulture}" varStatus="status">
-                            <tr style="text-align: center">
-                                <td><c:out value="${nfc.c_name}" /></td>
-                                <td><fmt:formatNumber value="${nfc.m_amount}" pattern="###,###,###원"/></td>
-                                <td><fmt:formatNumber value="${nfc.m_amount / totalAmount * 100}" pattern="0.00" />%</td>
-                            </tr>
-                        </c:forEach>
-                        <tr style="text-align: center">
-                            <td style="font-weight: bold; text-align: center">합계</td>
-                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
-                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" style="text-align: center"><div style="color:gray">건강</div></th>
-                        </tr>
-                        <c:set var="totalAmount" value="0" />
-                        <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nfh_" items="${nonFixHealth}" varStatus="status">
-                            <c:set var="totalAmount" value="${totalAmount + nfh_.m_amount}" />
-                        </c:forEach>
-                        <c:forEach var="nfh" items="${nonFixHealth}" varStatus="status">
-                            <tr style="text-align: center">
-                                <td><c:out value="${nfh.c_name}" /></td>
-                                <td><fmt:formatNumber value="${nfh.m_amount}" pattern="###,###,###원"/></td>
-                                <td><fmt:formatNumber value="${nfh.m_amount / totalAmount * 100}" pattern="0.00" />%</td>
-                            </tr>
-                        </c:forEach>
-                        <tr style="text-align: center">
-                            <td style="font-weight: bold; text-align: center">합계</td>
-                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
-                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" style="text-align: center"><div style="color:gray">기타</div></th>
-                        </tr>
-                        <c:set var="totalAmount" value="0" />
-                        <c:set var="totalPercentage" value="100" />
-                        <c:forEach var="nfe_" items="${nonFixEtc}" varStatus="status">
-                            <c:set var="totalAmount" value="${totalAmount + nfe_.m_amount}" />
-                        </c:forEach>
-                        <c:forEach var="nfe" items="${nonFixEtc}" varStatus="status">
-                            <tr style="text-align: center">
-                                <td><c:out value="${nfe.c_name}" /></td>
-                                <td><fmt:formatNumber value="${nfe.m_amount}" pattern="###,###,###원"/></td>
-                                <td><fmt:formatNumber value="${nfe.m_amount / totalAmount * 100}" pattern="0.00" />%</td>
-                            </tr>
-                        </c:forEach>
-                        <tr style="text-align: center">
-                            <td style="font-weight: bold; text-align: center">합계</td>
-                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>
-                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>
-                        </tr>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center">비고정지출<div style="color:gray">식비</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th scope="col" style="text-align: center">카테고리</th>--%>
+<%--                            <th scope="col" style="text-align: center">금액</th>--%>
+<%--                            <th scope="col" style="text-align: center">퍼센티지</th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nff_" items="${nonFixFood}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nff_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nff" items="${nonFixFood}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nff.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nff.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nff.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center"><div style="color:gray">생활</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nfl_" items="${nonFixLife}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nfl_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nfl" items="${nonFixLife}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nfl.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfl.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfl.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center"><div style="color:gray">교통</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nft_" items="${nonFixTraffic}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nft_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nft" items="${nonFixTraffic}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nft.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nft.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nft.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center"><div style="color:gray">정기 결제</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nfr_" items="${nonFixRegular}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nfr_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nfr" items="${nonFixRegular}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nfr.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfr.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfr.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center"><div style="color:gray">패션</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nffa_" items="${nonFixFashion}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nffa_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nffa" items="${nonFixFashion}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nffa.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nffa.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nffa.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center"><div style="color:gray">뷰티</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nfb_" items="${nonFixBeauty}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nfb_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nfb" items="${nonFixBeauty}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nfb.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfb.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfb.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center"><div style="color:gray">문구</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nfp_" items="${nonFixPhrase}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nfp_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nfp" items="${nonFixPhrase}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nfp.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfp.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfp.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center"><div style="color:gray">교육</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nfe_" items="${nonFixEdu}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nfe_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nfe" items="${nonFixEdu}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nfe.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfe.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfe.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center"><div style="color:gray">문화</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nfc_" items="${nonFixCulture}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nfc_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nfc" items="${nonFixCulture}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nfc.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfc.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfc.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center"><div style="color:gray">건강</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nfh_" items="${nonFixHealth}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nfh_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nfh" items="${nonFixHealth}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nfh.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfh.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfh.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <th colspan="3" style="text-align: center"><div style="color:gray">기타</div></th>--%>
+<%--                        </tr>--%>
+<%--                        <c:set var="totalAmount" value="0" />--%>
+<%--                        <c:set var="totalPercentage" value="100" />--%>
+<%--                        <c:forEach var="nfe_" items="${nonFixEtc}" varStatus="status">--%>
+<%--                            <c:set var="totalAmount" value="${totalAmount + nfe_.m_amount}" />--%>
+<%--                        </c:forEach>--%>
+<%--                        <c:forEach var="nfe" items="${nonFixEtc}" varStatus="status">--%>
+<%--                            <tr style="text-align: center">--%>
+<%--                                <td><c:out value="${nfe.c_name}" /></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfe.m_amount}" pattern="###,###,###원"/></td>--%>
+<%--                                <td><fmt:formatNumber value="${nfe.m_amount / totalAmount * 100}" pattern="0.00" />%</td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        <tr style="text-align: center">--%>
+<%--                            <td style="font-weight: bold; text-align: center">합계</td>--%>
+<%--                            <td><fmt:formatNumber value="${totalAmount}" pattern="###,###,###원"/></td>--%>
+<%--                            <td><fmt:formatNumber value="${totalPercentage}" pattern="0.00" />%</td>--%>
+<%--                        </tr>--%>
                     </table>
                 </form>
             </div>

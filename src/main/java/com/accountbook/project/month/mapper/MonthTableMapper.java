@@ -12,4 +12,6 @@ public interface MonthTableMapper {
     List<MonthTableDto.getCategory> getCategory();
     List<MonthRegisterTableDto> getMonth(Map<String, Object> map);
     List<MonthTableDto.getTable> getTable(Map<String, Object> map);
+
+//    List<MonthTableDto.getTable> getTable(Map<String, Object> map);
 }
