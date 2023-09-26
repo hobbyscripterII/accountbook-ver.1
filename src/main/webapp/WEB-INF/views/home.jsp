@@ -27,12 +27,15 @@
         <div class="wrapper-home-intro">
                 <div>
                         <div class="home-intro-title">ACCOUNT BOOK PROJECT</div>
+                        <div style="width: 900px">
+                                <img src="<c:url value="/resources/img/img/img_tax.jpg" />" class="d-block w-100" alt="...">
+                        </div>
                         <%--                <div class="home-intro-title animate__animated animate__swing">ACCOUNT BOOK PROJECT</div>--%>
-                        <img src="<c:url value="/resources/img/img/img_businessman.png"/>">
+<%--                        <img src="<c:url value="/resources/img/img/img_businessman.png"/>">--%>
                 </div>
 
 <%--                <div class="wrapper-carousel">--%>
-<%--                        <div id="carousel" class="carousel slide" style="width: 700px">--%>
+<%--                        <div id="carousel" class="carousel slide" style="width: 900px">--%>
 <%--                                <div class="carousel-inner">--%>
 <%--                                        <div class="carousel-item active">--%>
 <%--                                                <img src="<c:url value="/resources/img/img/img_tax.jpg" />" class="d-block w-100" alt="...">--%>

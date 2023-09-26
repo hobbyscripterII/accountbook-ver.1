@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="<c:url value="/resources/css/chart.css?=v3" />">
+
 <html>
 <jsp:include page="layout/head.jsp"/>
 <jsp:include page="layout/header.jsp"/>
