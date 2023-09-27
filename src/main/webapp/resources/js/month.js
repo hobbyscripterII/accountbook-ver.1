@@ -11,7 +11,7 @@ $(document).ready(function () {
 });
 
 $(document).on('click', '#create', function() {
-    const cre = document.querySelectorAll('#create');
+    document.querySelectorAll('#create');
     const row = this.closest('tr');
     const m_id = row.querySelector(`[name = 'm_id']`).value;
     const a_id = row.querySelector(`[name = 'a_id']`).value;
