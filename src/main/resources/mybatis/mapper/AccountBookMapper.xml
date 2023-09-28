@@ -13,7 +13,7 @@
     </select>
 
     <insert id="insertAccountBook" parameterType="AccountBookInsertDto">
-        INSERT INTO AC_ACCOUNTBOOK VALUES(ACCOUNTBOOK_SEQ.NEXTVAL, #{a_code}, #{m_id})
+        INSERT INTO AC_ACCOUNTBOOK(A_ID, M_ID, A_CODE) VALUES(ACCOUNTBOOK_SEQ.NEXTVAL, #{m_id}, #{a_code})
     </insert>
 
     <delete id="deleteAccountBook" parameterType="AccountBookDeleteDto">

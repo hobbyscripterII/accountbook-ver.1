@@ -6,6 +6,6 @@
 .springBeans
 project.iml
 META-INF/
-log4j.xml
+src/main/resources/log4j.xml
 api.properties
 .gitignore

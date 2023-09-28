@@ -38,10 +38,30 @@
     margin-top: 200px;
 }
 
-.div-aos-l {
+.aos-l {
     text-align: right;
 }
 
-.div-aos-r {
+.aos-r {
     text-align: left;
+}
+
+.dummy-l {
+    display: flex;
+    justify-content: end;
+}
+
+.content-aos {
+    width: 600px;
+}
+
+.wrapper-dummy {
+    width: 100%;
+}
+
+.content-dummy {
+    width: 1000px;
+    word-spacing:10px;
+    font-weight: 800;
+    margin: 20px 0 100px 0;
 }

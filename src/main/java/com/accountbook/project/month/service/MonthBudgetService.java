@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 public class MonthBudgetService {
     private final MonthBudgetMapper monthBudgetMapper;
 
-    public void insertBudget(MonthBudgetDto.Insert insert) {
-        monthBudgetMapper.insertBudget(insert);
+    public void insertBudget(int m_id) {
+        monthBudgetMapper.insertBudget(m_id);
+    }
+
+    public int getBudget(int m_id) {
+        return monthBudgetMapper.getBudget(m_id);
     }
 
     public MonthBudgetDto selectBudget(int m_id) {

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <header>
     <p><a href="<c:url value="/" />">가계부 프로젝트</a></p>
 </header>
@@ -19,4 +20,19 @@
             <a href="<c:url value="/logout"/>">로그아웃</a>
         </c:otherwise>
     </c:choose>
+
+    <c:choose>
+        <c:when test="${empty sessionScope.MEMBER_ID}">
+            <div class="btn-sign-up">
+                <div class="emoji">
+                    👇👇👇👇👇
+                </div>
+                <a href="<c:url value="/sign-up"/>">회원가입</a>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <a href="">회원님💖 오늘도 좋은하루 되세요!</a>
+        </c:otherwise>
+    </c:choose>
+
 </nav>

@@ -39,7 +39,9 @@ public class AccountBookController {
         accountBookService.insertAccountBook(insert);
 
         // 가계부 등록시 기초 예산 금액이 없으면 0으로 초기화해서 INSERT한다.
-        monthBudgetService.selectBudget(getId(request));
+        if(monthBudgetService.getBudget(getId(request)) == 0) {
+            monthBudgetService.insertBudget(getId(request));
+        }
     }
 
     @ResponseBody

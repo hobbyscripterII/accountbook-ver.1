@@ -38,5 +38,7 @@
         <typeAlias type="com.accountbook.project.board.dto.BoardCommentDto$selectComment" alias="BoardSelectCommentDto" />
 
         <typeAlias type="com.accountbook.project.home.Dto.HomeDto" alias="HomeDto" />
+
+        <typeAlias type="com.accountbook.project.member.dto.SignUpDto" alias="SignUpDto" />
     </typeAliases>
 </configuration>

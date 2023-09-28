@@ -56,36 +56,55 @@
 <%--                </div>--%>
 
                 <div class="wrapper-aos">
-                        <div data-aos="fade-left" class="div-aos-l">
-                                <img src="<c:url value="/resources/img/img/img_calculator.jpg" />" style="width: 600px;">
+                        <div data-aos="fade-left" class="aos-l">
+                                <img src="<c:url value="/resources/img/img/img_calculator.jpg" />" class="content-aos">
                         </div>
 
-                        <div class="div-aos-l"></div>
-
-                        <div data-aos="fade-right" class="div-aos-r">
-                                <img src="<c:url value="/resources/img/img/img_tax.jpg" />" style="width: 600px;">
+                        <div class="wrapper-dummy aos-l dummy-l">
+                                <div class="content-dummy">
+                                        Lorem Money ipsum. Market phenomenon payment country debts record goods services repayment taxes functions. Context value account medium unit fiat money exchange store standard use value. Value value payment tender country payment bank money Bank money form debts. Entity government convention money systems commodity value bank accounts savings accounts boundaries dollar. Case types money accounts types balances payment countries forms United States. Books institutions notes part banknotes country currency circulation coins definition. Money supply .
+                                </div>
                         </div>
 
-                        <div class="div-aos-r"></div>
-
-                        <div data-aos="fade-left" class="div-aos-l">
-                                <img src="<c:url value="/resources/img/img/img_calculator2.jpg" />" style="width: 600px;">
+                        <div data-aos="fade-right" class="aos-r">
+                                <img src="<c:url value="/resources/img/img/img_tax.jpg" />" class="content-aos">
                         </div>
 
-                        <div class="div-aos-l"></div>
-
-                        <div data-aos="fade-right" class="div-aos-r">
-                                <img src="<c:url value="/resources/img/img/img_calculator3.jpg" />" style="width: 600px;">
+                        <div class="wrapper-dummy">
+                                <div class="content-dummy">
+                                        Lorem Money ipsum. Market phenomenon payment country debts record goods services repayment taxes functions. Context value account medium unit fiat money exchange store standard use value. Value value payment tender country payment bank money Bank money form debts. Entity government convention money systems commodity value bank accounts savings accounts boundaries dollar. Case types money accounts types balances payment countries forms United States. Books institutions notes part banknotes country currency circulation coins definition. Money supply .
+                                </div>
                         </div>
 
-                        <div class="div-aos-r"></div>
-
-                        <div data-aos="fade-left" class="div-aos-l">
-                                <img src="<c:url value="/resources/img/img/img_bookkeeper.jpg" />" style="width: 600px;">
+                        <div data-aos="fade-left" class="aos-l">
+                                <img src="<c:url value="/resources/img/img/img_calculator2.jpg" />" class="content-aos">
                         </div>
 
-                        <div class="div-aos-l"></div>
+                        <div class="wrapper-dummy aos-l dummy-l">
+                                <div class="content-dummy">
+                                        Lorem Money ipsum. Market phenomenon payment country debts record goods services repayment taxes functions. Context value account medium unit fiat money exchange store standard use value. Value value payment tender country payment bank money Bank money form debts. Entity government convention money systems commodity value bank accounts savings accounts boundaries dollar. Case types money accounts types balances payment countries forms United States. Books institutions notes part banknotes country currency circulation coins definition. Money supply .
+                                </div>
+                        </div>
 
+                        <div data-aos="fade-right" class="aos-r">
+                                <img src="<c:url value="/resources/img/img/img_calculator3.jpg" />" class="content-aos">
+                        </div>
+
+                        <div class="wrapper-dummy">
+                                <div class="content-dummy">
+                                        Lorem Money ipsum. Market phenomenon payment country debts record goods services repayment taxes functions. Context value account medium unit fiat money exchange store standard use value. Value value payment tender country payment bank money Bank money form debts. Entity government convention money systems commodity value bank accounts savings accounts boundaries dollar. Case types money accounts types balances payment countries forms United States. Books institutions notes part banknotes country currency circulation coins definition. Money supply .
+                                </div>
+                        </div>
+
+                        <div data-aos="fade-left" class="aos-l">
+                                <img src="<c:url value="/resources/img/img/img_bookkeeper.jpg" />" class="content-aos">
+                        </div>
+
+                        <div class="wrapper-dummy aos-l dummy-l">
+                                <div class="content-dummy">
+                                        Lorem Money ipsum. Market phenomenon payment country debts record goods services repayment taxes functions. Context value account medium unit fiat money exchange store standard use value. Value value payment tender country payment bank money Bank money form debts. Entity government convention money systems commodity value bank accounts savings accounts boundaries dollar. Case types money accounts types balances payment countries forms United States. Books institutions notes part banknotes country currency circulation coins definition. Money supply .
+                                </div>
+                        </div>
                 </div>
         </div>
 </section>

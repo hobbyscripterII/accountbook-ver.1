@@ -15,6 +15,12 @@
 * {
     font-family: 'IBMPlexSansKR-Regular';
     box-sizing: border-box;
+
+    <!-- 드래그 금지 -->
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
 }
 
 html {
@@ -26,7 +32,7 @@ header {
     /*width: 100vw;*/
     line-height: 100%;
     justify-content: center;
-    background-color: #13264E;
+    background-color: #B03B4E;
 }
 
 header > p {
@@ -47,15 +53,19 @@ nav {
     display: flex;
     /*width: 100vw;*/
     height: 40px;
-    background-color: #13264E;
+    background-color: #B03B4E;
     justify-content: space-around;
 }
 
-nav > a {
-    font-family: 'Pretendard-Regular';
+nav > a, nav > div > a {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    width: 200px;
     line-height: 40px;
     text-decoration: none;
     color: white;
+    font-family: 'Pretendard-Regular';
 }
 
 section {
@@ -83,4 +93,16 @@ h1 {
 
 .form-control:disabled {
     background-color: transparent !important;
+}
+
+.btn-sign-up {
+    width: auto;
+    height: auto;
+    margin-top: -25px;
+}
+
+.emoji {
+    display: flex;
+    justify-content: center;
+    cursor: default;
 }
