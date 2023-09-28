@@ -58,3 +58,7 @@ table {
 .dropdown-item {
     cursor: pointer;
 }
+
+.dropdown-menu.show {
+    background-color: white;
+}

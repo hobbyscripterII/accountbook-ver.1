@@ -43,7 +43,7 @@ $(document).on('click', '#update', function() {
     const row = this.closest('tr');
     const mo_id = row.querySelector(`[name='mo_id']`).value;
     const d_date = row.querySelector(`[name='d_date']`).value;
-    const c_code = row.querySelector(`[name='c_code']`).value;
+    const c_code = $('.btn-category').data('id');
     const m_amount = row.querySelector(`[name='m_amount']`).value;
     const m_memo = row.querySelector(`[name='m_memo']`).value;
 
