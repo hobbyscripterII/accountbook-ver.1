@@ -1,7 +1,7 @@
 package com.accountbook.project.api.kakao;
 
 import com.accountbook.project.SessionConst;
-import com.accountbook.project.login.service.LoginService;
+import com.accountbook.project.member.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

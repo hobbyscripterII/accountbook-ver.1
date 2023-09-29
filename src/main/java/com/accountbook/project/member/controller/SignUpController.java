@@ -32,7 +32,12 @@ public class SignUpController {
             return "sign-up";
         } else {
             signUpService.signUp(signUpDto);
-            return "redirect:/";
+            return "redirect:sign-up-complete";
         }
+    }
+
+    @GetMapping("/sign-up-complete")
+    public String signUpComplete() {
+        return "sign-up-complete";
     }
 }

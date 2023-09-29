@@ -31,7 +31,7 @@
             </div>
         </c:when>
         <c:otherwise>
-            <a href="">회원님💖 오늘도 좋은하루 되세요!</a>
+            <p style="font-size: 12px; cursor: default">회원님💖 오늘도 좋은하루 되세요!</p>
         </c:otherwise>
     </c:choose>
 

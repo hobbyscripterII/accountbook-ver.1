@@ -57,7 +57,7 @@ nav {
     justify-content: space-around;
 }
 
-nav > a, nav > div > a {
+nav > a, nav > div > a, nav > p {
     display: flex;
     justify-content: center;
     flex-grow: 1;

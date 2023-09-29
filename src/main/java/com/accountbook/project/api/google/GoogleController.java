@@ -1,7 +1,7 @@
 package com.accountbook.project.api.google;
 
 import com.accountbook.project.SessionConst;
-import com.accountbook.project.login.service.LoginService;
+import com.accountbook.project.member.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.math.BigInteger;
 import java.util.Map;
 
 @Slf4j

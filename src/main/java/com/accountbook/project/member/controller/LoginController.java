@@ -1,12 +1,13 @@
-package com.accountbook.project.login.controller;
+package com.accountbook.project.member.controller;
 
 import com.accountbook.project.SessionConst;
-import com.accountbook.project.login.dto.LoginDto;
-import com.accountbook.project.login.service.LoginService;
+import com.accountbook.project.member.dto.LoginDto;
+import com.accountbook.project.member.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,7 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("login", new LoginDto());
+    public String login() {
         return "login";
     }
 

@@ -31,7 +31,7 @@
                                 <img src="<c:url value="/resources/img/img/img_tax.jpg" />" class="d-block w-100" alt="...">
                         </div>
                         <%--                <div class="home-intro-title animate__animated animate__swing">ACCOUNT BOOK PROJECT</div>--%>
-<%--                        <img src="<c:url value="/resources/img/img/img_businessman.png"/>">--%>
+                        <%--                        <img src="<c:url value="/resources/img/img/img_businessman.png"/>">--%>
                 </div>
 
 <%--                <div class="wrapper-carousel">--%>
@@ -108,10 +108,12 @@
                 </div>
         </div>
 </section>
+
 <%--<jsp:include page="layout/footer.jsp"/>--%>
-</body>
-</html>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
 <script type="text/javascript">
     AOS.init();
 </script>
+</body>
+</html>

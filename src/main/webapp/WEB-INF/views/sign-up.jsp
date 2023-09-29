@@ -23,7 +23,9 @@
 
     .form-errors {
         width: 500px;
-        border: 1px solid #D50000;
+        height: 38px;
+        border: 2px solid red;
+        border-radius: 0.375rem;
     }
 </style>
 
@@ -44,13 +46,13 @@
 
                 <label class="label-sign-up">이메일</label>
                 <form:errors path="m_email" cssClass="text-errors" />
-                <form:input type="email" path="m_email" class="form-control" id="m_email" name="m_email" cssErrorClass="form-errors form-control" />
+                <form:input type="email" path="m_email" class="form-control" id="m_email" name="m_email" cssErrorClass="form-errors" title="asd" />
                 <label class="label-sign-up">비밀번호</label>
                 <form:errors path="m_pwd" cssClass="text-errors" />
-                <form:input type="password" path="m_pwd" class="form-control" id="m_pwd" name="m_pwd" cssErrorClass="form-errors form-control" />
+                <form:input type="password" path="m_pwd" class="form-control" id="m_pwd" name="m_pwd" cssErrorClass="form-errors" />
                 <label class="label-sign-up">닉네임</label>
                 <form:errors path="m_name" cssClass="text-errors" />
-                <form:input type="text" path="m_name" class="form-control" id="m_name" name="m_name" cssErrorClass="form-errors form-control" />
+                <form:input type="text" path="m_name" class="form-control" id="m_name" name="m_name" cssErrorClass="form-errors" />
                 <input type="button" id="login" value="회원가입" class="btn btn-primary" style="width: 100%; margin: 10px 0 0 0">
             </form:form>
         </div>

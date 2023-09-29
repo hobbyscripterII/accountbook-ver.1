@@ -1,6 +1,6 @@
-package com.accountbook.project.login.mapper;
+package com.accountbook.project.member.mapper;
 
-import com.accountbook.project.login.dto.LoginDto;
+import com.accountbook.project.member.dto.LoginDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

@@ -1,7 +1,7 @@
-package com.accountbook.project.login.service;
+package com.accountbook.project.member.service;
 
-import com.accountbook.project.login.dto.LoginDto;
-import com.accountbook.project.login.mapper.LoginMapper;
+import com.accountbook.project.member.dto.LoginDto;
+import com.accountbook.project.member.mapper.LoginMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

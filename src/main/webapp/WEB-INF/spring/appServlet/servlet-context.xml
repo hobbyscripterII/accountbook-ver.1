@@ -30,6 +30,7 @@
 			<mvc:exclude-mapping path="/"/>
 			<mvc:exclude-mapping path="/login"/>
 			<mvc:exclude-mapping path="/sign-up"/>
+			<mvc:exclude-mapping path="/sign-up-complete"/>
 			<mvc:exclude-mapping path="/kakao-login"/>
 			<mvc:exclude-mapping path="/google-login"/>
 			<mvc:exclude-mapping path="/notice/list/**"/>
