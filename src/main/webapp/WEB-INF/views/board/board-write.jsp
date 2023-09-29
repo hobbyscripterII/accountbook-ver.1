@@ -27,18 +27,18 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width: 100px">작성일자</span>
-                        <input type="text" class="form-control" name="n_create_date" value="${n.n_create_date}" readonly>
+                        <input type="text" class="form-control" name="b_create_date" value="${n.b_create_date}" readonly>
                     </div>
                 </c:forEach>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" style="width: 100px">제목</span>
-                    <input type="text" class="form-control" name="n_title">
+                    <input type="text" class="form-control" name="b_title">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" style="width: 100px">내용</span>
-                    <textarea class="form-control" name="n_content" style="height: 300px; resize: none"></textarea>
+                    <textarea class="form-control" name="b_content" style="height: 300px; resize: none"></textarea>
                 </div>
 
                 <div style="text-align: right">
@@ -53,17 +53,17 @@
 
 <script type="text/javascript">
     $(document).on('click', '#btn-register', function() {
-        if (!f.n_create_date.value) {
+        if (!f.b_create_date.value) {
             alert("작성일자가 입력되지 않았습니다.");
-            f.n_create_date.focus();
+            f.b_create_date.focus();
             return false;
-        } else if(!f.n_title.value) {
+        } else if(!f.b_title.value) {
             alert("제목이 입력되지 않았습니다.");
-            f.n_title.focus();
+            f.b_title.focus();
             return false;
-        } else if(!f.n_content.value) {
+        } else if(!f.b_content.value) {
             alert("내용이 입력되지 않았습니다.");
-            f.n_content.focus();
+            f.b_content.focus();
             return false;
         } else {
             alert("게시글 등록이 완료되었습니다.");

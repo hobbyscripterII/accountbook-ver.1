@@ -46,6 +46,10 @@ public class SuggestBoardController {
 
     @PostMapping("/write")
     public String insert(@ModelAttribute BoardDto.Insert board) {
+        if(board.getB_alt() == null) {
+            board.setB_alt("N");
+        }
+
         board.setB_code(4);
         boardService.insertContent(board);
         return "redirect:list";

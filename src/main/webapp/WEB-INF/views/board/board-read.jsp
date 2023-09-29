@@ -14,25 +14,25 @@
                 <input type="hidden" class="form-control" id="b_id" name="b_id" value="${l.b_id}">
                 <input type="hidden" class="form-control" id="m_id" name="m_id" value="${l.m_id}" readonly>
                 <input type="hidden" class="form-control" value="${l.m_name}" readonly>
-                <input type="hidden" class="form-control" name="n_create_date" value="${l.n_create_date}" readonly>
+                <input type="hidden" class="form-control" name="b_create_date" value="${l.b_create_date}" readonly>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" style="width: 100px">작성자</span>
                     <input type="text" class="form-control" value="${l.m_name}" style="width: 100px" disabled>
                     <span class="input-group-text" style="width: 100px">작성일자</span>
-                    <input type="text" class="form-control" value="${l.n_create_date}" style="width: 210px" disabled>
+                    <input type="text" class="form-control" value="${l.b_create_date}" style="width: 210px" disabled>
                     <span class="input-group-text" style="width: 100px">조회수</span>
-                    <input type="text" class="form-control" value="${l.n_view}" style="" disabled>
+                    <input type="text" class="form-control" value="${l.b_view}" style="" disabled>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" style="width: 100px">제목</span>
-                    <input type="text" class="form-control" id="n_title" name="n_title" value="${l.n_title}" disabled>
+                    <input type="text" class="form-control" id="b_title" name="b_title" value="${l.b_title}" disabled>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" style="width: 100px">내용</span>
-                    <textarea class="form-control" id="n_content" name="n_content" style="height: 300px; resize: none" disabled>${l.n_content}</textarea>
+                    <textarea class="form-control" id="b_content" name="b_content" style="height: 300px; resize: none" disabled>${l.b_content}</textarea>
                 </div>
             </c:forEach>
 
@@ -119,7 +119,7 @@
                                 <input type="hidden" value="${n.m_id}">
                                 <tr style="font-size: 11px; font-weight: bold">
                                     <td style="width: 15%"><c:out value="${n.m_name}" /></td>
-                                    <td style="width: 75%">${n.n_create_date}</td>
+                                    <td style="width: 75%">${n.b_create_date}</td>
                                     <td style="width: 45px; text-align: center"><a id="comment-create" style="cursor: pointer; text-decoration: none; color: gray">등록</a></td>
                                     <td style="width: 45px; text-align: center; color: gray"> </td>
                                 </tr>

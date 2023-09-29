@@ -40,9 +40,9 @@
                         <c:when test="${c.b_alt eq 'Y'}">
                             <tr style="text-align: center; background-color: #f8f9fa">
                                 <td style="font-weight: bold"><c:out value="[공지]"/></td>
-                                <td style="text-align: left; font-weight: bold"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
+                                <td style="text-align: left; font-weight: bold"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.b_title}</a></td>
                                 <td>${c.m_name}</td>
-                                <td>${c.n_create_date}</td>
+                                <td>${c.b_create_date}</td>
                                 <c:choose>
                                     <c:when test="${boardName eq 'notice' || boardName eq 'question'}">
                                     </c:when>
@@ -50,7 +50,7 @@
                                         <td>${c.h_cnt } </td>
                                     </c:otherwise>
                                 </c:choose>
-                                <td>${c.n_view}</td>
+                                <td>${c.b_view}</td>
                             </tr>
                         </c:when>
                     </c:choose>
@@ -58,9 +58,9 @@
                 <c:forEach var="c" items="${content}">
                     <tr style="text-align: center">
                         <td><c:out value="${c.b_id}"/></td>
-                        <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.n_title}</a></td>
+                        <td style="text-align: left"><a href="<c:url value="list/${c.b_id}" />" style="text-decoration: none; color: black">${c.b_title}</a></td>
                         <td>${c.m_name}</td>
-                        <td>${c.n_create_date}</td>
+                        <td>${c.b_create_date}</td>
                         <c:choose>
                             <c:when test="${boardName eq 'notice' || boardName eq 'question'}">
                             </c:when>
@@ -68,7 +68,7 @@
                                 <td>${c.h_cnt} </td>
                             </c:otherwise>
                         </c:choose>
-                        <td>${c.n_view}</td>
+                        <td>${c.b_view}</td>
                     </tr>
                 </c:forEach>
             </table>

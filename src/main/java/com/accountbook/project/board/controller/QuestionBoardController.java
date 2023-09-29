@@ -34,15 +34,8 @@ public class QuestionBoardController {
 
     @GetMapping("/list/{b_id}")
     public String board(@PathVariable(name = "b_id") int b_id, Model model, HttpServletRequest request) throws QuestionException {
-        BoardDto.AccessFlag flag = boardService.accessFlag(b_id);
-        int id = boardService.getId(request);
-        if(id == flag.getM_id() || id == 1 || flag.getB_alt().equals("Y")) {
-            boardService.getBoard(b_id,3, model, request);
-            boardService.updateContentCnt(b_id);
-            boardInfo(model);
-        } else {
-            throw new QuestionException();
-        }
+        boardInfo(model);
+        boardService.questionBoardFlag(b_id, model, request);
         return "board/board-read";
     }
 
@@ -56,6 +49,10 @@ public class QuestionBoardController {
 
     @PostMapping("/write")
     public String insert(@ModelAttribute BoardDto.Insert board) {
+        if(board.getB_alt() == null) {
+            board.setB_alt("N");
+        }
+
         board.setB_code(3);
         boardService.insertContent(board);
         return "redirect:list";

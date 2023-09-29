@@ -14,7 +14,7 @@ public class BoardDto {
     public static class GetName {
         private int m_id;
         private String m_name;
-        private String n_create_date;
+        private String b_create_date;
     }
 
     @Getter
@@ -23,8 +23,8 @@ public class BoardDto {
     public static class Insert {
         private int m_id;
         private int b_code;
-        private String n_title;
-        private String n_content;
+        private String b_title;
+        private String b_content;
         private String b_alt;
     }
 
@@ -35,10 +35,10 @@ public class BoardDto {
         private int b_id;
         private int b_code;
         private String m_name;
-        private String n_title;
-        private String n_create_date;
+        private String b_title;
+        private String b_create_date;
         private int h_cnt;
-        private int n_view;
+        private int b_view;
         private String b_alt; // 공지글 여부
         private String m_id; // 질문글 접속 플래그
     }
@@ -51,10 +51,10 @@ public class BoardDto {
         private int b_code;
         private int m_id;
         private String m_name;
-        private String n_title;
-        private String n_content;
-        private String n_create_date;
-        private int n_view;
+        private String b_title;
+        private String b_content;
+        private String b_create_date;
+        private int b_view;
         private String b_alt;
     }
 
@@ -63,8 +63,8 @@ public class BoardDto {
     @ToString
     public static class UpdateContent {
         private int b_id;
-        private String n_title;
-        private String n_content;
+        private String b_title;
+        private String b_content;
         private String b_alt;
     }
 

@@ -3,6 +3,7 @@ package com.accountbook.project.board.service;
 import com.accountbook.project.SessionConst;
 import com.accountbook.project.board.dto.BoardDto;
 import com.accountbook.project.board.mapper.BoardMapper;
+import com.accountbook.project.exception.QuestionException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,17 @@ public class BoardService {
     public void updateContent(BoardDto.UpdateContent board) { boardMapper.updateContent(board); }
     public void updateContentCnt(int b_id) { boardMapper.updateContentCnt(b_id); }
     public BoardDto.AccessFlag accessFlag(int b_id) {return boardMapper.accessFlag(b_id);}
+
+    public void questionBoardFlag(int b_id, Model model, HttpServletRequest request) throws QuestionException {
+        BoardDto.AccessFlag flag = accessFlag(b_id);
+        int id = getId(request);
+        if(id == flag.getM_id() || id == 1 || flag.getB_alt().equals("Y")) {
+            getBoard(b_id,3, model, request);
+            updateContentCnt(b_id);
+        } else {
+            throw new QuestionException();
+        }
+    }
 
     public List<BoardDto.SelectContent> selectContent(int b_id, int b_code) {
         Map<String, Object> map = new HashMap<String, Object>();
