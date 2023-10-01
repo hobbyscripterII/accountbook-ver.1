@@ -20,6 +20,10 @@
         left: 206px !important;
         top: -37px !important;
     }
+
+    .radio-category-list {
+        width: 100px;
+    }
 </style>
 
 <body>
@@ -416,21 +420,40 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">사용자 정의 카테고리 추가/수정</h5>
+                    <h5 class="modal-title">사용자 정의 카테고리 추가</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form>
                 <div class="modal-body">
-                    <div>
-                        <input class="form-check-input" type="radio" name="c_code" value="A">수입
-                        <input class="form-check-input" type="radio" name="c_code" value="B">저축
-                        <input class="form-check-input" type="radio" name="c_code" value="C">고정지출
-                        <input class="form-check-input" type="radio" name="c_code" value="D">비고정지출
+                    <div style="line-height: 15px">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="c_code" value="A">
+                            <label class="form-check-label">수입</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="c_code" value="B">
+                            <label class="form-check-label">저축</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="c_code" value="C">
+                            <label class="form-check-label">고정지출</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="c_code" value="D">
+                            <label class="form-check-label">비고정지출</label>
+                        </div>
+
+                        <div class="input-group mb-3" style="margin-top: 10px">
+                            <span class="input-group-text">카테고리명</span>
+                            <input type="text" class="form-control" name="c_name">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="category-create-flag" class="btn btn-danger">확인</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
