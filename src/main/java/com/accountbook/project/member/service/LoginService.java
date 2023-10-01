@@ -21,4 +21,8 @@ public class LoginService {
     public void updateVisitNum(int m_id) {
         loginMapper.updateVisitNum(m_id);
     }
+
+    public String getName(int m_id) {
+        return loginMapper.getName(m_id);
+    }
 }

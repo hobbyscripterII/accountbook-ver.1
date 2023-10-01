@@ -7,4 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface LoginMapper {
     LoginDto getEmail(String email);
     void updateVisitNum(int m_id);
+    String getName(int m_id);
 }

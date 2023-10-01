@@ -10,6 +10,39 @@ $(document).ready(function () {
     });
 });
 
+// bootstrap submenu
+$(function() {
+    $('[data-submenu]').submenupicker();
+
+    $(document).on('click', '.btn-category', function() {
+        const dataId = $(this).data('id');
+        const dataName = $(this).data('name');
+        const btnTest = $(this).closest('td').find('.btn-test');
+        btnTest.text(dataName).attr('data-id', dataId);
+        console.log('사용자가 선택한 카테고리 식별코드 = {' + btnTest.attr('data-id') + '}');
+    });
+});
+
+// 가게부 예산 수정
+$(document).on('click', '#budget-flag', function() {
+    if(!$('#b_fix').val()) {
+        alert('고정지출 예산 금액을 입력하지 않으셨습니다.');
+    } else if(!$('#b_nonfix').val()) {
+        alert('비고정지출 예산 금액을 입력하지 않으셨습니다.');
+    }
+    else {
+        $.ajax({
+            type: 'post',
+            url: '/accountbook/update-budget',
+            data: {'b_cover' : $('#b_cover').val(), 'b_fix' : $('#b_fix').val(), 'b_nonfix' : $('#b_nonfix').val()},
+            success: function() {
+                alert('기초 예산 수정이 완료되었습니다.');
+                location.reload();
+            }
+        })
+    }
+})
+
 $(document).on('click', '#create', function () {
     document.querySelectorAll('#create');
     const row = this.closest('tr');
@@ -17,7 +50,7 @@ $(document).on('click', '#create', function () {
     const a_id = row.querySelector(`[name = 'a_id']`).value;
     const a_code = row.querySelector(`[name = 'a_code']`).value;
     const d_date = row.querySelector(`[name = 'd_date']`).value;
-    const c_code = $(this).closest('tr').find('.btn-test').attr('data-id');
+    const c_code = $(this).closest('tr').find('.btn-test').attr('data-id'); // submenu
     console.log('사용자가 등록할 카테고리 식별코드 = {' + c_code + '}');
     const m_amount = row.querySelector(`[name = 'm_amount']`).value;
     const m_memo = row.querySelector(`[name = 'm_memo']`).value;
@@ -52,7 +85,7 @@ $(document).on('click', '#update', function () {
     const row = this.closest('tr');
     const mo_id = row.querySelector(`[name='mo_id']`).value;
     const d_date = row.querySelector(`[name='d_date']`).value;
-    const c_code = $(this).closest('tr').find('.btn-test').attr('data-id');
+    const c_code = $(this).closest('tr').find('.btn-test').attr('data-id'); // submenu
     console.log('사용자가 수정할 카테고리 식별코드 = {' + c_code + '}');
     const m_amount = row.querySelector(`[name='m_amount']`).value;
     const m_memo = row.querySelector(`[name='m_memo']`).value;
@@ -102,3 +135,9 @@ del.forEach(btn => {
         })
     })
 })
+
+// 차트
+document.getElementById("btn-compare").addEventListener("click", function() {
+    const url = "/accountbook/mt/amount-compare";
+    window.open(url, " ", "width=1900,height=1500");
+});

@@ -5,7 +5,7 @@
 
 <style>
     section {
-        height: 81% !important;
+        height: 80% !important;
     }
 
     .wrapper-sign-up {

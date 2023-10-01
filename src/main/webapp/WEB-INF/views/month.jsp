@@ -15,6 +15,11 @@
     section {
         display: flex;
     }
+
+    .dropdown-menu.show {
+        left: 206px !important;
+        top: -37px !important;
+    }
 </style>
 
 <body>
@@ -24,16 +29,18 @@
             <div class="table-side">
                 <form>
                     <div class="wrapper-change-setting">
-                        <p class="d-inline-flex gap-1">
-                            <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#modal-budget-create" style="font-size: 13px; margin-right: 5px">
-                                가계부 예산 추가 및 수정
-                            </button>
-                        </p>
-                        <p class="d-inline-flex gap-1">
-                            <button class="btn btn-outline-dark" type="button"  style="font-size: 13px">
+                        <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#modal-budget-create" style="width: 170px; font-size: 13px; margin-right: 5px">
+                            가계부 예산 수정
+                        </button>
+                        <div class="">
+                            <button class="btn btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 13px"> <!-- data-bs-toggle="modal" data-bs-target="#modal-category" -->
                                 사용자 정의 카테고리 추가 및 수정
                             </button>
-                        </p>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-category">가계부 카테고리 추가</a></li>
+                                <li><a class="dropdown-item" href="#">가계부 카테고리 수정/삭제</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <table class="table">
                         <thead>
@@ -208,7 +215,7 @@
             <div style="margin-left: 10px; margin-right: 3px">
                 <div style="text-align: right; margin-bottom: 5px">
                 </div>
-                <form action="insert" id="form" method="post" style="overflow: auto; height: 70vh; padding-bottom: 10px">
+                <form action="insert" id="form" method="post" style="overflow: auto; height: 85%; padding-bottom: 10px">
                     <table class="table">
                         <thead>
                         <tr>
@@ -375,19 +382,19 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">가계부 예산 추가 및 수정</h5>
+                    <h5 class="modal-title">가계부 예산 수정</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div>
-                        <div class="btn-group" role="group" style="display: flex; width: 100%; text-align: center">
-                            <input type="radio" class="btn-check" name="b_cover" id="b_cover" value="ALL" autocomplete="off" checked>
-                            <label class="btn btn-outline-dark" for="b_cover">기존 예산</label>
+<%--                        <div class="btn-group" role="group" style="display: flex; width: 100%; text-align: center">--%>
+<%--                            <input type="radio" class="btn-check" name="b_cover" id="b_cover" value="ALL" autocomplete="off" checked>--%>
+<%--                            <label class="btn btn-outline-dark" for="b_cover">기존 예산</label>--%>
 <%--                            <input type="radio" class="btn-check" name="b_cover" id="b_cover" autocomplete="off">--%>
 <%--                            <label class="btn btn-outline-dark" for="b_cover">특정 예산</label>--%>
-                        </div>
+<%--                        </div>--%>
 
-                        <div style="display: flex; width: 100%; text-align: center; margin-top: 20px">
+                        <div style="display: flex; width: 100%; text-align: center">
                                 <span class="span-budget-modal-text">고정 지출</span>
                                 <input type="text" class="form-control" name="b_fix" id="b_fix" value="${budget.b_fix}">
                         </div>
@@ -404,6 +411,29 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="modal-category" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">사용자 정의 카테고리 추가/수정</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input class="form-check-input" type="radio" name="c_code" value="A">수입
+                        <input class="form-check-input" type="radio" name="c_code" value="B">저축
+                        <input class="form-check-input" type="radio" name="c_code" value="C">고정지출
+                        <input class="form-check-input" type="radio" name="c_code" value="D">비고정지출
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="category-create-flag" class="btn btn-danger">확인</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script type="text/javascript" src="../../resources/js/month.js"></script>
@@ -416,42 +446,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
 <script type="text/javascript">
-    $(function() {
-        $('[data-submenu]').submenupicker();
-
-        $(document).on('click', '.btn-category', function() {
-            const dataId = $(this).data('id');
-            const dataName = $(this).data('name');
-            const btnTest = $(this).closest('td').find('.btn-test');
-            btnTest.text(dataName).attr('data-id', dataId);
-            console.log('사용자가 선택한 카테고리 식별코드 = {' + btnTest.attr('data-id') + '}');
-        });
-    });
-
-    $(document).on('click', '#budget-flag', function() {
-        if(!$('#b_fix').val()) {
-            alert('고정지출 예산 금액을 입력하지 않으셨습니다.');
-        } else if(!$('#b_nonfix').val()) {
-            alert('비고정지출 예산 금액을 입력하지 않으셨습니다.');
-        }
-        else {
-            $.ajax({
-                type: 'post',
-                url: '/accountbook/update-budget',
-                data: {'b_cover' : $('#b_cover').val(), 'b_fix' : $('#b_fix').val(), 'b_nonfix' : $('#b_nonfix').val()},
-                success: function() {
-                    alert('기초 예산 수정이 완료되었습니다.');
-                    location.reload();
-                }
-            })
-        }
-    })
-
-    document.getElementById("btn-compare").addEventListener("click", function() {
-        const url = "/accountbook/mt/amount-compare";
-        window.open(url, " ", "width=1900,height=1500");
-    });
-
     $(document).on('click', '#btn-row-create', function() {
         var dynamic_tr =
             '<tr>' +

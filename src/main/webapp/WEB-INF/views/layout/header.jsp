@@ -1,6 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+    a:hover {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
 <header>
     <p><a href="<c:url value="/" />">가계부 프로젝트</a></p>
 </header>
@@ -31,7 +38,7 @@
             </div>
         </c:when>
         <c:otherwise>
-            <p style="width: 200px; height: 40px; font-size: 12px; cursor: default">회원님💖 오늘도 좋은하루 되세요!</p>
+            <p style="width: 200px; height: 40px; font-size: 12px; cursor: default">${sessionScope.MEMBER_NAME}님💖 오늘도 좋은하루 되세요!</p>
         </c:otherwise>
     </c:choose>
 

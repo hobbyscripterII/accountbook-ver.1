@@ -29,6 +29,11 @@
                         <div class="home-intro-title">ACCOUNT BOOK PROJECT</div>
                         <div style="width: 900px">
                                 <img src="<c:url value="/resources/img/img/img_tax.jpg" />" class="d-block w-100" alt="...">
+
+                                <div class="btn-group btn-group-lg" role="group" aria-label="Large button group" style="width: 900px; text-align: center; margin-top: 20px">
+                                        <button type="button" class="btn btn-outline-dark" onclick="location.href='/accountbook/sign-up'">간편 회원가입</button>
+                                        <button type="button" class="btn btn-outline-dark" onclick="location.href='/accountbook/login'">로그인</button>
+                                </div>
                         </div>
                         <%--                <div class="home-intro-title animate__animated animate__swing">ACCOUNT BOOK PROJECT</div>--%>
                         <%--                        <img src="<c:url value="/resources/img/img/img_businessman.png"/>">--%>

@@ -16,7 +16,7 @@
     </div>
     <c:forEach var="l" items="${list}">
         <input type="hidden" name="m_id" value="${l.m_id}">
-        <input type="button" class="btn btn-primary" name="a_code" value="${l.a_code}" onclick="location.href = `/accountbook/mt/${l.m_id}/${l.a_code}`">
+        <input type="button" class="btn btn-dark" name="a_code" value="${l.a_code}" onclick="location.href = `/accountbook/mt/${l.m_id}/${l.a_code}`">
     </c:forEach>
 </div>
 
