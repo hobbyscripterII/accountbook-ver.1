@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/chart.css?=v3" />">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-submenu/3.0.1/css/bootstrap-submenu.min.css">
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.min.css" rel="stylesheet">
 
 <html>
 <jsp:include page="layout/head.jsp"/>
@@ -229,7 +230,7 @@
                                 <fmt:parseDate var="d_date" value="${t.d_date}" pattern="yyyy-mm-dd" />
                                 <td><input type="date" id="d_date" name="d_date" value="<fmt:formatDate value="${d_date}" pattern="yyyy-mm-dd"/>" class="form-control form-control-sm"></td>
                                 <td>
-                                    <button class="form-control btn-test" type="button" data-toggle="dropdown" data-id=" " data-submenu>${t.c_name}</button>
+                                    <button class="form-control form-control-sm btn-test" type="button" data-toggle="dropdown" data-id="${t.c_code}" data-submenu>${t.c_name}</button>
                                     <div class="dropdown-menu">
                                         <div class="dropdown dropright dropdown-submenu">
                                             <button class="dropdown-item dropdown-toggle" type="button" data-toggle="dropdown">수입</button>
@@ -413,15 +414,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-submenu/3.0.1/js/bootstrap-submenu.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
 <script type="text/javascript">
-    // bootstrap submenu
     $(function() {
         $('[data-submenu]').submenupicker();
 
         $(document).on('click', '.btn-category', function() {
-            var dataId = $(this).data('id');
-            var dataName = $(this).data('name');
-            $(this).closest('td').find('.btn-test').text(dataName).attr('data-id', dataId);
+            const dataId = $(this).data('id');
+            const dataName = $(this).data('name');
+            const btnTest = $(this).closest('td').find('.btn-test');
+            btnTest.text(dataName).attr('data-id', dataId);
+            console.log('사용자가 선택한 카테고리 식별코드 = {' + btnTest.attr('data-id') + '}');
         });
     });
 
@@ -508,29 +511,21 @@
             '</tr>';
 
         $('.form-table').append(dynamic_tr);
+        $('[data-submenu]').submenupicker();
     });
 
     const income = [
         <c:forEach var="i" items="${income}" varStatus="status">
-        {
-            category: "${i.c_name}",
-            amount: ${i.m_amount}
-        },
+        { category: "${i.c_name}", amount: ${i.m_amount} },
         </c:forEach>
     ];
 
     const incomeData = [];
-    income.forEach(item => {
-        incomeData.push([item.category, item.amount]);
-    });
+    income.forEach(item => { incomeData.push([item.category, item.amount]); });
 
     Highcharts.chart('chart-income', {
-        title: {
-            text: '수입'
-        },
-        xAxis: {
-            categories: incomeData,
-        },
+        title: { text: '수입' },
+        xAxis: { categories: incomeData, },
         colors: ['#FF0000', '#FF4500', '#FFD700', '#006400', '#00008B', '#2E0854', '#4B0082'],
         series: [{
             type: 'pie',
@@ -554,24 +549,16 @@
 
     const save = [
         <c:forEach var="s" items="${save}" varStatus="status">
-        {
-            category: "${s.c_name}", amount: ${s.m_amount}
-        },
+        { category: "${s.c_name}", amount: ${s.m_amount} },
         </c:forEach>
     ];
 
     const saveData = [];
-    save.forEach(item => {
-        saveData.push([item.category, item.amount]);
-    });
+    save.forEach(item => { saveData.push([item.category, item.amount]); });
 
     Highcharts.chart('chart-save', {
-        title: {
-            text: '저축'
-        },
-        xAxis: {
-            categories: saveData,
-        },
+        title: { text: '저축' },
+        xAxis: { categories: saveData, },
         colors: ['#00008B', '#006400', '#FFD700', '#FF4500', '#FF0000', '#4B0082', '#2E0854'],
         series: [{
             type: 'pie',
@@ -595,25 +582,16 @@
 
     const fix = [
         <c:forEach var="f" items="${fix}" varStatus="status">
-        {
-            category: "${f.c_name}",
-            amount: ${f.m_amount}
-        },
+        { category: "${f.c_name}", amount: ${f.m_amount} },
         </c:forEach>
     ];
 
     const fixData = [];
-    fix.forEach(item => {
-        fixData.push([item.category, item.amount]);
-    });
+    fix.forEach(item => { fixData.push([item.category, item.amount]); });
 
     Highcharts.chart('chart-fix', {
-        title: {
-            text: '고정지출'
-        },
-        xAxis: {
-            categories: fixData,
-        },
+        title: { text: '고정지출' },
+        xAxis: { categories: fixData, },
         colors: ['#FF0000', '#FF4500', '#FFD700', '#006400', '#00008B', '#2E0854', '#4B0082'],
         series: [{
             type: 'pie',
@@ -637,29 +615,18 @@
 
     const nonFix = [
         <c:forEach var="m" items="${member}" varStatus="status">
-        {
-            category: "${m.category}",
-            amount: ${m.amount}
-        },
+        { category: "${m.category}", amount: ${m.amount} },
         </c:forEach>
     ];
 
     const nonFixCategory = [];
-    nonFix.forEach(item => {
-        nonFixCategory.push(item.category);
-    });
+    nonFix.forEach(item => { nonFixCategory.push(item.category); });
     const nonFixAmount = [];
-    nonFix.forEach(item => {
-        nonFixAmount.push(item.amount);
-    });
+    nonFix.forEach(item => { nonFixAmount.push(item.amount); });
 
     Highcharts.chart('chart-nonfix', {
-        title: {
-            text: '비고정지출'
-        },
-        xAxis: {
-            categories: nonFixCategory,
-        },
+        title: { text: '비고정지출' },
+        xAxis: { categories: nonFixCategory },
         colors: ['#8B0000', '#FF4500', '#FFD700', '#006400', '#00008B', '#2E0854', '#4B0082'],
         series: [{
             type: 'column',

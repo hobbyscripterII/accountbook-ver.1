@@ -12,8 +12,15 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'establishRetrosansOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
-    font-family: 'IBMPlexSansKR-Regular';
+    font-family: 'Pretendard-Regular';
     box-sizing: border-box;
 
     <!-- 드래그 금지 -->
@@ -32,19 +39,19 @@ header {
     /*width: 100vw;*/
     line-height: 100%;
     justify-content: center;
-    background-color: #B03B4E;
+    background-color: #001C91;
+    /*background-color: #B03B4E;*/
 }
 
 header > p {
-    font-size: 40px;
-    font-weight: 500;
+    font-size: 50px;
     line-height: 100%;
     margin: 15px 0 10px 0;
 }
 
 header > p > a {
-    font-family: 'Pretendard-Regular';
-    line-height: 40px;
+    font-family: 'establishRetrosansOTF';
+    font-weight: 100;
     text-decoration: none;
     color: white;
 }
@@ -53,24 +60,28 @@ nav {
     display: flex;
     /*width: 100vw;*/
     height: 40px;
-    background-color: #B03B4E;
-    justify-content: space-around;
+    background-color: #001C91;
+    /*background-color: #B03B4E;*/
+    justify-content: center;
 }
 
 nav > a, nav > div > a, nav > p {
     display: flex;
     justify-content: center;
     flex-grow: 1;
-    width: 200px;
     line-height: 40px;
     text-decoration: none;
     color: white;
     font-family: 'Pretendard-Regular';
 }
 
+nav > a, nav > p {
+    width: 10%;
+}
+
 section {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     padding-top: 20px;
 }
 

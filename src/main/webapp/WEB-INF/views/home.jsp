@@ -108,8 +108,8 @@
                 </div>
         </div>
 </section>
+<jsp:include page="layout/footer.jsp"/>
 
-<%--<jsp:include page="layout/footer.jsp"/>--%>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
 <script type="text/javascript">

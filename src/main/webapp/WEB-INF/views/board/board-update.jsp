@@ -25,25 +25,25 @@
                     <input type="hidden" class="form-control" id="b_id" name="b_id" value="${l.b_id}">
                     <input type="hidden" class="form-control" id="m_id" name="m_id" value="${l.m_id}" readonly>
                     <input type="hidden" class="form-control" value="${l.m_name}" readonly>
-                    <input type="hidden" class="form-control" name="n_create_date" value="${l.n_create_date}" readonly>
+                    <input type="hidden" class="form-control" name="b_create_date" value="${l.b_create_date}" readonly>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width: 100px">작성자</span>
                         <input type="text" class="form-control" value="${l.m_name}" style="width: 100px" disabled>
                         <span class="input-group-text" style="width: 100px">작성일자</span>
-                        <input type="text" class="form-control" value="${l.n_create_date}" style="width: 210px" disabled>
+                        <input type="text" class="form-control" value="${l.b_create_date}" style="width: 210px" disabled>
                         <span class="input-group-text" style="width: 100px">조회수</span>
-                        <input type="text" class="form-control" value="${l.n_view}" style="text-align: center" disabled>
+                        <input type="text" class="form-control" value="${l.b_view}" style="text-align: center" disabled>
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width: 100px">제목</span>
-                        <input type="text" class="form-control" id="n_title" name="n_title" value="${l.n_title}">
+                        <input type="text" class="form-control" id="b_title" name="b_title" value="${l.b_title}">
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width: 100px">내용</span>
-                        <textarea class="form-control" id="n_content" name="n_content" style="height: 300px; resize: none">${l.n_content}</textarea>
+                        <textarea class="form-control" id="b_content" name="b_content" style="height: 300px; resize: none">${l.b_content}</textarea>
                     </div>
                 </c:forEach>
 
@@ -72,7 +72,7 @@
             $.ajax({
                 type: 'post',
                 url: '/accountbook/${boardName}/update',
-                data: {'b_id' : $('#b_id').val(), 'n_title' : $('#n_title').val(), 'n_content' : $('#n_content').val(), 'b_alt' : $('#b_alt').val()},
+                data: {'b_id' : $('#b_id').val(), 'b_title' : $('#b_title').val(), 'b_content' : $('#b_content').val(), 'b_alt' : $('#b_alt').val()},
                 success(data) {
                     alert("수정이 완료되었습니다.");
                     location.href ='/accountbook/${boardName}/list/' + $('#b_id').val();

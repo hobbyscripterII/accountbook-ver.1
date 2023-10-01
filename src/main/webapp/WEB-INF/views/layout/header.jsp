@@ -23,15 +23,15 @@
 
     <c:choose>
         <c:when test="${empty sessionScope.MEMBER_ID}">
-            <div class="btn-sign-up">
+            <div class="btn-sign-up" style="width: 200px;">
                 <div class="emoji">
-                    👇👇👇👇👇
+                    💗💗💗💗💗
                 </div>
                 <a href="<c:url value="/sign-up"/>">회원가입</a>
             </div>
         </c:when>
         <c:otherwise>
-            <p style="font-size: 12px; cursor: default">회원님💖 오늘도 좋은하루 되세요!</p>
+            <p style="width: 200px; height: 40px; font-size: 12px; cursor: default">회원님💖 오늘도 좋은하루 되세요!</p>
         </c:otherwise>
     </c:choose>
 

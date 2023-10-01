@@ -49,7 +49,7 @@
     </delete>
 
     <update id="updateContent" parameterType="BoardUpdateContentDto">
-        UPDATE AC_BOARD SET B_TITLE = #{b_title}, B_CONTENT = #{b_content}, B_ALT = #{b_alt}, N_UPDATE_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI') WHERE B_ID = #{b_id}
+        UPDATE AC_BOARD SET B_TITLE = #{b_title}, B_CONTENT = #{b_content}, B_ALT = #{b_alt}, B_UPDATE_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI') WHERE B_ID = #{b_id}
     </update>
 
     <update id="updateContentCnt" parameterType="java.lang.Integer">

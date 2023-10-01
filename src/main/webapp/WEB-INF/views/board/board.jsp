@@ -2,6 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<style>
+    div > div > button {
+    }
+</style>
+
 <html>
 <jsp:include page="../layout/head.jsp"/>
 <jsp:include page="../layout/header.jsp"/>
@@ -9,7 +14,7 @@
 <section>
     <h1>${title}</h1>
 
-    <div style="text-align: center; margin: 30px 0 40px 0">
+    <div class="wrapper-board-list">
         <div class="btn-group btn-group-lg" role="group" aria-label="Large button group" style="width: 900px">
             <button type="button" class="btn btn-outline-dark" onclick="location.href='<c:url value="/notice/list" />'">공지사항</button>
             <button type="button" class="btn btn-outline-dark" onclick="location.href='<c:url value="/free/list" />'">자유 게시판</button>
