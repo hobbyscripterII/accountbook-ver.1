@@ -14,19 +14,16 @@
 
         <typeAlias type="com.accountbook.project.month.dto.MonthTableDto$getCategory" alias="MonthCategoryDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthTableDto$getTable" alias="MonthTableDto" />
-
         <typeAlias type="com.accountbook.project.month.dto.MonthRegisterTableDto" alias="MonthRegisterTableDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthRegisterTableDto$Insert" alias="MonthRegisterTableInsertDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthRegisterTableDto$Update" alias="MonthRegisterTableUpdateDto" />
-
         <typeAlias type="com.accountbook.project.month.dto.MonthChartDto" alias="MonthChartDto" />
-
         <typeAlias type="com.accountbook.project.month.dto.MonthBudgetDto" alias="MonthBudgetDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthBudgetDto$Insert" alias="MonthBudgetInsertDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthBudgetDto$Select" alias="MonthBudgetSelectDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthBudgetDto$Update" alias="MonthBudgetUpdateDto" />
-
         <typeAlias type="com.accountbook.project.month.dto.MonthCommentDto$Insert" alias="MonthCommentInsertDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthCategoryDto$Insert" alias="MonthCategoryInsertDto" />
 
         <typeAlias type="com.accountbook.project.board.dto.BoardDto" alias="BoardDto" />
         <typeAlias type="com.accountbook.project.board.dto.BoardDto$GetName" alias="BoardGetNameDto" />
@@ -35,7 +32,6 @@
         <typeAlias type="com.accountbook.project.board.dto.BoardDto$SelectContent" alias="BoardSelectContentDto" />
         <typeAlias type="com.accountbook.project.board.dto.BoardDto$UpdateContent" alias="BoardUpdateContentDto" />
         <typeAlias type="com.accountbook.project.board.dto.BoardDto$AccessFlag" alias="BoardAccessFlagDto" />
-
         <typeAlias type="com.accountbook.project.board.dto.BoardCommentDto" alias="BoardCommentDto" />
         <typeAlias type="com.accountbook.project.board.dto.BoardCommentDto$selectComment" alias="BoardSelectCommentDto" />
     </typeAliases>

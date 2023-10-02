@@ -23,6 +23,21 @@ $(function() {
     });
 });
 
+$(document).on('click', '#category-create-flag', function () {
+    const code = $('input[name="c_code"]:checked').val();
+    console.log('사용자가 선택한 카테고리 식별코드 = {' + code + '}');
+
+    $.ajax({
+        type: 'post',
+        url: '/accountbook/ct/insert',
+        data: {'c_code': code, 'c_name': $('#c_name').val()},
+        success: function () {
+            alert('Controller 진입 완료')
+            location.reload();
+        }
+    });
+});
+
 // 가게부 예산 수정
 $(document).on('click', '#budget-flag', function() {
     if(!$('#b_fix').val()) {

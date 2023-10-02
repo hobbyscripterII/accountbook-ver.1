@@ -445,7 +445,7 @@
 
                         <div class="input-group mb-3" style="margin-top: 10px">
                             <span class="input-group-text">카테고리명</span>
-                            <input type="text" class="form-control" name="c_name">
+                            <input type="text" class="form-control" name="c_name" id="c_name">
                         </div>
                     </div>
                 </div>
