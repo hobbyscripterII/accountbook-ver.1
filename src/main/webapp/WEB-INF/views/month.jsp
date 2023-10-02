@@ -16,7 +16,7 @@
         display: flex;
     }
 
-    .dropdown-menu.show {
+    .dropdown-category-create.show {
         left: 206px !important;
         top: -37px !important;
     }
@@ -40,7 +40,7 @@
                             <button class="btn btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 13px"> <!-- data-bs-toggle="modal" data-bs-target="#modal-category" -->
                                 사용자 정의 카테고리 추가 및 수정
                             </button>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-category-create">
                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-category">가계부 카테고리 추가</a></li>
                                 <li><a class="dropdown-item" href="#">가계부 카테고리 수정/삭제</a></li>
                             </ul>

@@ -5,18 +5,18 @@
 
 <mapper namespace="com.accountbook.project.month.mapper.MonthCategoryMapper">
     <insert id="insertIncome" parameterType="MonthCategoryInsertDto">
-        INSERT INTO AC_CATEGORY(C_ID, M_ID, C_CODE, C_NAME, C_CREATE_DATE, C_ROLE) VALUES(CATEGORY_SEQ.NEXTVAL, #{m_id}, 'A' || INCOME_SEQ.NEXTVAL, #{c_name}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'N')
+        INSERT INTO AC_CATEGORY(C_ID, M_ID, C_CODE, C_NAME, C_CREATE_DATE, C_ROLE) VALUES(CATEGORY_SEQ.NEXTVAL, #{m_id}, 'A' || INCOME_SEQ.NEXTVAL, #{c_name}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'Y')
     </insert>
 
     <insert id="insertSave" parameterType="MonthCategoryInsertDto">
-        INSERT INTO AC_CATEGORY(C_ID, M_ID, C_CODE, C_NAME, C_CREATE_DATE, C_ROLE) VALUES(CATEGORY_SEQ.NEXTVAL, #{m_id}, 'B' || INCOME_SEQ.NEXTVAL, #{c_name}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'N')
+        INSERT INTO AC_CATEGORY(C_ID, M_ID, C_CODE, C_NAME, C_CREATE_DATE, C_ROLE) VALUES(CATEGORY_SEQ.NEXTVAL, #{m_id}, 'B' || INCOME_SEQ.NEXTVAL, #{c_name}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'Y')
     </insert>
 
     <insert id="insertFix" parameterType="MonthCategoryInsertDto">
-        INSERT INTO AC_CATEGORY(C_ID, M_ID, C_CODE, C_NAME, C_CREATE_DATE, C_ROLE) VALUES(CATEGORY_SEQ.NEXTVAL, #{m_id}, 'C' || INCOME_SEQ.NEXTVAL, #{c_name}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'N')
+        INSERT INTO AC_CATEGORY(C_ID, M_ID, C_CODE, C_NAME, C_CREATE_DATE, C_ROLE) VALUES(CATEGORY_SEQ.NEXTVAL, #{m_id}, 'C' || INCOME_SEQ.NEXTVAL, #{c_name}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'Y')
     </insert>
 
     <insert id="insertNonfix" parameterType="MonthCategoryInsertDto">
-        INSERT INTO AC_CATEGORY(C_ID, M_ID, C_CODE, C_NAME, C_CREATE_DATE, C_ROLE) VALUES(CATEGORY_SEQ.NEXTVAL, #{m_id}, 'D' || INCOME_SEQ.NEXTVAL, #{c_name}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'N')
+        INSERT INTO AC_CATEGORY(C_ID, M_ID, C_CODE, C_NAME, C_CREATE_DATE, C_ROLE) VALUES(CATEGORY_SEQ.NEXTVAL, #{m_id}, 'D' || INCOME_SEQ.NEXTVAL, #{c_name}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'Y')
     </insert>
 </mapper>

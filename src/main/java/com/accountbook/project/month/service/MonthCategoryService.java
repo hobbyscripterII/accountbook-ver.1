@@ -18,7 +18,6 @@ public class MonthCategoryService {
 
     public void insertCategory(String c_code, String c_name, HttpServletRequest request) {
         MonthCategoryDto.Insert insert = new MonthCategoryDto.Insert(getId(request), c_name);
-        log.info("insert = {}", insert);
 
         if (c_code.equals("A")) {
             monthCategoryMapper.insertIncome(insert);
