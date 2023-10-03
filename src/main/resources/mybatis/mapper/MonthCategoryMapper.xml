@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.accountbook.project.month.mapper.MonthCategoryMapper">
+    <select id="selectCategory" parameterType="int" resultType="MonthCategorySelectDto">
+        SELECT C_ID, M_ID, C_CODE, C_NAME, C_ROLE FROM AC_CATEGORY WHERE M_ID = #{m_id} AND C_ROLE = 'Y'
+    </select>
+
     <insert id="insertIncome" parameterType="MonthCategoryInsertDto">
         INSERT INTO AC_CATEGORY(C_ID, M_ID, C_CODE, C_NAME, C_CREATE_DATE, C_ROLE) VALUES(CATEGORY_SEQ.NEXTVAL, #{m_id}, 'A' || INCOME_SEQ.NEXTVAL, #{c_name}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), 'Y')
     </insert>

@@ -9,12 +9,17 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class MonthCategoryService {
     private final MonthCategoryMapper monthCategoryMapper;
+
+    public List<MonthCategoryDto.Select> selectCategory(int m_id) {
+        return monthCategoryMapper.selectCategory(m_id);
+    }
 
     public void insertCategory(String c_code, String c_name, HttpServletRequest request) {
         MonthCategoryDto.Insert insert = new MonthCategoryDto.Insert(getId(request), c_name);

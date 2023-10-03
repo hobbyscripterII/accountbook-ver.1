@@ -32,7 +32,6 @@ $(document).on('click', '#category-create-flag', function () {
         url: '/accountbook/ct/insert',
         data: {'c_code': code, 'c_name': $('#c_name').val()},
         success: function () {
-            alert('Controller 진입 완료')
             location.reload();
         }
     });

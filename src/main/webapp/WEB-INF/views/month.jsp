@@ -33,16 +33,16 @@
             <div class="table-side">
                 <form>
                     <div class="wrapper-change-setting">
-                        <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#modal-budget-create" style="width: 170px; font-size: 13px; margin-right: 5px">
+                        <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#modal-budget-create" style="width: 183px; font-size: 13px; margin-right: 5px">
                             가계부 예산 수정
                         </button>
                         <div class="">
-                            <button class="btn btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 13px"> <!-- data-bs-toggle="modal" data-bs-target="#modal-category" -->
-                                사용자 정의 카테고리 추가 및 수정
+                            <button class="btn btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 183px; font-size: 13px"> <!-- data-bs-toggle="modal" data-bs-target="#modal-category" -->
+                                사용자 정의 카테고리 관리
                             </button>
                             <ul class="dropdown-menu dropdown-category-create">
-                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-category">가계부 카테고리 추가</a></li>
-                                <li><a class="dropdown-item" href="#">가계부 카테고리 수정/삭제</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-category-create">가계부 카테고리 추가</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-category-modify">가계부 카테고리 삭제</a></li>
                             </ul>
                         </div>
                     </div>
@@ -416,7 +416,7 @@
         </div>
     </div>
 
-    <div class="modal" id="modal-category" tabindex="-1">
+    <div class="modal" id="modal-category-create" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -457,6 +457,35 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="modal-category-modify" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">사용자 정의 카테고리 삭제</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form>
+                    <div class="modal-body" style="display: flex">
+                        <select id="select-category" class="form-select" size="5">
+                            <option value="A">수입</option>
+                            <option value="B">저축</option>
+                            <option value="C">고정지출</option>
+                            <option value="D">비고정지출</option>
+                        </select>
+
+                        <select id="select-category-small" class="form-select" size="5" style="margin-left: 10px">
+
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="category-modify-flag" class="btn btn-danger">확인</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script type="text/javascript" src="../../resources/js/month.js"></script>
@@ -469,6 +498,28 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
 <script type="text/javascript">
+    $(document).on('click', '#select-category', function () {
+        const code = $('#select-category').val();
+        // alert('클릭한 대분류 카테고리 식별코드 = {' + code + '}');
+
+        $.ajax({
+            type: 'get',
+            url: '/accountbook/ct/select',
+            success: function (category) {
+                const categoryArr = [];
+                category.forEach(item => { categoryArr.push([item.c_code, item.c_name]); });
+                console.log("테스트 = {" + categoryArr + "}");
+
+                const selectCategorySmall = document.getElementById('select-category-small');
+                selectCategorySmall.innerHTML = '';
+                const option = document.createElement('option');
+                option.value = category.c_code;
+                option.text = category.c_name;
+                selectCategorySmall.appendChild(option);
+            }
+        });
+    });
+
     $(document).on('click', '#btn-row-create', function() {
         var dynamic_tr =
             '<tr>' +

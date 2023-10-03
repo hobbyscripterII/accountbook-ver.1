@@ -7,6 +7,7 @@ public class MonthTableDto {
     public static class getCategory {
         private String c_code;
         private String c_name;
+        private String c_role;
     }
 
     @Getter

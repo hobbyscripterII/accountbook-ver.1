@@ -78,42 +78,6 @@ public class MonthTableController {
         model.addAttribute("nonFix", temp.get("D"));
     }
 
-//    public void tableInfo(Model model, Map<String, Object> map) {
-//        // 테이블 정보가 담겨있는 List를 담는다.
-//        List<MonthTableDto.getTable> table = monthTableService.getTableInfo(map);
-//        Map<String, List<MonthTableDto.getTable>> temp = new HashMap<String, List<MonthTableDto.getTable>>();
-//        // 카테고리를 분류하기위해 카테고리 식별코드를 배열로 담는다.
-//        String[] categoryCodeArray = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"};
-//
-//        for(String categoryCode : categoryCodeArray)
-//            // key: categoryCode value: List<tableInfo>
-//            temp.put(categoryCode, new ArrayList<MonthTableDto.getTable>());
-//
-//        for(MonthTableDto.getTable dto : table) {
-//            String categoryCode = dto.getC_code();
-//            for(String categoryCode_ : categoryCodeArray) {
-//                // dto.getC_code에 담긴 값이 배열에 담긴 값일 경우 카테고리 식별코드와 일치하는 key를 꺼내 데이터를 담는다.
-//                if(categoryCode.contains(categoryCode_))
-//                    temp.get(categoryCode_).add(dto);
-//            }
-//        }
-//
-//        model.addAttribute("income", temp.get("A"));
-//        model.addAttribute("fix", temp.get("B"));
-//        model.addAttribute("save", temp.get("N"));
-//        model.addAttribute("nonFixFood", temp.get("C"));
-//        model.addAttribute("nonFixLife", temp.get("D"));
-//        model.addAttribute("nonFixTraffic", temp.get("E"));
-//        model.addAttribute("nonFixRegular", temp.get("F"));
-//        model.addAttribute("nonFixFashion", temp.get("G"));
-//        model.addAttribute("nonFixBeauty", temp.get("H"));
-//        model.addAttribute("nonFixPhrase", temp.get("I"));
-//        model.addAttribute("nonFixEdu", temp.get("J"));
-//        model.addAttribute("nonFixCulture", temp.get("K"));
-//        model.addAttribute("nonFixHealth", temp.get("L"));
-//        model.addAttribute("nonFixEtc", temp.get("M"));
-//    }
-
     private static int getId(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return (Integer) session.getAttribute(SessionConst.MEMBER_ID);

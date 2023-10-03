@@ -5,7 +5,7 @@
 
 <mapper namespace="com.accountbook.project.month.mapper.MonthTableMapper">
     <select id="getCategory" resultType="MonthCategoryDto">
-        SELECT C_ID, M_ID, C_CODE, C_NAME FROM AC_CATEGORY
+        SELECT C_ID, M_ID, C_CODE, C_NAME, C_ROLE FROM AC_CATEGORY
     </select>
 
     <select id="getMonth" parameterType="Map" resultType="MonthRegisterTableDto">
