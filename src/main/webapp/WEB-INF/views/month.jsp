@@ -391,12 +391,12 @@
                 </div>
                 <div class="modal-body">
                     <div>
-<%--                        <div class="btn-group" role="group" style="display: flex; width: 100%; text-align: center">--%>
-<%--                            <input type="radio" class="btn-check" name="b_cover" id="b_cover" value="ALL" autocomplete="off" checked>--%>
-<%--                            <label class="btn btn-outline-dark" for="b_cover">기존 예산</label>--%>
+                        <div class="btn-group" role="group" style="display: flex; width: 100%; text-align: center">
+                            <input type="radio" class="btn-check" name="b_cover" id="b_cover" value="ALL" autocomplete="off" checked>
+                            <label class="btn btn-outline-dark" for="b_cover">기존 예산</label>
 <%--                            <input type="radio" class="btn-check" name="b_cover" id="b_cover" autocomplete="off">--%>
 <%--                            <label class="btn btn-outline-dark" for="b_cover">특정 예산</label>--%>
-<%--                        </div>--%>
+                        </div>
 
                         <div style="display: flex; width: 100%; text-align: center">
                                 <span class="span-budget-modal-text">고정 지출</span>
