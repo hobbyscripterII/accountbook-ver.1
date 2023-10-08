@@ -13,8 +13,8 @@ import java.util.Map;
 public class MonthChartService {
     private final MonthChartMapper monthChartMapper;
 
-    public List<MonthChartDto> getMemberMonthCategorySum(Map<String, Object> map) {
-        return monthChartMapper.getMemberMonthCategorySum(map);
+    public List<MonthChartDto.Info> getMemberMonthCategorySum(MonthChartDto monthChartDto) {
+        return monthChartMapper.getMemberMonthCategorySum(monthChartDto);
     }
 
     public List<MonthChartDto> getMemberMonthCategoryAvg(int m_id) {

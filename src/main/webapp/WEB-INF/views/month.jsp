@@ -683,7 +683,7 @@
 
     const nonFix = [
         <c:forEach var="m" items="${member}" varStatus="status">
-        { category: "${m.category}", amount: ${m.amount} },
+        { category: "${m.c_name}", amount: ${m.m_amount} },
         </c:forEach>
     ];
 

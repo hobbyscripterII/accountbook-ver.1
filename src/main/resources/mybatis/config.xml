@@ -18,6 +18,7 @@
         <typeAlias type="com.accountbook.project.month.dto.MonthRegisterTableDto$Insert" alias="MonthRegisterTableInsertDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthRegisterTableDto$Update" alias="MonthRegisterTableUpdateDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthChartDto" alias="MonthChartDto" />
+        <typeAlias type="com.accountbook.project.month.dto.MonthChartDto$Info" alias="MonthChartInfoDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthBudgetDto" alias="MonthBudgetDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthBudgetDto$Insert" alias="MonthBudgetInsertDto" />
         <typeAlias type="com.accountbook.project.month.dto.MonthBudgetDto$Select" alias="MonthBudgetSelectDto" />

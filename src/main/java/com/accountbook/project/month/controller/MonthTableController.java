@@ -2,6 +2,7 @@ package com.accountbook.project.month.controller;
 
 import com.accountbook.project.SessionConst;
 import com.accountbook.project.accountbook.service.AccountBookService;
+import com.accountbook.project.month.dto.MonthChartDto;
 import com.accountbook.project.month.dto.MonthTableDto;
 import com.accountbook.project.month.service.MonthBudgetService;
 import com.accountbook.project.month.service.MonthChartService;
@@ -28,6 +29,7 @@ public class MonthTableController {
 
     @GetMapping("/{m_id}/{a_code}")
     public String month(@PathVariable("m_id") int m_id, @PathVariable("a_code") int a_code, HttpServletRequest request, Model model) {
+        MonthChartDto monthChartDto = new MonthChartDto(m_id, a_code);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("m_id", m_id);
         map.put("a_code", a_code);
@@ -35,7 +37,7 @@ public class MonthTableController {
         model.addAttribute("list", accountBookService.getACode(getId(request))); // 회원이 등록한 가계부 일련코드 목록
         model.addAttribute("accountBook", accountBookService.getAccountBook(map)); // 회원이 선택한 가계부 일련코드
         model.addAttribute("table", monthTableService.getMonth(map)); // 회원이 입력한 가계부 정보
-        model.addAttribute("member", monthChartService.getMemberMonthCategorySum(map));
+        model.addAttribute("member", monthChartService.getMemberMonthCategorySum(monthChartDto));
         model.addAttribute("budget", monthBudgetService.selectBudget(m_id));
 
         monthBudgetService.selectBudget(m_id);
