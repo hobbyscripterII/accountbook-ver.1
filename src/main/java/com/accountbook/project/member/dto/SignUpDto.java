@@ -18,6 +18,4 @@ public class SignUpDto {
     private String m_pwd;
     @Size(min = 2, max = 6, message = "닉네임은 2~6자리로 입력해주세요.")
     private String m_name;
-    @NotBlank(message = "이용약관에 동의해주세요.") // checkbox
-    private String m_accept;
 }
