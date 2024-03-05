@@ -12,13 +12,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'establishRetrosansOTF';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
 * {
     font-family: 'Pretendard-Regular';
     box-sizing: border-box;
@@ -44,14 +37,13 @@ header {
 }
 
 header > p {
-    font-size: 50px;
+    font-size: 40px;
     line-height: 100%;
     margin: 15px 0 10px 0;
 }
 
 header > p > a {
-    font-family: 'establishRetrosansOTF';
-    font-weight: 100;
+    font-weight: bold;
     text-decoration: none;
     color: white;
 }

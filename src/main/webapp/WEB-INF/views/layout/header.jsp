@@ -9,7 +9,7 @@
 </style>
 
 <header>
-    <p><a href="<c:url value="/" />">가계부 프로젝트</a></p>
+    <p><a href="<c:url value="/" />">말랑이 가계부</a></p>
 </header>
 <nav>
     <a href="<c:url value="/" />">홈</a>
